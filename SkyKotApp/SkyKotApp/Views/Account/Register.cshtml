@@ -1,0 +1,73 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<h4>RegisterViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="Register"  method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <div>
+                    <div class="custom-file">
+                        <input asp-for="Photo" class="form-control custom-file-input" accept="image/png, image/gif, image/jpeg" />
+                        <label class="custom-file-label">Choose File...</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group submit-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Home</a>
+</div>
+
+@section Scripts{
+    <script>
+        //bach yban lik path dyal file f labale
+        window.addEventListener('load', function () {
+            let myInput = document.querySelector('.custom-file-input');
+            myInput.onchange = function () {
+                //let fileName = this.value.split('\\').pop();
+                //this.nextElementSibling.textContent = fileName;
+                let selectedItems = this.files.length;
+                if (selectedItems == 1) {
+                    this.nextElementSibling.textContent = this.value.split('\\').pop();
+                }
+                else if (selectedItems > 1) {
+                    this.nextElementSibling.textContent = selectedItems + " files selected";
+                }
+            }
+        }, false)
+    </script>
+}
