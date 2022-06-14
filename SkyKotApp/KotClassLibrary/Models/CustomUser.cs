@@ -15,5 +15,8 @@ namespace KotClassLibrary.Models
         [Required]
         public string LastName { get; set; }
         public string ProfileImage { get; set; }
+
+        public ICollection<UserHouse> UserHouses { get; set; }
+        public ICollection<RenterRoom> RenterRooms { get; set; }
     }
 }

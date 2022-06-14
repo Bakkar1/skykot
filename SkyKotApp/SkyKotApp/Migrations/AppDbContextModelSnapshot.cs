@@ -19,6 +19,37 @@ namespace SkyKotApp.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("KotClassLibrary.Models.AcademicYear", b =>
+                {
+                    b.Property<int>("AcademicYearId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AcademicYearId");
+
+                    b.ToTable("AcademicYears");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Country", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CountryId");
+
+                    b.ToTable("Countries");
+                });
+
             modelBuilder.Entity("KotClassLibrary.Models.CustomUser", b =>
                 {
                     b.Property<string>("Id")
@@ -93,6 +124,259 @@ namespace SkyKotApp.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Expence", b =>
+                {
+                    b.Property<int>("ExpenceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ExpenceId");
+
+                    b.ToTable("Expences");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.House", b =>
+                {
+                    b.Property<int>("HouseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("HouseNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ZipCodeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HouseId");
+
+                    b.HasIndex("ZipCodeId");
+
+                    b.ToTable("Houses");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RenterRoom", b =>
+                {
+                    b.Property<int>("RenterRoomId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AcademicYearId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("RenterRoomId");
+
+                    b.HasIndex("AcademicYearId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RenterRooms");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Room", b =>
+                {
+                    b.Property<int>("RoomId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AvailableFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("HouseId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MaxPeople")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Period")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("RoomNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoomType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoomId");
+
+                    b.HasIndex("HouseId");
+
+                    b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RoomExpense", b =>
+                {
+                    b.Property<int>("RoomExpenseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ExpenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoomExpenseId");
+
+                    b.HasIndex("ExpenceId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoomExpenses");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RoomImage", b =>
+                {
+                    b.Property<int>("RoomImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomImageId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoomImages");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RoomSpecification", b =>
+                {
+                    b.Property<int>("RoomSpecificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsAvailAble")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpecificationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WhereAvailAble")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoomSpecificationId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("SpecificationId");
+
+                    b.ToTable("RoomSpecifications");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Specification", b =>
+                {
+                    b.Property<int>("SpecificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SpecificationId");
+
+                    b.ToTable("Specifications");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.UserHouse", b =>
+                {
+                    b.Property<int>("UserHouseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("HouseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserHouseId");
+
+                    b.HasIndex("HouseId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("UserHouses");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.ZipCode", b =>
+                {
+                    b.Property<int>("ZipCodeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ZipCodeId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("ZipCodes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -226,6 +510,130 @@ namespace SkyKotApp.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("KotClassLibrary.Models.House", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.ZipCode", "ZipCode")
+                        .WithMany("Houses")
+                        .HasForeignKey("ZipCodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ZipCode");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RenterRoom", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.AcademicYear", "AcademicYear")
+                        .WithMany("RenterRooms")
+                        .HasForeignKey("AcademicYearId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KotClassLibrary.Models.CustomUser", "CustomUser")
+                        .WithMany("RenterRooms")
+                        .HasForeignKey("IdentityUserId");
+
+                    b.HasOne("KotClassLibrary.Models.Room", "Room")
+                        .WithMany("RenterRooms")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AcademicYear");
+
+                    b.Navigation("CustomUser");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Room", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.House", "House")
+                        .WithMany("Rooms")
+                        .HasForeignKey("HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RoomExpense", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.Expence", "Expence")
+                        .WithMany("RoomExpenses")
+                        .HasForeignKey("ExpenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KotClassLibrary.Models.Room", "Room")
+                        .WithMany("RoomExpenses")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Expence");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RoomImage", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.Room", "Room")
+                        .WithMany("RoomImages")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RoomSpecification", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.Room", "Room")
+                        .WithMany("RoomSpecifications")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KotClassLibrary.Models.Specification", "Specification")
+                        .WithMany("RoomSpecifications")
+                        .HasForeignKey("SpecificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+
+                    b.Navigation("Specification");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.UserHouse", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.House", "House")
+                        .WithMany("UserHouses")
+                        .HasForeignKey("HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KotClassLibrary.Models.CustomUser", "CustomUser")
+                        .WithMany("UserHouses")
+                        .HasForeignKey("IdentityUserId");
+
+                    b.Navigation("CustomUser");
+
+                    b.Navigation("House");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.ZipCode", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.Country", "Country")
+                        .WithMany("ZipCodes")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -275,6 +683,56 @@ namespace SkyKotApp.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.AcademicYear", b =>
+                {
+                    b.Navigation("RenterRooms");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Country", b =>
+                {
+                    b.Navigation("ZipCodes");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.CustomUser", b =>
+                {
+                    b.Navigation("RenterRooms");
+
+                    b.Navigation("UserHouses");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Expence", b =>
+                {
+                    b.Navigation("RoomExpenses");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.House", b =>
+                {
+                    b.Navigation("Rooms");
+
+                    b.Navigation("UserHouses");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Room", b =>
+                {
+                    b.Navigation("RenterRooms");
+
+                    b.Navigation("RoomExpenses");
+
+                    b.Navigation("RoomImages");
+
+                    b.Navigation("RoomSpecifications");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.Specification", b =>
+                {
+                    b.Navigation("RoomSpecifications");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.ZipCode", b =>
+                {
+                    b.Navigation("Houses");
                 });
 #pragma warning restore 612, 618
         }

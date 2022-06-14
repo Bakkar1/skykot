@@ -21,6 +21,7 @@ namespace SkyKotApp.Services.Login
         Task<bool> IsEmailConfirmed(CustomUser user);
         Task<IdentityResult> ConfirmEmail(CustomUser user, string token);
         Task<CustomUser> GetUserById(string userId);
+        Task<bool> IsAdmin(CustomUser user);
         #endregion
         #region External Login
         Task<ExternalLoginInfo> GetExternalLoginInfoAsync();

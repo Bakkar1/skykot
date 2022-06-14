@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CustomUser>
+
+@{
+    ViewData["Title"] = "users";
+}
+@section Style{
+    <link rel="stylesheet" href="~/css/User.css" />
+}
+<h3 class="cat-heading m-auto">Users</h3>
+
+<p>
+    <a class="btn btn-outline-success" asp-action="Create">Create New</a>
+</p>
+<div class="custom-container">
+    @foreach (var user in Model)
+    {
+        var photoPath = "/Images/Profile/" + (user.ProfileImage ?? "avatar.png");
+        <div style="width: 300px">
+            <div class="card text-white card-has-bg click-col"
+                 style=" background-image: url('https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/x-factor.jpg'); ">
+                <img class="card-img d-none"
+                     src="https://source.unsplash.com/600x900/?tech,street"
+                     alt="Avatar" />
+                <div class="card-img-overlay d-flex flex-column">
+                    <div class="card-body">
+                        <div class="media">
+                            <img class="mr-3 rounded-circle"
+                                 asp-append-version="true"
+                                 src="@photoPath"
+                                 alt="Generic placeholder image"
+                                 style="max-width: 50px" />
+                            <div class="media-body">
+                                <h6 class="my-0 text-white d-block">@user.LastName</h6>
+                                <small>@user.FirstName</small>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
+                            <a asp-action="Details" asp-route-id="@user.Id" class="btn btn-info">Details</a>
+                            <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

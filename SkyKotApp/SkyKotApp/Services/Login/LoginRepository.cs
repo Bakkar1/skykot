@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using SkyKotApp.Data;
+using SkyKotApp.Data.Default;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,6 +77,11 @@ namespace SkyKotApp.Services.Login
         public async Task<IdentityResult> ConfirmEmail(CustomUser user, string token)
         {
             return await userManager.ConfirmEmailAsync(user, token);
+        }
+
+        public async Task<bool> IsAdmin(CustomUser user)
+        {
+            return await userManager.IsInRoleAsync(user, Roles.Admin);
         }
         #endregion
 

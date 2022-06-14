@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SkyKotApp.Data;
+using SkyKotApp.Services.General;
 using SkyKotApp.Services.Login;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,7 @@ namespace SkyKotApp
 
             //services
             services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<ISkyKotRepository, SkyKotPartialRepository>();
             //External Login
             services.Configure<IdentityOptions>(options =>
             {
@@ -99,6 +101,7 @@ namespace SkyKotApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            Data.Default.SeedData.EnsurePopulated(app);
         }
     }
 }

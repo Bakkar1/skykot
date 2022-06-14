@@ -1,0 +1,19 @@
+﻿@model CustomUser;
+@{
+    ViewData["Title"] = "Profile";
+    var photoPath = "/images/" + (Model.ProfileImage ?? "avatar.png");
+}
+<div class="d-flex justify-content-center p-2" >
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@photoPath" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
+            <p class="card-text">@Model.Email</p>
+            <div>
+                <a class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -28,8 +28,10 @@ namespace SkyKotApp.Controllers
             this.loginRepository = loginRepository;
             this.hostingEnvironment = hostingEnvironment;
         }
-        public IActionResult Profile(string userName)
+        [Authorize]
+        public IActionResult Profile()
         {
+            var userName = User.FindFirstValue(ClaimTypes.Name);
             return View(loginRepository.GetUserByUserName(userName));
         }
 
@@ -103,8 +105,8 @@ namespace SkyKotApp.Controllers
 
                 if (identityUser != null)
                 {
-                    
-                    if (await loginRepository.IsEmailConfirmed(identityUser))
+
+                    if (await loginRepository.IsAdmin(identityUser) /*|| await loginRepository.IsEmailConfirmed(identityUser)*/)
                     {
                         var userName = identityUser.UserName;
                         var result = await loginRepository.SignInWithPassword(
