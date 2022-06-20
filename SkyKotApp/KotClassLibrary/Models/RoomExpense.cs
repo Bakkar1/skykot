@@ -14,7 +14,7 @@ namespace KotClassLibrary.Models
         public Room Room { get; set; }
         public int ExpenceId { get; set; }
         public Expence Expence { get; set; }
-        [Required]
-        public string Value { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Only positive number allowed")]
+        public int Value { get; set; }
     }
 }

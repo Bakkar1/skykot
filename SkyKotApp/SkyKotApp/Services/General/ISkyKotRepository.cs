@@ -1,4 +1,6 @@
 ﻿using KotClassLibrary.Models;
+using KotClassLibrary.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,23 @@ namespace SkyKotApp.Services.General
         #endregion
         #region House
         Task<ICollection<House>> GetHouses();
+        Task<SelectList> GetHousesSelectList();
         Task<House> AddHouse(House house);
+        #endregion
+        #region Room
+        Task<ICollection<Room>> GetRooms();
+        Task<Room> GetRoom(int roomId);
+        Task<Room> AddRoom(RoomCreateViewModel model);
+        Task<Room> UpdateRoom(RoomEditViewModel model);
+        Task<List<RoomSpecification>> GetRoomSpecificationsToCreate();
+        Task<List<RoomExpense>> GetRoomExpenseToCreate();
+
+        Task<List<RoomSpecification>> GetRoomSpecificationsToEdit(ICollection<RoomSpecification> roomSpecifications);
+
+        Task<ICollection<Specification>> GetSpecifications();
+        Task<ICollection<Expence>> GetExpences();
+        Task<SelectList> GetSpecificationsSelect();
+        Task<SelectList> GetExpensesSelect();
         #endregion
     }
 }

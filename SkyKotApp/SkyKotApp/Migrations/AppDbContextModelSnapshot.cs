@@ -149,6 +149,9 @@ namespace SkyKotApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("HouseNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -184,7 +187,7 @@ namespace SkyKotApp.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IdentityUserId")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("RoomId")
@@ -197,7 +200,7 @@ namespace SkyKotApp.Migrations
 
                     b.HasIndex("AcademicYearId");
 
-                    b.HasIndex("IdentityUserId");
+                    b.HasIndex("Id");
 
                     b.HasIndex("RoomId");
 
@@ -214,6 +217,9 @@ namespace SkyKotApp.Migrations
                     b.Property<DateTime>("AvailableFrom")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("HouseId")
                         .HasColumnType("int");
 
@@ -223,8 +229,8 @@ namespace SkyKotApp.Migrations
                     b.Property<int>("MaxPeople")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Period")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Period")
+                        .HasColumnType("int");
 
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
@@ -253,9 +259,8 @@ namespace SkyKotApp.Migrations
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
 
                     b.HasKey("RoomExpenseId");
 
@@ -304,7 +309,6 @@ namespace SkyKotApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("WhereAvailAble")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoomSpecificationId");
@@ -342,14 +346,14 @@ namespace SkyKotApp.Migrations
                     b.Property<int>("HouseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("IdentityUserId")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserHouseId");
 
                     b.HasIndex("HouseId");
 
-                    b.HasIndex("IdentityUserId");
+                    b.HasIndex("Id");
 
                     b.ToTable("UserHouses");
                 });
@@ -531,7 +535,7 @@ namespace SkyKotApp.Migrations
 
                     b.HasOne("KotClassLibrary.Models.CustomUser", "CustomUser")
                         .WithMany("RenterRooms")
-                        .HasForeignKey("IdentityUserId");
+                        .HasForeignKey("Id");
 
                     b.HasOne("KotClassLibrary.Models.Room", "Room")
                         .WithMany("RenterRooms")
@@ -616,7 +620,7 @@ namespace SkyKotApp.Migrations
 
                     b.HasOne("KotClassLibrary.Models.CustomUser", "CustomUser")
                         .WithMany("UserHouses")
-                        .HasForeignKey("IdentityUserId");
+                        .HasForeignKey("Id");
 
                     b.Navigation("CustomUser");
 

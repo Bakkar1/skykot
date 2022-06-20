@@ -19,6 +19,7 @@ namespace KotClassLibrary.Models
         public string StreetName { get; set; }
         [Required]
         public string HouseNumber { get; set; }
+        public string Description { get; set; }
         public ICollection<UserHouse> UserHouses { get; set; }
         public ICollection<Room> Rooms { get; set; }
     }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkyKotApp.Data;
 using SkyKotApp.Data.Default;
@@ -54,6 +55,11 @@ namespace SkyKotApp.Services.General
         public string GetCurrentUserRole()
         {
             return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
+        }
+
+        public async Task<SelectList> GetHousesSelectList()
+        {
+            return new SelectList(await GetHouses(), nameof(House.HouseId), nameof(House.Name));
         }
     }
 }

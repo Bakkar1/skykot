@@ -15,7 +15,6 @@ namespace KotClassLibrary.Models
         public int SpecificationId { get; set; }
         public Specification Specification { get; set; }
         public bool IsAvailAble { get; set; }
-        [Required]
         public string WhereAvailAble { get; set; }
     }
 }

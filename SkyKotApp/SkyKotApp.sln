@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyKotApp", "SkyKotApp\SkyKotApp.csproj", "{F26E01AC-C01B-4F31-B3F7-7F62476C3B66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyKotApp", "SkyKotApp\SkyKotApp.csproj", "{F26E01AC-C01B-4F31-B3F7-7F62476C3B66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotClassLibrary", "KotClassLibrary\KotClassLibrary.csproj", "{AC0D08A1-C930-406B-AA08-E7ECA8FF2909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KotClassLibrary", "KotClassLibrary\KotClassLibrary.csproj", "{AC0D08A1-C930-406B-AA08-E7ECA8FF2909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,56 +4,75 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Model.House.Name</h1>
+
+<partial name="PartialRoomImages" model="@Model.RoomImages" />
+
 
 <div>
-    <h4>Room</h4>
-    <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.House)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.House.HouseNumber)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RoomNumber)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RoomNumber)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RoomType)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RoomType)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MaxPeople)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MaxPeople)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Period)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Period)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.AvailableFrom)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.AvailableFrom)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IsAvailable)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IsAvailable)
         </dd>
     </dl>
 </div>
+<div></div>
+<div>
+    <div>Specifications</div>
+    @foreach (var spec in Model.RoomSpecifications)
+    {
+        <p>@spec.Specification.Description : @spec.IsAvailAble , @spec.WhereAvailAble</p>
+    }
+</div>
+<div>
+    <div>Expenses</div>
+    @foreach (var expense in Model.RoomExpenses)
+    {
+        <p>@expense.Expence.Description : @expense.Value$</p>
+    }
+    <p>Total : @Model.RoomExpenses.Sum(re =>re.Value)$</p>
+</div>
+
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.RoomId">Edit</a> |
     <a asp-action="Index">Back to List</a>

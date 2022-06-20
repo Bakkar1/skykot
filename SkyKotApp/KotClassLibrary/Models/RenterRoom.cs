@@ -16,7 +16,7 @@ namespace KotClassLibrary.Models
         public int RoomId { get; set; }
         public Room Room { get; set; }
         [ForeignKey("CustomUser")]
-        public string IdentityUserId { get; set; }
+        public string Id { get; set; }
         public CustomUser CustomUser { get; set; }
         public int AcademicYearId { get; set; }
         public AcademicYear AcademicYear { get; set; }

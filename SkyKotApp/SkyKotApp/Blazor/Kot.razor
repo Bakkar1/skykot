@@ -1,0 +1,107 @@
+﻿@using Microsoft.Extensions.DependencyInjection
+@using System
+@using System.IO
+@inherits OwningComponentBase
+
+<h3>Rooms</h3>
+@if (isLoading)
+{
+    <div class="custom-spinner show-spinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+}
+<div>
+    <select @onchange="SortRooms">
+        <option value="0">Datum</option>
+        <option value="la">Los Angeles</option>
+        <option value="pdx">Portland</option>
+        <option value="sf">San Francisco</option>
+        <option value="sea">Seattle</option>
+    </select>
+    <div class="form-group">
+        <CustomInputSelect @bind-Value="houseId" @onchange="FilterOnHouse" class="form-control">
+            @foreach (var house in Houses)
+            {
+                <option value="@house.HouseId">@house.Description</option>
+            }
+        </CustomInputSelect>
+    </div>
+</div>
+<div class="custom-container">
+    @if (SortedRooms.Any())
+    {
+        foreach (Room room in SortedRooms)
+        {
+            var photoPath = "";
+            if (room.RoomImages.Any())
+            {
+                photoPath = "/Images/Room/" + (room.RoomImages.FirstOrDefault().Path ?? "avatar.png");
+            }
+            else
+            {
+                photoPath = "/Images/Profile/avatar.png";
+            }
+
+            <div style="width: 300px">
+                <div class="card text-white card-has-bg click-col"
+                     style=" background-image: url('https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/x-factor.jpg'); ">
+                    <img class="card-img d-none"
+                         src="https://source.unsplash.com/600x900/?tech,street"
+                         alt="Avatar" />
+                    <div class="card-img-overlay d-flex flex-column">
+                        <div class="card-body">
+                            <div class="media">
+                                <img class="mr-3 rounded-circle"
+                                     asp-append-version="true"
+                                     src="@photoPath"
+                                     alt="Generic placeholder image"
+                                     style="max-width: 50px" />
+                            </div>
+                            <div>
+                                <h6 class="my-0 text-white d-block">@room.Period</h6>
+                                <small>@room.House.StreetName @room.House.HouseNumber</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No Rooms</p>
+    }
+</div>
+
+@code {
+    public IBlazorRepository BlazorRepository => ScopedServices.GetService<IBlazorRepository>();
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public ICollection<Room> Rooms = new List<Room>();
+    public ICollection<House> Houses = new List<House>();
+    public ICollection<Room> SortedRooms = new List<Room>();
+    public int houseId = 0;
+    public bool isLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Rooms = await BlazorRepository.GetRooms();
+        Houses = await BlazorRepository.GetHouses();
+        SortedRooms = Rooms;
+        isLoading = false;
+    }
+    protected void SortRooms()
+    {
+        isLoading = true;
+        var st = Rooms.Where(r => r.RoomId == 1).ToList();
+        SortedRooms = st;
+        isLoading = false;
+    }
+    protected void FilterOnHouse()
+    {
+        SortedRooms = Rooms.Where(r => r.HouseId == houseId).ToList();
+    }
+}

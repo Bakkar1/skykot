@@ -11,12 +11,12 @@ namespace SkyKotApp.Services.General
         public async Task<bool> IsOwnRoom(int? roomId = 0)
         {
             return await context.Rooms
-                        .AnyAsync(r => r.House.UserHouses.Where(us => us.IdentityUserId == GetCurrentUserId()).Any() && r.RoomId == roomId);
+                        .AnyAsync(r => r.House.UserHouses.Where(us => us.Id == GetCurrentUserId()).Any() && r.RoomId == roomId);
         }
 
         public async Task<bool> IsOwnHouseAsync(int? houseId = 0)
         {
-            return await context.UserHouses.AnyAsync(us => us.IdentityUserId == GetCurrentUserId() && us.HouseId == houseId);
+            return await context.UserHouses.AnyAsync(us => us.Id == GetCurrentUserId() && us.HouseId == houseId);
         }
     }
 }

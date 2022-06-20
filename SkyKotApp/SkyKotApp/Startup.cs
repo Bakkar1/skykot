@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SkyKotApp.Data;
+using SkyKotApp.Services.Blazor;
 using SkyKotApp.Services.General;
 using SkyKotApp.Services.Login;
 using System;
@@ -31,7 +32,6 @@ namespace SkyKotApp
         {
             services.AddRazorPages();
             services.AddControllersWithViews();
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddServerSideBlazor();
 
             services.AddDbContextPool<AppDbContext>(
@@ -54,6 +54,8 @@ namespace SkyKotApp
             //services
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<ISkyKotRepository, SkyKotPartialRepository>();
+            services.AddScoped<IBlazorRepository, BlazorRepository>();
+
             //External Login
             services.Configure<IdentityOptions>(options =>
             {
@@ -100,8 +102,9 @@ namespace SkyKotApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapBlazorHub();
             });
-            Data.Default.SeedData.EnsurePopulated(app);
+            Data.Default.SeedData.EnsurePopulated(app).Wait();
         }
     }
 }

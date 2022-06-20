@@ -1,4 +1,4 @@
-﻿@model KotClassLibrary.Models.Room
+﻿@model RoomCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -10,11 +10,16 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="HouseId" class="control-label"></label>
-                <select asp-for="HouseId" class ="form-control" asp-items="ViewBag.HouseId"></select>
+                <select asp-for="HouseId" asp-items="@Model.HousesSelectList" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RoomNumber" class="control-label"></label>
@@ -47,6 +52,73 @@
                 </label>
             </div>
             <div class="form-group">
+                <label>Room Images</label>
+                <div>
+                    <div class="custom-file">
+                        <input asp-for="Photos" class="form-control custom-file-input" accept="image/png, image/gif, image/jpeg" multiple />
+                        <label class="custom-file-label">Choose File...</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h3>Room Specification</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width:150px">Description</th>
+                            <th style="min-width:150px">Is Available</th>
+                            <th style="min-width:150px">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.RoomSpecificationsList.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <label>@Model.RoomSpecificationsList[i].Specification.Description</label>
+                                    <input type="hidden" asp-for="@Model.RoomSpecificationsList[i].SpecificationId" />
+                                </td>
+                                <td>
+                                    <input class="form-control" type="checkbox" onchange="this.value=this.checked"
+                                           value="@Model.RoomSpecificationsList[i].IsAvailAble"
+                                           asp-for="@Model.RoomSpecificationsList[i].IsAvailAble" />
+                                </td>
+                                <td>
+                                    <input class="form-control" value="@Model.RoomSpecificationsList[i].WhereAvailAble"
+                                           asp-for="@Model.RoomSpecificationsList[i].WhereAvailAble" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group">
+                <h3>Room Expence</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width:150px">Description</th>
+                            <th style="min-width:150px">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.RoomExpensesList.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <label>@Model.RoomExpensesList[i].Expence.Description</label>
+                                    <input type="hidden" asp-for="@Model.RoomExpensesList[i].ExpenceId" />
+                                </td>
+                                <td>
+                                    <input value="@Model.RoomExpensesList[i].Value"
+                                           asp-for="@Model.RoomExpensesList[i].Value" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -57,6 +129,23 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
+@section Scripts{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        //bach yban lik path dyal file f labale
+        window.addEventListener('load', function () {
+            let myInput = document.querySelector('.custom-file-input');
+            myInput.onchange = function () {
+                //let fileName = this.value.split('\\').pop();
+                //this.nextElementSibling.textContent = fileName;
+                let selectedItems = this.files.length;
+                if (selectedItems == 1) {
+                    this.nextElementSibling.textContent = this.value.split('\\').pop();
+                }
+                else if (selectedItems > 1) {
+                    this.nextElementSibling.textContent = selectedItems + " files selected";
+                }
+            }
+        }, false)
+    </script>
 }

@@ -12,6 +12,7 @@ namespace KotClassLibrary.ViewModels
     public class RegisterViewModel : CustomUser
     {
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Display(Name = "Profile Image (Optional)")]
         public List<IFormFile> Photo { get; set; }

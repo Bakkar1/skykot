@@ -66,7 +66,7 @@ namespace SkyKotApp.Controllers
                     {
                         EmailHelper.SendConfirmationEmail(identityUser.Email, confirmationLink);
                     }
-                    catch (Exception exp)
+                    catch (Exception)
                     {
                         //do nothing
                     }

@@ -10,6 +10,11 @@ using SkyKotApp.Data;
 using SkyKotApp.Data.Default;
 using Microsoft.AspNetCore.Authorization;
 using SkyKotApp.Services.General;
+using KotClassLibrary.ViewModels;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using KotClassLibrary.Helpers;
 
 namespace SkyKotApp.Controllers
 {
@@ -18,24 +23,36 @@ namespace SkyKotApp.Controllers
     {
         private readonly AppDbContext _context;
         private readonly ISkyKotRepository skyKotRepository;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
-        public RoomController(AppDbContext context, ISkyKotRepository skyKotRepository)
+        public RoomController(AppDbContext context,
+            ISkyKotRepository skyKotRepository,
+             IWebHostEnvironment hostingEnvironment)
         {
             _context = context;
             this.skyKotRepository = skyKotRepository;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Room
+
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Rooms.Include(r => r.House);
-            return View(await appDbContext.ToListAsync());
+            return View(await skyKotRepository.GetRooms());
         }
 
+        //[Route("/Room/All")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> GetAllRoomForFe()
+        //{
+        //    var appDbContext = _context.Rooms.Include(r => r.House);
+        //    return View("index",await appDbContext.ToListAsync());
+        //}
+
         // GET: Room/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -49,9 +66,7 @@ namespace SkyKotApp.Controllers
                 }
             }
 
-            var room = await _context.Rooms
-                .Include(r => r.House)
-                .FirstOrDefaultAsync(m => m.RoomId == id);
+            var room = await skyKotRepository.GetRoom(id);
             if (room == null)
             {
                 return NotFound();
@@ -61,10 +76,15 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: Room/Create
-        public async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> Create()
         {
-            ViewData["HouseId"] = new SelectList(await skyKotRepository.GetHouses(), "HouseId", "Name");
-            return View();
+            RoomCreateViewModel model = new RoomCreateViewModel()
+            {
+                RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate(),
+                RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate(),
+                HousesSelectList = await skyKotRepository.GetHousesSelectList()
+            };
+            return View(model);
         }
 
         // POST: Room/Create
@@ -72,22 +92,37 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RoomId,HouseId,RoomNumber,RoomType,MaxPeople,Period,AvailableFrom,IsAvailable")] Room room)
+        //[Bind("RoomId,HouseId,RoomNumber,RoomType,MaxPeople,Period,AvailableFrom,IsAvailable")]
+        public async Task<IActionResult> Create(RoomCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(room);
-                await _context.SaveChangesAsync();
+                if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
+                {
+                    //check if is owner of the house
+                    if (!await skyKotRepository.IsOwnHouseAsync(model.HouseId))
+                    {
+                        ModelState.AddModelError("", "Not your House, fuck you");
+                        model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate();
+                        model.RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate();
+                        model.HousesSelectList = await skyKotRepository.GetHousesSelectList();
+                        return View(model);
+                    }
+                }
+                model.ImagesPaths = PhotoHelper.ProcessUploadedFile(hostingEnvironment, model.Photos, "Room");
+                await skyKotRepository.AddRoom(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseNumber", room.HouseId);
-            return View(room);
+            model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate();
+            model.RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate();
+            model.HousesSelectList = await skyKotRepository.GetHousesSelectList();
+            return View(model);
         }
 
         // GET: Room/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -101,13 +136,20 @@ namespace SkyKotApp.Controllers
                 }
             }
 
-            var room = await _context.Rooms.FindAsync(id);
+            Room room = await skyKotRepository.GetRoom(id);
             if (room == null)
             {
                 return NotFound();
             }
-            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseNumber", room.HouseId);
-            return View(room);
+
+            RoomEditViewModel model = new RoomEditViewModel(room)
+            {
+                RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToEdit(room.RoomSpecifications),
+                RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate(),
+                HousesSelectList = await skyKotRepository.GetHousesSelectList(),
+            };
+
+            return View(model);
         }
 
         // POST: Room/Edit/5
@@ -115,9 +157,10 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RoomId,HouseId,RoomNumber,RoomType,MaxPeople,Period,AvailableFrom,IsAvailable")] Room room)
+        //[Bind("RoomId,HouseId,RoomNumber,RoomType,MaxPeople,Period,AvailableFrom,IsAvailable")] 
+        public async Task<IActionResult> Edit(int id, RoomEditViewModel model)
         {
-            if (id != room.RoomId)
+            if (id != model.RoomId)
             {
                 return NotFound();
             }
@@ -126,7 +169,7 @@ namespace SkyKotApp.Controllers
             if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
             {
                 //check if is owner of the Room
-                if (!await skyKotRepository.IsOwnRoom(id))
+                if (!await skyKotRepository.IsOwnRoom(id) || !await skyKotRepository.IsOwnHouseAsync(model.HouseId))
                 {
                     return NotFound();
                 }
@@ -136,12 +179,16 @@ namespace SkyKotApp.Controllers
             {
                 try
                 {
-                    _context.Update(room);
-                    await _context.SaveChangesAsync();
+                    if (model.RoomImages != null)
+                    {
+                        PhotoHelper.DeletePhotos(hostingEnvironment, model.RoomImages);
+                    }
+                    model.ImagesPaths = PhotoHelper.ProcessUploadedFile(hostingEnvironment, model.Photos, "Room");
+                    await skyKotRepository.UpdateRoom(model);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RoomExists(room.RoomId))
+                    if (!RoomExists(model.RoomId))
                     {
                         return NotFound();
                     }
@@ -152,8 +199,10 @@ namespace SkyKotApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HouseId"] = new SelectList(_context.Houses, "HouseId", "HouseNumber", room.HouseId);
-            return View(room);
+            //model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate();
+            //model.RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate();
+            //model.HousesSelectList = await skyKotRepository.GetHousesSelectList();
+            return View(model);
         }
 
         // GET: Room/Delete/5

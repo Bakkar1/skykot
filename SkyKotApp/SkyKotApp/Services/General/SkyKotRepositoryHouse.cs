@@ -18,11 +18,12 @@ namespace SkyKotApp.Services.General
             {
                 return await context.UserHouses
                   .Include(uh => uh.House.ZipCode)
-                  .Where(uh => uh.IdentityUserId == GetCurrentUserId())
+                  .Where(uh => uh.Id == GetCurrentUserId())
                   .Select(uh => new House
                   {
                       HouseId = uh.HouseId,
                       Name = uh.House.Name,
+                      Description = uh.House.Description,
                       HouseNumber = uh.House.HouseNumber,
                       StreetName = uh.House.StreetName,
                       ZipCode = uh.House.ZipCode
@@ -37,14 +38,15 @@ namespace SkyKotApp.Services.General
             }
             return null;
         }
+       
         public async Task<House> AddHouse(House house)
         {
             await context.AddAsync(house);
             await context.SaveChangesAsync();
-
+            string id = GetCurrentUserId();
             await context.UserHouses.AddAsync(new UserHouse
             {
-                IdentityUserId = GetCurrentUserId(),
+                Id = GetCurrentUserId(),
                 HouseId = house.HouseId
             });
             await context.SaveChangesAsync();

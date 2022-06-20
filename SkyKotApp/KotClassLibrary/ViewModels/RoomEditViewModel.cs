@@ -1,0 +1,39 @@
+﻿using KotClassLibrary.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KotClassLibrary.ViewModels
+{
+    public class RoomEditViewModel : Room
+    {
+        public RoomEditViewModel()
+        {
+
+        }
+        public RoomEditViewModel(Room room)
+        {
+            RoomId = room.RoomId;
+            Description = room.Description;
+            RoomNumber = room.RoomNumber;
+            RoomType = room.RoomType;
+            MaxPeople = room.MaxPeople;
+            Period = room.Period;
+            AvailableFrom = room.AvailableFrom;
+            IsAvailable = room.IsAvailable;
+            House = room.House;
+            RoomImages = room.RoomImages;
+            RoomExpenses = room.RoomExpenses;
+            RoomSpecifications = room.RoomSpecifications;
+        }
+        public List<IFormFile> Photos { get; set; }
+        public List<string> ImagesPaths { get; set; }
+        public SelectList HousesSelectList { get; set; }
+        public List<RoomSpecification> RoomSpecificationsList { get; set; }
+        public List<RoomExpense> RoomExpensesList { get; set; }
+    }
+}
