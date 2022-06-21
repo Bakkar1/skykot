@@ -4,11 +4,49 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Room</a>
 </p>
+
+<div class="custom-container">
+    @if (Model.Any())
+    {
+        @foreach (Room room in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-img-top">
+                  @{var roomImage = room.RoomImages != null ? $"/images/Room/{room.RoomImages.FirstOrDefault().Path}" : "/images/Profile/avatar.png";}
+                    <div style="cursor:pointer; height: 20vh">
+                            <img class="d-block" style="max-height: 100%; width:100%" src="@roomImage" asp-append-version="true">
+                        </div>
+              </div>
+
+              <div class="card-body">
+                <div class="media">
+                            <div class="media-body">
+                                <h6 class="my-0 text-white d-block">@room.House.Name</h6>
+                                <div>
+                                     <p>House Name : @room.House.Name</p>
+                                    <p>Room Number : @room.RoomNumber</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@room.RoomId" class="btn btn-primary">Edit</a>
+                            <a asp-action="Details" asp-route-id="@room.RoomId" class="btn btn-info">Details</a>
+                            <a asp-action="Delete" asp-route-id="@room.RoomId" class="btn btn-danger">Delete</a>
+                        </div>
+              </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No Rooms</p>
+    }
+</div>
+
+
 <table class="table">
     <thead>
         <tr>

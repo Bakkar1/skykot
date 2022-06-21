@@ -13,59 +13,82 @@
     </div>
 }
 <div>
-    <select @onchange="SortRooms">
-        <option value="0">Datum</option>
-        <option value="la">Los Angeles</option>
-        <option value="pdx">Portland</option>
-        <option value="sf">San Francisco</option>
-        <option value="sea">Seattle</option>
-    </select>
-    <div class="form-group">
-        <CustomInputSelect @bind-Value="houseId" @onchange="FilterOnHouse" class="form-control">
+    <select @onchange="FilterOnHouse" >
+        <option value="0">Filter</option>
+        @if(Houses.Any())
+        {
             @foreach (var house in Houses)
             {
-                <option value="@house.HouseId">@house.Description</option>
+                <option value="@house.HouseId">@house.Name</option>
             }
-        </CustomInputSelect>
-    </div>
+        }
+     </select>
+
+     <select @onchange="FilterOnZipCode" >
+        <option value="0">All Zip</option>
+        @if(Houses.Any())
+        {
+            @foreach (var zipCode in ZipCodes)
+            {
+                <option value="@zipCode.ZipCodeId">@zipCode.City</option>
+            }
+        }
+     </select>
 </div>
 <div class="custom-container">
     @if (SortedRooms.Any())
     {
-        foreach (Room room in SortedRooms)
+        @foreach (Room room in SortedRooms)
         {
-            var photoPath = "";
-            if (room.RoomImages.Any())
-            {
-                photoPath = "/Images/Room/" + (room.RoomImages.FirstOrDefault().Path ?? "avatar.png");
-            }
-            else
-            {
-                photoPath = "/Images/Profile/avatar.png";
-            }
+            <div class="card" style="width: 18rem;">
+              <div class="card-img-top">
+                  @if (room.RoomImages.Any())
+                    {
+                        <div>
+                            @{var carouselId = "carousel-" + room.RoomId;}
+                            <div id="@carouselId" class="carousel slide col-12 p-0" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @{var teller3 = 0;}
+                                    @foreach (var image in room.RoomImages)
+                                    {
+                                        var img = "/images/Room/" + (image.Path ?? "avatar.png");
+                                        if (teller3 == 0)
+                                        {
+                                            <div class="carousel-item active" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                             <div class="carousel-item" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
+                                            </div>
+                                        }
+                                        teller3++;
 
-            <div style="width: 300px">
-                <div class="card text-white card-has-bg click-col"
-                     style=" background-image: url('https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/x-factor.jpg'); ">
-                    <img class="card-img d-none"
-                         src="https://source.unsplash.com/600x900/?tech,street"
-                         alt="Avatar" />
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <div class="media">
-                                <img class="mr-3 rounded-circle"
-                                     asp-append-version="true"
-                                     src="@photoPath"
-                                     alt="Generic placeholder image"
-                                     style="max-width: 50px" />
-                            </div>
-                            <div>
-                                <h6 class="my-0 text-white d-block">@room.Period</h6>
-                                <small>@room.House.StreetName @room.House.HouseNumber</small>
+                                    }
+                                </div>
+                                <a class="carousel-control-prev" href="#@carouselId" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#@carouselId" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                    else
+                    {
+                        <div style="cursor:pointer; height: 20vh">
+                            <img class="d-block" style="max-height: 100%; width:100%" src="/images/Profile/avatar.png">
+                        </div>
+                    }
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title m2">@room.House.Name Price</h5>
+                <p class="card-text">City </p>
+              </div>
             </div>
         }
     }
@@ -83,13 +106,14 @@
     public ICollection<Room> Rooms = new List<Room>();
     public ICollection<House> Houses = new List<House>();
     public ICollection<Room> SortedRooms = new List<Room>();
-    public int houseId = 0;
+    public ICollection<ZipCode> ZipCodes = new List<ZipCode>();
     public bool isLoading { get; set; } = true;
 
     protected override async Task OnInitializedAsync()
     {
         Rooms = await BlazorRepository.GetRooms();
         Houses = await BlazorRepository.GetHouses();
+        ZipCodes = await BlazorRepository.GetZipCodes();
         SortedRooms = Rooms;
         isLoading = false;
     }
@@ -100,8 +124,32 @@
         SortedRooms = st;
         isLoading = false;
     }
-    protected void FilterOnHouse()
+    protected  void FilterOnHouse(ChangeEventArgs e)
     {
-        SortedRooms = Rooms.Where(r => r.HouseId == houseId).ToList();
+        isLoading = true;
+        int.TryParse(e.Value.ToString(), out int houseId);
+        if(houseId == 0)
+        {
+            SortedRooms = Rooms;
+        }
+        else
+        {
+            SortedRooms = Rooms.Where(r => r.HouseId == houseId).ToList();
+        }  
+        isLoading = false;
+    }
+    protected  void FilterOnZipCode(ChangeEventArgs e)
+    {
+        isLoading = true;
+        int.TryParse(e.Value.ToString(), out int zipId);
+        if(zipId == 0)
+        {
+            SortedRooms = Rooms;
+        }
+        else
+        {
+            SortedRooms = Rooms.Where(r => r.House.ZipCodeId == zipId).ToList();
+        }  
+        isLoading = false;
     }
 }

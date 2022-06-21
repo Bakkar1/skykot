@@ -19,6 +19,7 @@ namespace SkyKotApp.Services.General
             {
                 return await context.Rooms
                     .Include(r => r.House)
+                    .Include(r => r.RoomImages)
                     .Where(r => r.House.UserHouses.Any(us => us.Id == GetCurrentUserId()))
                     .ToListAsync();
             }
@@ -26,6 +27,7 @@ namespace SkyKotApp.Services.General
             {
                 return await context.Rooms
                     .Include(r => r.House)
+                    .Include(r => r.RoomImages)
                     .ToListAsync();
             }
             return null;

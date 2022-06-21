@@ -10507,43 +10507,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mbark\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\mbark\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mbark\\OneDrive\\Documents\\GitHub\\skykot\\SkyKotApp\\SkyKotApp\\SkyKotApp.csproj",
+      "projectUniqueName": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\SkyKotApp.csproj",
       "projectName": "SkyKotApp",
-      "projectPath": "C:\\Users\\mbark\\OneDrive\\Documents\\GitHub\\skykot\\SkyKotApp\\SkyKotApp\\SkyKotApp.csproj",
+      "projectPath": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\SkyKotApp.csproj",
       "packagesPath": "C:\\Users\\mbark\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mbark\\OneDrive\\Documents\\GitHub\\skykot\\SkyKotApp\\SkyKotApp\\obj\\",
+      "outputPath": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
         "C:\\Users\\mbark\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\mbark\\.nuget\\packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\mbark\\OneDrive\\Documents\\GitHub\\skykot\\SkyKotApp\\KotClassLibrary\\KotClassLibrary.csproj": {
-              "projectPath": "C:\\Users\\mbark\\OneDrive\\Documents\\GitHub\\skykot\\SkyKotApp\\KotClassLibrary\\KotClassLibrary.csproj"
+            "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\KotClassLibrary\\KotClassLibrary.csproj": {
+              "projectPath": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\KotClassLibrary\\KotClassLibrary.csproj"
             }
           }
         }
@@ -10603,7 +10594,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

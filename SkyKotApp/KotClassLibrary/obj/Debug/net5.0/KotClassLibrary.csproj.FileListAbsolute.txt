@@ -10,3 +10,15 @@ C:\Users\mbark\OneDrive\Documents\GitHub\skykot\SkyKotApp\KotClassLibrary\obj\De
 C:\Users\mbark\OneDrive\Documents\GitHub\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.dll
 C:\Users\mbark\OneDrive\Documents\GitHub\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\ref\KotClassLibrary.dll
 C:\Users\mbark\OneDrive\Documents\GitHub\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.pdb
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\bin\Debug\net5.0\KotClassLibrary.deps.json
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\bin\Debug\net5.0\KotClassLibrary.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\bin\Debug\net5.0\KotClassLibrary.pdb
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.csproj.AssemblyReference.cache
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.AssemblyInfoInputs.cache
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.AssemblyInfo.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\refint\KotClassLibrary.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\KotClassLibrary.pdb
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\KotClassLibrary\obj\Debug\net5.0\ref\KotClassLibrary.dll

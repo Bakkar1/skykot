@@ -76,10 +76,10 @@ body {
     justify-content: space-evenly;
 }
 
-    .custom-container > div {
-        margin-left: 10px;
-        margin-bottom: 30px
-    }
+.custom-container > div {
+    margin-left: 10px;
+    margin-bottom: 30px
+}
 /*spinner*/
 .custom-spinner {
     position: fixed;

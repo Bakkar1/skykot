@@ -10,5 +10,6 @@ namespace SkyKotApp.Services.Blazor
     {
         Task<ICollection<Room>> GetRooms();
         Task<ICollection<House>> GetHouses();
+        Task<ICollection<ZipCode>> GetZipCodes();
     }
 }

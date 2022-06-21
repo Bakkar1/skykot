@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tPGB7EJALDR7D/PsLSakfggLb4+k2o218JuJBWt/illwOsKyMBsqNFSxPIKA14hWGaocfVPnfskmPpbff6lPqw==",
+  "dgSpecHash": "yMqlmRdQCAE4lrd+TgMOQpnwAJg4AbqJ8HSH7CJ4DraLY0VYgl7nmDPvqg+g2i13JwQDMXHztn1Nm2fx9rioVQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mbark\\OneDrive\\Documents\\GitHub\\skykot\\SkyKotApp\\SkyKotApp\\SkyKotApp.csproj",
+  "projectFilePath": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\SkyKotApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mbark\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\mbark\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",

@@ -22,6 +22,9 @@ namespace KotClassLibrary.Models
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "Only positive number allowed")]
         public int Period { get; set; }
+        //[Required]
+        //[Range(1, int.MaxValue, ErrorMessage = "Only positive number allowed")]
+        //public int Price { get; set; }
         [Required]
         public DateTime AvailableFrom { get; set; }
         [Required]
