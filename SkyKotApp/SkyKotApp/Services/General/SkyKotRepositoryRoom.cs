@@ -47,6 +47,7 @@ namespace SkyKotApp.Services.General
             Room room = new Room()
             {
                 RoomId = model.RoomId,
+                Price = model.Price,
                 Description = model.Description,
                 RoomNumber = model.RoomNumber,
                 RoomType = model.RoomType,
@@ -131,6 +132,7 @@ namespace SkyKotApp.Services.General
             Room room = new Room()
             {
                 HouseId = model.HouseId,
+                Price = model.Price,
                 Description = model.Description,
                 RoomNumber = model.RoomNumber,
                 RoomType = model.RoomType,

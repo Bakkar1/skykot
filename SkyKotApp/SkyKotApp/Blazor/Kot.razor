@@ -1,9 +1,9 @@
 ﻿@using Microsoft.Extensions.DependencyInjection
-@using System
-@using System.IO
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inherits OwningComponentBase
 
-<h3>Rooms</h3>
 @if (isLoading)
 {
     <div class="custom-spinner show-spinner">
@@ -35,7 +35,7 @@
         }
      </select>
 </div>
-<div class="custom-container">
+<div class="custom-container" style="margin-top: 20px">
     @if (SortedRooms.Any())
     {
         @foreach (Room room in SortedRooms)
@@ -86,8 +86,37 @@
               </div>
 
               <div class="card-body">
-                <h5 class="card-title m2">@room.House.Name Price</h5>
-                <p class="card-text">City </p>
+                    <div class="media">
+                        <div class="media-body">
+                            <h6 class="my-0 text-white d-block">@room.House.Name</h6>
+                            <div>
+                                <p>House Name : @room.House.Name</p>
+                                 <p>Price : @room.Price$</p>
+                                <p>Room Number : @room.RoomNumber</p>
+                                    @if(room.IsAvailable)
+                                    {
+                                        <p>Available from @room.AvailableFrom.ToLongDateString()</p>
+                                    }
+                                    else{
+                                        <p>Not available</p>
+                                    }
+                            </div>
+                        </div>
+                    </div>
+                    @if(!IsNormalUser)
+                    {
+                         <div>
+                            <a @onclick="() => EditRoom(room.RoomId)" class="btn btn-primary" style="cursor:pointer">Edit</a>
+                            <a @onclick="() => DetailsRoom(room.RoomId)" class="btn btn-info" style="cursor:pointer">Details</a>
+                            <a @onclick="() => DeleteRoom(room.RoomId)" class="btn btn-danger" style="cursor:pointer">Delete</a>
+                        </div>
+                    }
+                     else
+                    {
+                        <div>
+                            <a @onclick="() => DetailsRoom(room.RoomId)" class="btn btn-info" style="cursor:pointer">Details</a>
+                        </div>
+                    }
               </div>
             </div>
         }
@@ -109,8 +138,18 @@
     public ICollection<ZipCode> ZipCodes = new List<ZipCode>();
     public bool isLoading { get; set; } = true;
 
+    public bool IsNormalUser { get; set; } = true;
+
     protected override async Task OnInitializedAsync()
     {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.IsInRole(Roles.Admin) || user.IsInRole(Roles.Owner))
+        {
+            IsNormalUser = false;
+        }
+
         Rooms = await BlazorRepository.GetRooms();
         Houses = await BlazorRepository.GetHouses();
         ZipCodes = await BlazorRepository.GetZipCodes();
@@ -151,5 +190,18 @@
             SortedRooms = Rooms.Where(r => r.House.ZipCodeId == zipId).ToList();
         }  
         isLoading = false;
+    }
+    // links
+    public void EditRoom(int roomId)
+    {
+        NavigationManager.NavigateTo($"Room/edit/{roomId}", true);
+    }
+    public void DetailsRoom(int roomId)
+    {
+        NavigationManager.NavigateTo($"Room/Details/{roomId}", true);
+    }
+    public void DeleteRoom(int roomId)
+    {
+        NavigationManager.NavigateTo($"Room/Delete/{roomId}", true);
     }
 }

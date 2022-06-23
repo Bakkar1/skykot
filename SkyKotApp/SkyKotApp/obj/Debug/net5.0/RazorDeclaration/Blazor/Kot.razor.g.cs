@@ -7,6 +7,7 @@
 namespace SkyKotApp.Blazor
 {
     #line hidden
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -88,6 +89,13 @@ using SkyKotApp.Data;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\_Imports.razor"
+using SkyKotApp.Data.Default;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
 using Microsoft.Extensions.DependencyInjection;
 
@@ -96,14 +104,14 @@ using Microsoft.Extensions.DependencyInjection;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
-using System;
+using System.Security.Claims;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
-using System.IO;
+using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
@@ -116,7 +124,7 @@ using System.IO;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 101 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
+#line 130 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
        
     public IBlazorRepository BlazorRepository => ScopedServices.GetService<IBlazorRepository>();
     [Inject]
@@ -128,8 +136,18 @@ using System.IO;
     public ICollection<ZipCode> ZipCodes = new List<ZipCode>();
     public bool isLoading { get; set; } = true;
 
+    public bool IsNormalUser { get; set; } = true;
+
     protected override async Task OnInitializedAsync()
     {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.IsInRole(Roles.Admin) || user.IsInRole(Roles.Owner))
+        {
+            IsNormalUser = false;
+        }
+
         Rooms = await BlazorRepository.GetRooms();
         Houses = await BlazorRepository.GetHouses();
         ZipCodes = await BlazorRepository.GetZipCodes();
@@ -171,10 +189,24 @@ using System.IO;
         }  
         isLoading = false;
     }
+    // links
+    public void EditRoom(int roomId)
+    {
+        NavigationManager.NavigateTo($"Room/edit/{roomId}", true);
+    }
+    public void DetailsRoom(int roomId)
+    {
+        NavigationManager.NavigateTo($"Room/Details/{roomId}", true);
+    }
+    public void DeleteRoom(int roomId)
+    {
+        NavigationManager.NavigateTo($"Room/Delete/{roomId}", true);
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     }
 }
 #pragma warning restore 1591

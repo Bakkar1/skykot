@@ -69,7 +69,12 @@
     {
         <p>@expense.Expence.Description : @expense.Value$</p>
     }
-    <p>Total : @Model.RoomExpenses.Sum(re =>re.Value)$</p>
+    <p>Price : @Model.Price</p>
+    <p>Extra Expenses @Model.RoomExpenses.Sum(re =>re.Value)</p>
+    @{
+        var total = @Model.RoomExpenses.Sum(re => re.Value) + @Model.Price;
+    }
+    <p>Total : @total</p>
 </div>
 
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+5u+Sdp4oMbDADEMywMwnOU0mbQsyod6kgTs+0K55NQvnAYy3bVPcAHEFDRMfADAFsXGx/NpG3YSlL/hhGajlQ==",
+  "dgSpecHash": "Sr+M64qTG1A92q3cyaYg0ze/Fox2YqufZ/quYFfDA/pDl2f9gv4oOuhnDZZMLwdI9S7eDO/G45CkbdbRjQVH5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\KotClassLibrary\\KotClassLibrary.csproj",
   "expectedPackageFiles": [
@@ -173,10 +173,7 @@
     "C:\\Users\\mbark\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\mbark\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\mbark\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Users\\mbark\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\mbark\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\mbark\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\mbark\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\mbark\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

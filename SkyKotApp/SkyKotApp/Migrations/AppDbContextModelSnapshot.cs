@@ -232,6 +232,9 @@ namespace SkyKotApp.Migrations
                     b.Property<int>("Period")
                         .HasColumnType("int");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 

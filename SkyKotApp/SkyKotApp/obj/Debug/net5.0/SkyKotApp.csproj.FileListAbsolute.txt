@@ -191,12 +191,10 @@ C:\Users\mbark\OneDrive\Documents\GitHub\skykot\SkyKotApp\SkyKotApp\obj\Debug\ne
 C:\Users\mbark\OneDrive\Documents\GitHub\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\ref\SkyKotApp.dll
 C:\Users\mbark\OneDrive\Documents\GitHub\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\SkyKotApp.pdb
 C:\Users\mbark\OneDrive\Documents\GitHub\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\SkyKotApp.genruntimeconfig.cache
-C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\SkyKotApp.exe
-C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\appsettings.json
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\SkyKotApp.StaticWebAssets.xml
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\SkyKotApp.exe
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\SkyKotApp.deps.json
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\SkyKotApp.runtimeconfig.json
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\SkyKotApp.runtimeconfig.dev.json
@@ -276,6 +274,7 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\cs\M
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
@@ -310,6 +309,7 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\ru\M
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb

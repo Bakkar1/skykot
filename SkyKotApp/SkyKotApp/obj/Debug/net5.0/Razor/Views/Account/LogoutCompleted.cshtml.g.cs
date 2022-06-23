@@ -54,8 +54,15 @@ using SkyKotApp.Data.Default;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 8 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
+using KotClassLibrary.Helpers;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b1184e662f457d1b692f6f179922807c55e58b32", @"/Views/Account/LogoutCompleted.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0b6867823a43f28755d5a46da9eba329ad7bcfd1", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5f720072f458c62116a9eb03d0c6290be0ae8f0a", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Account_LogoutCompleted : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable

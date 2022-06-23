@@ -35,10 +35,11 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: Room
-
-        public async Task<IActionResult> Index()
+        [AllowAnonymous]
+        public IActionResult Index()
         {
-            return View(await skyKotRepository.GetRooms());
+            //return View(await skyKotRepository.GetRooms());
+            return View();
         }
 
         //[Route("/Room/All")]
@@ -50,6 +51,7 @@ namespace SkyKotApp.Controllers
         //}
 
         // GET: Room/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             if (id == 0)
@@ -57,19 +59,22 @@ namespace SkyKotApp.Controllers
                 return NotFound();
             }
 
-            if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
-            {
-                //check if is owner of the Room
-                if (!await skyKotRepository.IsOwnRoom(id))
-                {
-                    return NotFound();
-                }
-            }
-
             var room = await skyKotRepository.GetRoom(id);
+            
             if (room == null)
             {
                 return NotFound();
+            }
+            else if(!room.IsAvailable)
+            {
+                if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+                {
+                    //check if is owner of the Room
+                    if (!await skyKotRepository.IsOwnRoom(id))
+                    {
+                        return NotFound();
+                    }
+                }
             }
 
             return View(room);
@@ -82,7 +87,8 @@ namespace SkyKotApp.Controllers
             {
                 RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate(),
                 RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate(),
-                HousesSelectList = await skyKotRepository.GetHousesSelectList()
+                HousesSelectList = await skyKotRepository.GetHousesSelectList(),
+                AvailableFrom = DateTime.Now
             };
             return View(model);
         }

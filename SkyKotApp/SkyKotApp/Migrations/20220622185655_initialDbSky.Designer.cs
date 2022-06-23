@@ -10,8 +10,8 @@ using SkyKotApp.Data;
 namespace SkyKotApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220620134204_initial")]
-    partial class initial
+    [Migration("20220622185655_initialDbSky")]
+    partial class initialDbSky
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -233,6 +233,9 @@ namespace SkyKotApp.Migrations
 
                     b.Property<int>("Period")
                         .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");

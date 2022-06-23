@@ -18,6 +18,7 @@ namespace KotClassLibrary.ViewModels
         public RoomEditViewModel(Room room)
         {
             RoomId = room.RoomId;
+            Price = room.Price;
             Description = room.Description;
             RoomNumber = room.RoomNumber;
             RoomType = room.RoomType;
@@ -25,6 +26,7 @@ namespace KotClassLibrary.ViewModels
             Period = room.Period;
             AvailableFrom = room.AvailableFrom;
             IsAvailable = room.IsAvailable;
+            HouseId = room.HouseId;
             House = room.House;
             RoomImages = room.RoomImages;
             RoomExpenses = room.RoomExpenses;
