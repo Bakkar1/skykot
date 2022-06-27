@@ -1,1 +1,65 @@
-﻿
+﻿@model UserEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    var photoPath = "/Images/Profile/" + (Model.ExistingPhotoPath ?? "avatar.png");
+}
+
+<h3 class="cat-heading">Edit Gebruiker</h3>
+
+<div class="form-container">
+    <form enctype="multipart/form-data" asp-action="Edit" method="post">
+        <input hidden asp-for="HelperId" />
+        <input hidden asp-for="ExistingPhotoPath" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Photo" class="control-label"></label>
+            <div>
+                <div class="custom-file">
+                    <input asp-for="Photo" class="form-control custom-file-input" />
+                    <label class="custom-file-label">Click here to change photo</label>
+                </div>
+            </div>
+        </div>
+        @if(Model.RolesSelectList != null)
+        {
+            <div class="form-group">
+                <label asp-for="RoleId" class="control-label">Role</label>
+                <select asp-for="RoleId" class="form-control"
+                        asp-items="@Model.RolesSelectList"></select>
+                <span asp-validation-for="RoleId" class="text-danger"></span>
+            </div>   
+        }
+        <div class="form-group">
+            <img src="@photoPath" asp-append-version="true" style="height:200px;width:auto;" />
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group submit-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+        <div class="form-group">
+            <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+     <script src="~/js/ShowPath.js"></script>
+}

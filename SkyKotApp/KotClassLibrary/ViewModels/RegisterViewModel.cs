@@ -15,6 +15,6 @@ namespace KotClassLibrary.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Display(Name = "Profile Image (Optional)")]
-        public List<IFormFile> Photo { get; set; }
+        public IFormFile Photo { get; set; }
     }
 }

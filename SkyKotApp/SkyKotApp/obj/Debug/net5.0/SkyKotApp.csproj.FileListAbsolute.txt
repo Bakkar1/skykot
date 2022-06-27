@@ -355,6 +355,11 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razo
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\House\Details.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\House\Edit.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\House\Index.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\RenterRoom\Create.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\RenterRoom\Delete.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\RenterRoom\Details.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\RenterRoom\Edit.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\RenterRoom\Index.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Room\Create.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Room\Delete.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Room\Details.cshtml.g.cs
@@ -384,3 +389,11 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\refi
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\SkyKotApp.pdb
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\SkyKotApp.genruntimeconfig.cache
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\ref\SkyKotApp.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\AcademicYear\Create.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\AcademicYear\Delete.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\AcademicYear\Details.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\AcademicYear\Edit.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\AcademicYear\Index.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\PartialLoginNav.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Error\NotFound.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Error\_Layout.cshtml.g.cs

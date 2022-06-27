@@ -52,7 +52,7 @@ namespace SkyKotApp.Controllers
                     Email = model.Email,
                     UserName = $"{model.LastName}_{model.FirstName}_{Guid.NewGuid()}" // make userNmae Unique
                 };
-                identityUser.ProfileImage = ProcessUploadedFile(model);
+                identityUser.ProfileImage = PhotoHelper.UploadProfilePhoto(hostingEnvironment, model.Photo) ;
 
                 var result = await loginRepository.CreateUser(identityUser, model.Password);
 
@@ -106,7 +106,7 @@ namespace SkyKotApp.Controllers
                 if (identityUser != null)
                 {
 
-                    if (await loginRepository.IsAdmin(identityUser) /*|| await loginRepository.IsEmailConfirmed(identityUser)*/)
+                    if (true/*await loginRepository.IsAdmin(identityUser) || await loginRepository.IsEmailConfirmed(identityUser)*/)
                     {
                         var userName = identityUser.UserName;
                         var result = await loginRepository.SignInWithPassword(
@@ -259,24 +259,6 @@ namespace SkyKotApp.Controllers
 
             ViewBag.ErrorTitle = "Email cannot be confirmed";
             return View("Error");
-        }
-        private string ProcessUploadedFile(RegisterViewModel model)
-        {
-            string uniqueFileName = "";
-            if (model.Photo != null && model.Photo.Count > 0)
-            {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images/Profile");
-
-                IFormFile photo = model.Photo[0];
-
-                uniqueFileName = Guid.NewGuid().ToString() + photo.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (FileStream fs = new FileStream(filePath, FileMode.Create))
-                {
-                    photo.CopyTo(fs);
-                }
-            }
-            return uniqueFileName;
         }
     }
 }

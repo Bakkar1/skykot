@@ -20,64 +20,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SkyKotApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Room" asp-action="Index">Room</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        @if (signInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="House" asp-action="Index">House</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Profile">Profile</a>
-                            </li>
-                            @if (User.IsInRole(Roles.Admin))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">User</a>
-                                </li>
-                            }
-                            <li class="nav-item">
-                                <form method="post" asp-controller="Account" asp-action="Logout">
-                                    <button type="submit" style="width:auto"
-                                            class="nav-link text-dark">
-                                        Logout
-                                    </button>
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" data-link="Register" asp-controller="account" asp-action="Register">
-                                    Register
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" data-link="Login" asp-controller="account" asp-action="Login">
-                                    Login
-                                </a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </nav>
+       <partial name="PartialLoginNav"/>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -97,6 +40,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/fontawesome-file.js"></script>
+    <script src="~/js/responsive-navbar.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

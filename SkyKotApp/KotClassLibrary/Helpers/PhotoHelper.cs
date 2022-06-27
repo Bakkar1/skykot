@@ -50,6 +50,41 @@ namespace KotClassLibrary.Helpers
                 }
             }
         }
+        public static void DeleteProfilePhoto(IWebHostEnvironment hostEnvironment, string url)
+        {
+            // delete photos from images folder
+            if (!string.IsNullOrEmpty(url))
+            {
+                string filePath = Path.Combine(hostEnvironment.WebRootPath, $"Images/Profile/{url}");
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+        }
+
+        public static string UploadProfilePhoto(IWebHostEnvironment hostEnvironment, IFormFile comingPhoto)
+        {
+            string uniqueFileName = null;
+            if (comingPhoto != null)
+            {
+                string uploadsFolder = Path.Combine(hostEnvironment.WebRootPath, "Images/Profile");
+
+                IFormFile photo = comingPhoto;
+                if (IsImage(photo))
+                {
+
+                    uniqueFileName = Guid.NewGuid().ToString() + photo.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                    {
+                        photo.CopyTo(fs);
+                    }
+                }
+            }
+            return uniqueFileName;
+        }
+
 
         public static bool IsImage(IFormFile postedFile)
         {

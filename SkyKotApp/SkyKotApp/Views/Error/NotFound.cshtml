@@ -1,0 +1,40 @@
+﻿@model ErrorInfo 
+@{
+    ViewBag.Title = "Not found";
+}
+@section NotFoundStyle{
+    <link rel="stylesheet" href="~/css/NotFoundStyle.css" />
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <h1><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 404</h1>
+            <h2>Oops... We could not found any @Model.Categorie, please check if you have the right acces  </h2>
+            <form>
+                <input type="text" placeholder="Search..." name="search">
+                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
+
+            <p>If you think you have arrived here by our mistake, please <a href="#">contact us</a></p>
+
+            <h3>Follow us:</h3>
+            <div class="social-networks">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.pinterest.com/" target="_blank"><i class="fab fa-pinterest-square"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                &copy; 2016 All Rights Reserved <a href="#" target="_blank">www.skykot.com</a>
+            </div>
+        </div>
+    </div>
+</footer>

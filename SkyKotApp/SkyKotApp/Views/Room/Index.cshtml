@@ -8,7 +8,7 @@
     @if (User.IsInRole(Roles.Owner) || User.IsInRole(Roles.Admin))
     {
         <p>
-            <a asp-action="Create">Create New Room</a>
+            <a class="btn btn-outline-success"  asp-action="Create">Create New Room</a>
         </p>
     }
 }

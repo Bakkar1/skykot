@@ -18,5 +18,12 @@ namespace SkyKotApp.Services.General
         {
             return await context.UserHouses.AnyAsync(us => us.Id == GetCurrentUserId() && us.HouseId == houseId);
         }
+        public async Task<bool> IsUserOwner(string userId)
+        {
+            return await context.Users
+                .AnyAsync(u => 
+                u.Id == userId &&
+                u.OwnerId == GetCurrentUserId());
+        }
     }
 }

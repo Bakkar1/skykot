@@ -52,8 +52,9 @@ namespace SkyKotApp.Controllers
             }
 
             var house = await _context.Houses
+                .Include(h => h.Rooms)
                 .Include(h => h.ZipCode)
-                .FirstOrDefaultAsync(m => m.HouseId == id);
+                .FirstAsync(m => m.HouseId == id);
             if (house == null)
             {
                 return NotFound();

@@ -37,6 +37,16 @@
     </dl>
 </div>
 <div>
+    @if (Model.Rooms.Any())
+    {
+        <div>Ther is @Model.Rooms.Count() Rooms in this house</div>
+        foreach(var room in Model.Rooms.Take(10))
+        {
+            <p>@room.RoomNumber , @room.RoomType</p>
+        }
+    }
+</div>
+<div>
     <a asp-action="Edit" asp-route-id="@Model.HouseId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

@@ -56,14 +56,14 @@ namespace SkyKotApp.Controllers
         {
             if (id == 0)
             {
-                return NotFound();
+                return  RedirecToNotFound();
             }
 
             var room = await skyKotRepository.GetRoom(id);
             
             if (room == null)
             {
-                return NotFound();
+                return  RedirecToNotFound();
             }
             else if(!room.IsAvailable)
             {
@@ -72,7 +72,7 @@ namespace SkyKotApp.Controllers
                     //check if is owner of the Room
                     if (!await skyKotRepository.IsOwnRoom(id))
                     {
-                        return NotFound();
+                        return  RedirecToNotFound();
                     }
                 }
             }
@@ -130,7 +130,7 @@ namespace SkyKotApp.Controllers
         {
             if (id == 0)
             {
-                return NotFound();
+                return  RedirecToNotFound();
             }
 
             if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
@@ -138,14 +138,14 @@ namespace SkyKotApp.Controllers
                 //check if is owner of the Room
                 if (!await skyKotRepository.IsOwnRoom(id))
                 {
-                    return NotFound();
+                    return  RedirecToNotFound();
                 }
             }
 
             Room room = await skyKotRepository.GetRoom(id);
             if (room == null)
             {
-                return NotFound();
+                return  RedirecToNotFound();
             }
 
             RoomEditViewModel model = new RoomEditViewModel(room)
@@ -168,7 +168,7 @@ namespace SkyKotApp.Controllers
         {
             if (id != model.RoomId)
             {
-                return NotFound();
+                return  RedirecToNotFound();
             }
 
 
@@ -177,7 +177,7 @@ namespace SkyKotApp.Controllers
                 //check if is owner of the Room
                 if (!await skyKotRepository.IsOwnRoom(id) || !await skyKotRepository.IsOwnHouseAsync(model.HouseId))
                 {
-                    return NotFound();
+                    return  RedirecToNotFound();
                 }
             }
 
@@ -196,7 +196,7 @@ namespace SkyKotApp.Controllers
                 {
                     if (!RoomExists(model.RoomId))
                     {
-                        return NotFound();
+                        return  RedirecToNotFound();
                     }
                     else
                     {
@@ -216,7 +216,7 @@ namespace SkyKotApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return  RedirecToNotFound();
             }
 
 
@@ -225,7 +225,7 @@ namespace SkyKotApp.Controllers
                 //check if is owner of the Room
                 if (!await skyKotRepository.IsOwnRoom(id))
                 {
-                    return NotFound();
+                    return  RedirecToNotFound();
                 }
             }
 
@@ -234,7 +234,7 @@ namespace SkyKotApp.Controllers
                 .FirstOrDefaultAsync(m => m.RoomId == id);
             if (room == null)
             {
-                return NotFound();
+                return  RedirecToNotFound();
             }
 
             return View(room);
@@ -250,7 +250,7 @@ namespace SkyKotApp.Controllers
                 //check if is owner of the Room
                 if (!await skyKotRepository.IsOwnRoom(id))
                 {
-                    return NotFound();
+                    return  RedirecToNotFound();
                 }
             }
 
@@ -263,6 +263,10 @@ namespace SkyKotApp.Controllers
         private bool RoomExists(int id)
         {
             return _context.Rooms.Any(e => e.RoomId == id);
+        }
+        private RedirectToActionResult RedirecToNotFound()
+        {
+            return RedirectToAction(NotFoundIdInfo.ActionName, NotFoundIdInfo.ControllerName, new { categorie = "Room" });
         }
     }
 }

@@ -12,14 +12,25 @@ namespace SkyKotApp.Services.General
     {
         #region User
         Task<ICollection<CustomUser>> GetCustomUsers();
+        Task<ICollection<CustomUser>> GetOwnCustomUsers();
         string GetCurrentUserId();
         string GetCurrentUserRole();
+        Task AddToRenterRole(CustomUser identityUser);
         Task<CustomUser> GetUser(string id);
+        Task<CustomUser> UpdateUser(CustomUser user);
+        Task<CustomUser> DeleteUser(string id);
         Task<CustomUser> GetUserByName(string userName);
+        #endregion
+        #region Role
+        public SelectList GetRoles();
+        string GetRoleName(string UserId);
+        void DeleteOldRole(string UserId);
+        Task UpdateRole(CustomUser identityUser, string roleId);
         #endregion
         #region IsOwn
         Task<bool> IsOwnHouseAsync(int? houseId);
         Task<bool> IsOwnRoom(int? roomId);
+        Task<bool> IsUserOwner(string userId);
         #endregion
         #region House
         Task<ICollection<House>> GetHouses();

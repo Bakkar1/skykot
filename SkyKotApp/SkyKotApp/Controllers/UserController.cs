@@ -1,9 +1,14 @@
 ﻿using KotClassLibrary.Helpers;
+using KotClassLibrary.Models;
+using KotClassLibrary.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SkyKotApp.Data.Default;
 using SkyKotApp.Services.General;
+using SkyKotApp.Services.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +17,35 @@ using System.Threading.Tasks;
 
 namespace SkyKotApp.Controllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = Roles.Admin + ", " + Roles.Owner)]
     public class UserController : Controller
     {
         private readonly ISkyKotRepository skyKotRepository;
         private readonly IWebHostEnvironment hostEnvironment;
+        private readonly ILoginRepository loginRepository;
 
-        public UserController(ISkyKotRepository skyKotRepository, IWebHostEnvironment hostEnvironment)
+        public UserController(
+            ISkyKotRepository skyKotRepository,
+            IWebHostEnvironment hostEnvironment,
+            ILoginRepository loginRepository)
         {
             this.skyKotRepository = skyKotRepository;
             this.hostEnvironment = hostEnvironment;
+            this.loginRepository = loginRepository;
         }
         public async Task<IActionResult> Index()
         {
-            return View(await skyKotRepository.GetCustomUsers());
+            string currentUserRole = skyKotRepository.GetCurrentUserRole();
+            if (currentUserRole == Roles.Admin)
+            {
+                return View(await skyKotRepository.GetCustomUsers());
+            }
+            else if(currentUserRole == Roles.Owner)
+            {
+                return View(await skyKotRepository.GetOwnCustomUsers());
+            }
+            return NotFound();
+            
         }
 
         public async Task<IActionResult> Details(string id)
@@ -34,61 +54,78 @@ namespace SkyKotApp.Controllers
             {
                 return RedirecToNotFound();
             }
-            var userRole = User.FindFirstValue(ClaimTypes.Role);
-            if (userRole != Roles.Admin)
+
+            if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
             {
-                return NotFound();
+                //check is owner
+                if (!await skyKotRepository.IsUserOwner(id))
+                {
+                    return RedirecToNotFound();
+                }
             }
 
             var user = await skyKotRepository.GetUser(id);
             if (user == null)
             {
-                return RedirecToNotFound(1);
+                return RedirecToNotFound();
             }
 
             return View(user);
         }
-        /*
 
-        // GET: Gebruiker/Create
+        #region Create
         public IActionResult Create()
         {
-            //ViewData["RoleId"] = iPxl.GetRoles();
             return View();
         }
-
-        // POST: Gebruiker/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(object model)
+        public async Task<IActionResult> Create(RegisterViewModel model)
         {
-            ViewData["RoleId"] = iPxl.GetRoles();
             if (ModelState.IsValid)
             {
-                FotoHelper ft = new FotoHelper(HostingEnvironment);
-                string uniqueFileName = ft.ProcessUploadedFile(model.Photo);
-
-                var identityUser = new Gebruiker()
+                var identityUser = new CustomUser()
                 {
-                    Naam = model.Naam,
-                    VoorNaam = model.VoorNaam,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
                     Email = model.Email,
-                    UserName = model.Email,
-                    ImageUrl = uniqueFileName,
+                    UserName = $"{model.LastName}_{model.FirstName}_{Guid.NewGuid()}" // make userNmae Unique
                 };
+                identityUser.ProfileImage = PhotoHelper.UploadProfilePhoto(hostEnvironment, model.Photo);
 
-                var result = await userManager.CreateAsync(identityUser, model.Password);
+                if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
+                {
+                    identityUser.OwnerId = skyKotRepository.GetCurrentUserId();
+                }
+
+                var result = await loginRepository.CreateUser(identityUser, model.Password);
 
                 if (result.Succeeded)
                 {
-                    var role = await roleManager.FindByIdAsync(model.RoleId);
-                    if (role != null)
+                    if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
                     {
-                        await userManager.AddToRoleAsync(identityUser, role.Name);
+                        // add to renter role
+                        await skyKotRepository.AddToRenterRole(identityUser);
                     }
-                    return RedirectToAction("index", "Home");
+                    var token = await loginRepository.GenerateEmailConfirmationToken(identityUser);
+                    var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                    new { userId = identityUser.Id, token = token }, Request.Scheme);
+
+                    try
+                    {
+                        EmailHelper.SendInvatationEmail(identityUser.Email, confirmationLink);
+                    }
+                    catch (Exception)
+                    {
+                        //do nothing
+                    }
+                    //if current user is owner
+                    if(skyKotRepository.GetCurrentUserRole() == Roles.Owner)
+                    {
+                        //add as role member
+                        await skyKotRepository.AddToRenterRole(identityUser);
+                    }
+                    
+                    return RedirectToAction("Index");
                 }
                 foreach (var error in result.Errors)
                 {
@@ -97,31 +134,36 @@ namespace SkyKotApp.Controllers
             }
             return View(model);
         }
+        #endregion
 
-        // GET: Gebruiker/Edit/5
+        #region Edit
         public async Task<IActionResult> Edit(string id)
         {
-            ViewData["RoleId"] = iPxl.GetRoles();
             if (id == null)
             {
                 return RedirecToNotFound();
             }
+            if(skyKotRepository.GetCurrentUserRole() == Roles.Owner)
+            {
+                //check is owner
+                if (!await skyKotRepository.IsUserOwner(id))
+                {
+                    return RedirecToNotFound();
+                }
+            }
 
-            var gebruiker = await iPxl.GetGebruiker(id);
-            if (gebruiker == null)
+            CustomUser user = await skyKotRepository.GetUser(id);
+            if (user == null)
             {
                 return RedirecToNotFound();
             }
-            GebruikerEditViewModel gebruikerEditViewModel = new GebruikerEditViewModel()
+            UserEditViewModel model = new UserEditViewModel(user);
+            model.RoleId = skyKotRepository.GetRoleName(user.Id);
+            if (skyKotRepository.GetCurrentUserRole() == Roles.Admin)
             {
-                HelperId = gebruiker.Id,
-                Naam = gebruiker.Naam,
-                VoorNaam = gebruiker.VoorNaam,
-                Email = gebruiker.Email,
-                ExistingPhotoPath = gebruiker.ImageUrl,
-                RoleId = iPxl.GetRoleName(gebruiker.Id)
-            };
-            return View(gebruikerEditViewModel);
+                model.RolesSelectList = skyKotRepository.GetRoles();
+            }
+            return View(model);
         }
 
         // POST: Gebruiker/Edit/5
@@ -129,9 +171,8 @@ namespace SkyKotApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, GebruikerEditViewModel model)
+        public async Task<IActionResult> Edit(string id, UserEditViewModel model)
         {
-            ViewData["RoleId"] = iPxl.GetRoles();
             if (id != model.HelperId)
             {
                 return RedirecToNotFound();
@@ -139,37 +180,40 @@ namespace SkyKotApp.Controllers
 
             if (ModelState.IsValid)
             {
+                if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
+                {
+                    //check is owner
+                    if (!await skyKotRepository.IsUserOwner(id))
+                    {
+                        return RedirecToNotFound();
+                    }
+                }
+                CustomUser user = null;
                 try
                 {
-                    Gebruiker gebruiker = await iPxl.GetGebruiker(model.HelperId);
+                    user = await skyKotRepository.GetUser(model.HelperId);
 
-                    gebruiker.Naam = model.Naam;
-                    gebruiker.VoorNaam = model.VoorNaam;
-                    gebruiker.Email = model.Email;
-                    gebruiker.UserName = model.Email;
-                    gebruiker.ImageUrl = model.ExistingPhotoPath;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Email = model.Email;
 
-                    if (model.Photo != null)
+                    user.ProfileImage = PhotoHelper.UploadProfilePhoto(hostEnvironment, model.Photo);
+
+                    PhotoHelper.DeleteProfilePhoto(hostEnvironment, model.ExistingPhotoPath);
+
+                    await skyKotRepository.UpdateUser(user);
+                    if (skyKotRepository.GetCurrentUserRole() == Roles.Admin)
                     {
-                        if (model.ExistingPhotoPath != null)
-                        {
-                            //delete existing photo
-                            string filePath = Path.Combine(HostingEnvironment.WebRootPath, "images", model.ExistingPhotoPath);
-                            System.IO.File.Delete(filePath);
-                        }
-                        FotoHelper ft = new FotoHelper(HostingEnvironment);
-                        gebruiker.ImageUrl = ft.ProcessUploadedFile(model.Photo);
+                        //update role
+                        await skyKotRepository.UpdateRole(user, model.RoleId);
                     }
-                    await iPxl.UpdateGebruiker(gebruiker);
-
-                    await UpdateRoles(gebruiker, model.RoleId);
                     return RedirectToAction("Index");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!iPxl.GebruikerExists(model.Id))
+                    if (user == null)
                     {
-                        return RedirecToNotFound(1);
+                        return RedirecToNotFound();
                     }
                     else
                     {
@@ -180,18 +224,8 @@ namespace SkyKotApp.Controllers
             }
             return View(model);
         }
-
-        public async Task UpdateRoles(Gebruiker identityUser, string roleId)
-        {
-            iPxl.DeleteOldRoles(identityUser.Id);
-
-            var role = await roleManager.FindByIdAsync(roleId);
-            if (role != null)
-            {
-                await userManager.AddToRoleAsync(identityUser, role.Name);
-            }
-        }
-
+        #endregion
+        #region Delete
         // GET: Gebruiker/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
@@ -199,8 +233,16 @@ namespace SkyKotApp.Controllers
             {
                 return RedirecToNotFound();
             }
+            if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
+            {
+                //check is owner
+                if (!await skyKotRepository.IsUserOwner(id))
+                {
+                    return RedirecToNotFound();
+                }
+            }
 
-            var gebruiker = await iPxl.GetGebruiker(id);
+            var gebruiker = await skyKotRepository.GetUser(id);
             if (gebruiker == null)
             {
                 return RedirecToNotFound();
@@ -214,25 +256,21 @@ namespace SkyKotApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            Gebruiker gebruiker = await iPxl.DeleteGebruiker(id);
-
-            if (gebruiker.ImageUrl != null)
+            if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
             {
-                //delete existing photo
-                string filePath = Path.Combine(HostingEnvironment.WebRootPath, "images", gebruiker.ImageUrl);
-                System.IO.File.Delete(filePath);
+                //check is owner
+                if (!await skyKotRepository.IsUserOwner(id))
+                {
+                    return RedirecToNotFound();
+                }
             }
+            await skyKotRepository.DeleteUser(id);
             return RedirectToAction(nameof(Index));
         }
-        */
+        #endregion
         private RedirectToActionResult RedirecToNotFound()
         {
-            return RedirectToAction(NotFoundIdInfo.ActionName, NotFoundIdInfo.ControllerName, new { categorie = "Gebruiker" });
+            return RedirectToAction(NotFoundIdInfo.ActionName, NotFoundIdInfo.ControllerName, new { categorie = "User" });
         }
-        private RedirectToActionResult RedirecToNotFound(int? id = 0)
-        {
-            return RedirectToAction(NotFoundIdInfo.ActionName, NotFoundIdInfo.ControllerName, new { id, categorie = "Gebruiker" });
-        }
-       
     }
 }

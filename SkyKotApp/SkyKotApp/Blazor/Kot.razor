@@ -12,9 +12,10 @@
         </div>
     </div>
 }
-<div>
+<div class="m-2">
+    <label>Fitler </label>
     <select @onchange="FilterOnHouse" >
-        <option value="0">Filter</option>
+        <option value="0">House</option>
         @if(Houses.Any())
         {
             @foreach (var house in Houses)
@@ -25,7 +26,7 @@
      </select>
 
      <select @onchange="FilterOnZipCode" >
-        <option value="0">All Zip</option>
+        <option value="0">City</option>
         @if(Houses.Any())
         {
             @foreach (var zipCode in ZipCodes)
@@ -51,7 +52,7 @@
                                     @{var teller3 = 0;}
                                     @foreach (var image in room.RoomImages)
                                     {
-                                        var img = "/images/Room/" + (image.Path ?? "avatar.png");
+                                        var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
                                         if (teller3 == 0)
                                         {
                                             <div class="carousel-item active" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
@@ -79,8 +80,9 @@
                     }
                     else
                     {
-                        <div style="cursor:pointer; height: 20vh">
-                            <img class="d-block" style="max-height: 100%; width:100%" src="/images/Profile/avatar.png">
+
+                        <div style="cursor:pointer; height: 30vh; background-image : url('/images/Room/default_room.jpg');background-position: center;background-size: cover;">
+
                         </div>
                     }
               </div>
@@ -123,7 +125,7 @@
     }
     else
     {
-        <p>No Rooms</p>
+        <p>Loading</p>
     }
 </div>
 

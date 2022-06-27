@@ -1,0 +1,65 @@
+﻿@inject SignInManager<CustomUser> signInManager;
+
+<nav class="navbar navbar-expand-custom navbar-mainbg">
+	<a class="navbar-brand navbar-logo" href="#">Sky Kot</a>
+	<button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<i class="fas fa-bars text-white"></i>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto">
+			<div class="hori-selector">
+				<div class="left"></div>
+				<div class="right"></div>
+			</div>
+			<li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-house-user"></i>Home</a>
+			</li>
+			<li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Room" asp-action="Index"><i class="fa-solid fa-building"></i>Room</a>
+			</li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa-solid fa-key"></i>Privacy</a>
+            </li>
+            @if (signInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="House" asp-action="Index"><i class="fa-solid fa-house"></i>House</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa-solid fa-user-check"></i>Profile</a>
+                </li>
+                @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Owner))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index"><i class="fa-solid fa-users"></i>User</a>
+                    </li>   
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="RenterRoom" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>Renter Room</a>
+                    </li>
+                }
+                @if (User.IsInRole(Roles.Admin))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="AcademicYear" asp-action="Index"><i class="fa-solid fa-calendar-days"></i>AcademicYear</a>
+                    </li>
+                }
+                <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" data-link="Register" asp-controller="account" asp-action="Register">
+                        <i class="fa-solid fa-right-to-bracket"></i>Register
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" data-link="Login" asp-controller="account" asp-action="Login">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>Login
+                    </a>
+                </li>
+            }
+		</ul>
+	</div>
+</nav>

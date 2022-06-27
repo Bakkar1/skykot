@@ -58,10 +58,26 @@ namespace SkyKotApp.Services.Blazor
         }
         public async Task<ICollection<House>> GetHouses()
         {
-            return await context
-                .Houses
-                .Select(x => new House() { HouseId = x.HouseId, Name = x.Name})
-                .ToListAsync();
+            string role = GetCurrentUserRole();
+            if (role == Roles.Owner)
+            {
+                return await context.UserHouses
+                  .Include(uh => uh.House)
+                  .Where(uh => uh.Id == GetCurrentUserId())
+                  .Select(uh => new House
+                  {
+                      HouseId = uh.HouseId,
+                      Name = uh.House.Name,
+                  })
+                   .ToListAsync();
+            }
+            else
+            {
+                return await context.Houses
+                   .Include(h => h.ZipCode)
+                   .Select(h => new House() { HouseId = h.HouseId, Name = h.Name })
+                 .ToListAsync();
+            }
         }
         public async Task<ICollection<ZipCode>> GetZipCodes()
         {
