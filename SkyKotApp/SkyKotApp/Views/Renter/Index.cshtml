@@ -1,0 +1,79 @@
+﻿@model ICollection<RenterRoom>
+
+<h3>Your Rooms</h3>
+
+<div class="custom-container" style="margin-top: 20px">
+    @if (Model.Any())
+    {
+        @foreach (RenterRoom renterRoom in Model)
+        {
+            <div class="card" style="width: 30rem;">
+              <div class="card-img-top">
+                  @if (renterRoom.Room.RoomImages.Any())
+                    {
+                        <div>
+                            @{var carouselId = "carousel-" + renterRoom.Room.RoomId;}
+                            <div id="@carouselId" class="carousel slide col-12 p-0" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @{var teller3 = 0;}
+                                    @foreach (var image in renterRoom.Room.RoomImages)
+                                    {
+                                        var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
+                                        if (teller3 == 0)
+                                        {
+                                            <div class="carousel-item active" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                             <div class="carousel-item" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
+                                            </div>
+                                        }
+                                        teller3++;
+
+                                    }
+                                </div>
+                                <a class="carousel-control-prev" href="#@carouselId" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#@carouselId" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div style="cursor:pointer; height: 30vh; background-image : url('/images/Room/default_room.jpg');background-position: center;background-size: cover;">
+
+                        </div>
+                    }
+              </div>
+
+              <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <h6 class="my-0 text-white d-block">@renterRoom.Room.House.Name</h6>
+                            <div>
+                                <p>House Name : @renterRoom.Room.House.Name</p>
+                                 <p>Price(Montly) : @renterRoom.AmountToPay</p>
+                                <p>Room Number : @renterRoom.Room.RoomNumber</p>
+                                <p>From @renterRoom.StartDate.ToLongDateString() To @renterRoom.EndDate.ToLongDateString()</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a asp-action="Details" asp-route-id="@renterRoom.RenterRoomId" class="btn btn-info" style="cursor:pointer">Details</a>
+                    </div>
+              </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>You Have no room</p>
+    }
+</div>

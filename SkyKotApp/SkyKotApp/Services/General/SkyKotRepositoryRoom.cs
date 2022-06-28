@@ -15,22 +15,23 @@ namespace SkyKotApp.Services.General
         public async Task<ICollection<Room>> GetRooms()
         {
             string role = GetCurrentUserRole();
-            if (role == Roles.Owner)
+            switch (role)
             {
-                return await context.Rooms
+                case Roles.Admin:
+                    return await context.Rooms
+                    .Include(r => r.House)
+                    .Include(r => r.RoomImages)
+                    .ToListAsync();
+                case Roles.Owner:
+                    return await context.Rooms
                     .Include(r => r.House)
                     .Include(r => r.RoomImages)
                     .Where(r => r.House.UserHouses.Any(us => us.Id == GetCurrentUserId()))
                     .ToListAsync();
+                default:
+                    return null;
+
             }
-            else if (role == Roles.Admin)
-            {
-                return await context.Rooms
-                    .Include(r => r.House)
-                    .Include(r => r.RoomImages)
-                    .ToListAsync();
-            }
-            return null;
         }
         public async Task<Room> GetRoom(int roomId)
         {

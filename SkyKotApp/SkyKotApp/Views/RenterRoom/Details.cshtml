@@ -42,6 +42,38 @@
         </dd>
     </dl>
 </div>
+
+<table class="table">
+      <thead>
+            <tr>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">Status</th>
+            </tr>
+      </thead>
+      <tbody>
+          @foreach(var contract in Model.RenterContracts)
+          {
+            <tr>
+              <td>@contract.StartDate.ToLongDateString()</td>
+              <td>@contract.StartDate.AddMonths(1).AddDays(-1).ToLongDateString()</td>
+                @if (!contract.IsPayed)
+                {
+                    <td>
+                         <a class="btn btn-danger">Not Pay</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a class="btn btn-primary">Payed</a>
+                    </td>
+                }
+            </tr>
+            }
+      </tbody>
+</table>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.RenterRoomId">Edit</a> |
     <a asp-action="Index">Back to List</a>

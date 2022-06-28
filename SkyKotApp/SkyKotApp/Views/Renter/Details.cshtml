@@ -1,0 +1,100 @@
+﻿@model RenterRoom
+
+<h3>Your Rooms</h3>
+
+<div class="card" style="width: 30rem;">
+    <div class="card-img-top">
+        @if (Model.Room.RoomImages.Any())
+        {
+            <div>
+                @{var carouselId = "carousel-" + Model.Room.RoomId;}
+                <div id="@carouselId" class="carousel slide col-12 p-0" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @{var teller3 = 0;}
+                        @foreach (var image in Model.Room.RoomImages)
+                        {
+                            var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
+                            if (teller3 == 0)
+                            {
+                                <div class="carousel-item active" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
+                                </div>
+                            }
+                            else
+                            {
+                                    <div class="carousel-item" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
+                                </div>
+                            }
+                            teller3++;
+
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#@carouselId" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#@carouselId" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        }
+        else
+        {
+
+            <div style="cursor:pointer; height: 30vh; background-image : url('/images/Room/default_room.jpg');background-position: center;background-size: cover;">
+
+            </div>
+        }
+    </div>
+
+    <div class="card-body">
+        <div class="media">
+            <div class="media-body">
+                <h6 class="my-0 text-white d-block">@Model.Room.House.Name</h6>
+                <div>
+                    <p>House Name : @Model.Room.House.Name</p>
+                        <p>Price(Montly) : @Model.AmountToPay</p>
+                    <p>Room Number : @Model.Room.RoomNumber</p>
+                    <div>From @Model.StartDate.ToLongDateString() To @Model.EndDate.ToLongDateString()</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a class="btn btn-info" style="cursor:pointer">Details</a>
+        </div>
+    </div>
+</div>
+<table class="table">
+      <thead>
+            <tr>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">Pay</th>
+            </tr>
+      </thead>
+      <tbody>
+          @foreach(var contract in Model.RenterContracts)
+          {
+            <tr>
+              <td>@contract.StartDate.ToLongDateString()</td>
+              <td>@contract.StartDate.AddMonths(1).AddDays(-1).ToLongDateString()</td>
+                @if (!contract.IsPayed)
+                {
+                    <td>
+                        <form asp-action="Pay" method="post">
+                            <input name="renterContractId" value="@contract.RenterContractId" type="number" hidden>
+                            <input class="btn btn-danger" type="submit" value="Pay">
+                        </form>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a class="btn btn-primary">Payed</a>
+                    </td>
+                }
+            </tr>
+            }
+      </tbody>
+</table>

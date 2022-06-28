@@ -22,7 +22,7 @@ namespace SkyKotApp.Controllers
         // GET: AcademicYear
         public async Task<IActionResult> Index()
         {
-            return View(await _context.AcademicYears.ToListAsync());
+            return View(await _context.AcademicYears.OrderBy(a => a.StartDate).ToListAsync());
         }
 
         // GET: AcademicYear/Details/5

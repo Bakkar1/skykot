@@ -40,7 +40,7 @@
             @foreach (var image in Model)
             {
 
-                var img = "/images/Room/" + (image.Path ?? "avatar.png");
+                var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
 
                 <div class="m-2">
                     <img style="cursor:pointer; max-height:100px;" src=@img data-target="#carousel2" data-slide-to=@teller>

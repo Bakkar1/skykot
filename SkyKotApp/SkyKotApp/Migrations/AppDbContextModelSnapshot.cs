@@ -177,6 +177,29 @@ namespace SkyKotApp.Migrations
                     b.ToTable("Houses");
                 });
 
+            modelBuilder.Entity("KotClassLibrary.Models.RenterContract", b =>
+                {
+                    b.Property<int>("RenterContractId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsPayed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RenterRoomId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("RenterContractId");
+
+                    b.HasIndex("RenterRoomId");
+
+                    b.ToTable("RenterContracts");
+                });
+
             modelBuilder.Entity("KotClassLibrary.Models.RenterRoom", b =>
                 {
                     b.Property<int>("RenterRoomId")
@@ -186,6 +209,9 @@ namespace SkyKotApp.Migrations
 
                     b.Property<int>("AcademicYearId")
                         .HasColumnType("int");
+
+                    b.Property<float>("AmountToPay")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -235,8 +261,8 @@ namespace SkyKotApp.Migrations
                     b.Property<int>("Period")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
@@ -531,6 +557,17 @@ namespace SkyKotApp.Migrations
                     b.Navigation("ZipCode");
                 });
 
+            modelBuilder.Entity("KotClassLibrary.Models.RenterContract", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.RenterRoom", "RenterRoom")
+                        .WithMany("RenterContracts")
+                        .HasForeignKey("RenterRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RenterRoom");
+                });
+
             modelBuilder.Entity("KotClassLibrary.Models.RenterRoom", b =>
                 {
                     b.HasOne("KotClassLibrary.Models.AcademicYear", "AcademicYear")
@@ -722,6 +759,11 @@ namespace SkyKotApp.Migrations
                     b.Navigation("Rooms");
 
                     b.Navigation("UserHouses");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.RenterRoom", b =>
+                {
+                    b.Navigation("RenterContracts");
                 });
 
             modelBuilder.Entity("KotClassLibrary.Models.Room", b =>

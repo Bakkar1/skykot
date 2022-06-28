@@ -45,14 +45,14 @@ namespace SkyKotApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var identityUser = new CustomUser()
+                var identityUser = new CustomUser
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Email = model.Email,
-                    UserName = $"{model.LastName}_{model.FirstName}_{Guid.NewGuid()}" // make userNmae Unique
+                    UserName = $"{model.LastName}_{model.FirstName}_{Guid.NewGuid()}", // make userNmae Unique
+                    ProfileImage = PhotoHelper.UploadProfilePhoto(hostingEnvironment, model.Photo)
                 };
-                identityUser.ProfileImage = PhotoHelper.UploadProfilePhoto(hostingEnvironment, model.Photo) ;
 
                 var result = await loginRepository.CreateUser(identityUser, model.Password);
 
@@ -88,7 +88,11 @@ namespace SkyKotApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await loginRepository.Logout();
-            return View("LogoutCompleted");
+            return RedirectToAction("LogoutCompleted");
+        }
+        public IActionResult LogoutCompleted()
+        {
+            return View();
         }
         #endregion
         #region login
@@ -119,7 +123,7 @@ namespace SkyKotApp.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Please Valid Your Email");
+                        //ModelState.AddModelError("", "Please Valid Your Email");
                     }
                 }
             }

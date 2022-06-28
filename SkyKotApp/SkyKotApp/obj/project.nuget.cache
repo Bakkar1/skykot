@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "3pC2NlJD62RrtOe9vYjZVE7+cAn4qq4KjzkOuIwDeJPNyoC8PwUAKhNw7kFKtBmjcQf9ul2CvPIk2jO6vUe+6g==",
+  "dgSpecHash": "56WA+3v0mmJUazDoFrVUtiAhfBqf7aQbn7lygW1moHVLGu47q3fwdt+M7DX0OzbX8inrBDQO5xwpFuGVXN0a7w==",
   "success": true,
   "projectFilePath": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\SkyKotApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mbark\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\mbark\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.9\\microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
     "C:\\Users\\mbark\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\mbark\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\mbark\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

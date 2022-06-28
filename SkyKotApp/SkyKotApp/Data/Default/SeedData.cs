@@ -110,6 +110,19 @@ namespace SkyKotApp.Data.Default
                     );
                 await context.SaveChangesAsync();
             }
+            if (!context.AcademicYears.Any())
+            {
+                DateTime date = new DateTime(DateTime.Now.Year, 9, 20);
+                for(int i = 0; i < 10; i++)
+                {
+                    await context.AcademicYears.AddRangeAsync(new AcademicYear()
+                        {
+                            StartDate = date
+                        });
+                    date = date.AddYears(1);
+                }
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using KotClassLibrary.Models;
 using KotClassLibrary.ViewModels;
+using KotClassLibrary.ViewModels.RenterRoomVM;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -21,22 +22,26 @@ namespace SkyKotApp.Services.General
         Task<CustomUser> DeleteUser(string id);
         Task<CustomUser> GetUserByName(string userName);
         #endregion
+
         #region Role
         public SelectList GetRoles();
         string GetRoleName(string UserId);
         void DeleteOldRole(string UserId);
         Task UpdateRole(CustomUser identityUser, string roleId);
         #endregion
+
         #region IsOwn
         Task<bool> IsOwnHouseAsync(int? houseId);
         Task<bool> IsOwnRoom(int? roomId);
         Task<bool> IsUserOwner(string userId);
         #endregion
+
         #region House
         Task<ICollection<House>> GetHouses();
         Task<SelectList> GetHousesSelectList();
         Task<House> AddHouse(House house);
         #endregion
+
         #region Room
         Task<ICollection<Room>> GetRooms();
         Task<Room> GetRoom(int roomId);
@@ -51,6 +56,16 @@ namespace SkyKotApp.Services.General
         Task<ICollection<Expence>> GetExpences();
         Task<SelectList> GetSpecificationsSelect();
         Task<SelectList> GetExpensesSelect();
+        #endregion
+
+        #region RenterRoom
+        Task<ICollection<RenterRoom>> GetRenterRooms();
+        Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel();
+        #endregion
+
+        #region Renter
+        Task<ICollection<RenterRoom>> GetRenters();
+        Task<RenterRoom> GetRenter(int renterRoomId);
         #endregion
     }
 }

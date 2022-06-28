@@ -24,6 +24,8 @@ namespace KotClassLibrary.Models
         public DateTime StartDate { get; set; }
         [Required]
         public DateTime EndDate { get; set; }
+        public float AmountToPay { get; set; }
+        public ICollection<RenterContract> RenterContracts { get; set; }
 
     }
 }
