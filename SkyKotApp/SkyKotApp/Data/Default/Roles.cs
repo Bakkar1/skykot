@@ -11,10 +11,12 @@ namespace SkyKotApp.Data.Default
         public const string Admin = "Admin";
         public const string Owner = "Owner";
         public const string Renter = "Renter";
+        public const string NormalUser = "User";
         public static SelectList GetRoles()
         {
             List<string> roles = new List<string>()
             {
+                NormalUser,
                 Admin,
                 Owner,
                 Renter

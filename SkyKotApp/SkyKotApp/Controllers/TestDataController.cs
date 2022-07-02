@@ -25,8 +25,7 @@ namespace SkyKotApp.Controllers
             var images = Context.RoomImages.ToList();
             Random rnd = new Random();
             int rndHouseId = 0;
-            int rndImageId = 0;
-            for(int i = 0; i <= 100; i++)
+            for(int i = 0; i <= 20; i++)
             {
                 rndHouseId = rnd.Next(houses.Count());
                 Context.Rooms.Add(new Room()

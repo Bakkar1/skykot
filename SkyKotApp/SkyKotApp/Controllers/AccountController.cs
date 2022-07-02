@@ -58,6 +58,7 @@ namespace SkyKotApp.Controllers
 
                 if (result.Succeeded)
                 {
+                    await loginRepository.AddToUserRole(identityUser);
                     var token = await loginRepository.GenerateEmailConfirmationToken(identityUser);
                     var confirmationLink = Url.Action("ConfirmEmail", "Account",
                     new { userId = identityUser.Id, token = token }, Request.Scheme);
@@ -192,7 +193,8 @@ namespace SkyKotApp.Controllers
             var result = await loginRepository.ExternalLoginSignInAsync(externalLoginInfo);
             if (result.Succeeded)
             {
-                return View(userInfoModel);
+                //return View(userInfoModel);
+                return RedirectToAction("Index","Home");
             }
 
             CustomUser existUser = await loginRepository.GetUserByEmail(email);
@@ -203,7 +205,8 @@ namespace SkyKotApp.Controllers
                 if (identityRe.Succeeded)
                 {
                     await loginRepository.SignIn(existUser, false);
-                    return View(userInfoModel);
+                    //return View(userInfoModel);
+                    return RedirectToAction("Index", "Home");
                 }
                 return View("AccessDenied", "Registration of the new login method failed");
             }
@@ -224,8 +227,11 @@ namespace SkyKotApp.Controllers
                 identityResult = await loginRepository.AddLogin(user, externalLoginInfo);
                 if (identityResult.Succeeded)
                 {
+                    await loginRepository.AddToUserRole(user);
+
                     await loginRepository.SignIn(user, false);
-                    return View(userInfoModel);
+                    //return View(userInfoModel);
+                    return RedirectToAction("Index", "Home");
                 }
                 return View("AccessDenied", "Registration of the new login method failed");
             }

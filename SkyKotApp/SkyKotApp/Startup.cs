@@ -70,8 +70,8 @@ namespace SkyKotApp
             });
             services.AddAuthentication().AddGoogle(options =>
             {
-                options.ClientId = "305914282863-52n4vs661qqqdhkr5mdsek9faap5d3fe.apps.googleusercontent.com";
-                options.ClientSecret = "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";
+                options.ClientId = "446317286664-9ijkf6mbo7fjjqkebh9pm4jluu3kv9of.apps.googleusercontent.com";
+                options.ClientSecret = "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";
                 options.SignInScheme = IdentityConstants.ExternalScheme;
             });
         }

@@ -36,22 +36,25 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: RenterRoom/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
-                return NotFound();
+                return RedirecToNotFound();
             }
-
-            var renterRoom = await _context.RenterRooms
-                .Include(r => r.AcademicYear)
-                .Include(r => r.CustomUser)
-                .Include(r => r.Room)
-                .Include(r => r.RenterContracts)
-                .FirstOrDefaultAsync(m => m.RenterRoomId == id);
+            
+            if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+            {
+                //check if is own renter Room
+                if (!await skyKotRepository.IsOwnRenterRoom(id))
+                {
+                    return RedirecToNotFound();
+                }
+            }
+            var renterRoom = await skyKotRepository.GetRenterRoom(id);
             if (renterRoom == null)
             {
-                return NotFound();
+                return RedirecToNotFound();
             }
 
             return View(renterRoom);
@@ -72,7 +75,7 @@ namespace SkyKotApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
+                if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
                 {
                     //check if is owner of the Room
                     if (!await skyKotRepository.IsOwnRoom(renterRoom.RoomId) && !await skyKotRepository.IsUserOwner(renterRoom.Id))
@@ -109,17 +112,24 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: RenterRoom/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
-                return NotFound();
+                return RedirecToNotFound();
             }
-
+            if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+            {
+                //check if is own renter Room
+                if (!await skyKotRepository.IsOwnRenterRoom(id))
+                {
+                    return RedirecToNotFound();
+                }
+            }
             var renterRoom = await _context.RenterRooms.FindAsync(id);
             if (renterRoom == null)
             {
-                return NotFound();
+                return RedirecToNotFound();
             }
             ViewData["AcademicYearId"] = new SelectList(_context.AcademicYears, "AcademicYearId", "AcademicYearId", renterRoom.AcademicYearId);
             ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", renterRoom.Id);
@@ -136,11 +146,19 @@ namespace SkyKotApp.Controllers
         {
             if (id != renterRoom.RenterRoomId)
             {
-                return NotFound();
+                return RedirecToNotFound();
             }
 
             if (ModelState.IsValid)
             {
+                if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+                {
+                    //check if is own renter Room
+                    if (!await skyKotRepository.IsOwnRenterRoom(id))
+                    {
+                        return RedirecToNotFound();
+                    }
+                }
                 try
                 {
                     _context.Update(renterRoom);
@@ -150,7 +168,7 @@ namespace SkyKotApp.Controllers
                 {
                     if (!RenterRoomExists(renterRoom.RenterRoomId))
                     {
-                        return NotFound();
+                        return RedirecToNotFound();
                     }
                     else
                     {
@@ -166,11 +184,20 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: RenterRoom/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
-                return NotFound();
+                return RedirecToNotFound();
+            }
+
+            if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+            {
+                //check if is own renter Room
+                if (!await skyKotRepository.IsOwnRenterRoom(id))
+                {
+                    return RedirecToNotFound();
+                }
             }
 
             var renterRoom = await _context.RenterRooms
@@ -180,7 +207,7 @@ namespace SkyKotApp.Controllers
                 .FirstOrDefaultAsync(m => m.RenterRoomId == id);
             if (renterRoom == null)
             {
-                return NotFound();
+                return RedirecToNotFound();
             }
 
             return View(renterRoom);
@@ -191,6 +218,16 @@ namespace SkyKotApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
+            if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+            {
+                //check if is own renter Room
+                if (!await skyKotRepository.IsOwnRenterRoom(id))
+                {
+                    return RedirecToNotFound();
+                }
+            }
+
             var renterRoom = await _context.RenterRooms.FindAsync(id);
             _context.RenterRooms.Remove(renterRoom);
             await _context.SaveChangesAsync();

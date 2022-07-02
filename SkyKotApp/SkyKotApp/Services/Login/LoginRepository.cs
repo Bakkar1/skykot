@@ -32,6 +32,10 @@ namespace SkyKotApp.Services.Login
             this.singInManager = singInManager;
             this._httpContextAccessor = httpContextAccessor;
         }
+        public async Task AddToUserRole(CustomUser identityUser)
+        {
+            await userManager.AddToRoleAsync(identityUser, Roles.NormalUser);
+        }
 
         #region Login
         public IEnumerable<CustomUser> GetUsers()

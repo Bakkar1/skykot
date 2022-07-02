@@ -9,5 +9,6 @@ namespace SkyKotApp.Data.Default
     {
         public static string Room = "Kot";
         public static string Studio = "Studio";
+        public static string Apartment = "Apartment";
     }
 }

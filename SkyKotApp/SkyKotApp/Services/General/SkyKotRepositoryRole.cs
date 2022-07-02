@@ -17,6 +17,10 @@ namespace SkyKotApp.Services.General
 
             return identityUserRole == null ? "" : identityUserRole.RoleId;
         }
+        public async Task AddToRole(CustomUser identityUser, string role)
+        {
+            await userManager.AddToRoleAsync(identityUser, role);
+        }
         public void DeleteOldRole(string UserId)
         {
             var userRole = context.UserRoles.Where(us => us.UserId == UserId).FirstOrDefault();

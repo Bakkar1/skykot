@@ -106,6 +106,10 @@ namespace SkyKotApp.Controllers
                         // add to renter role
                         await skyKotRepository.AddToRenterRole(identityUser);
                     }
+                    else
+                    {
+                        await skyKotRepository.AddToRole(identityUser, Roles.NormalUser);
+                    }
                     var token = await loginRepository.GenerateEmailConfirmationToken(identityUser);
                     var confirmationLink = Url.Action("ConfirmEmail", "Account",
                     new { userId = identityUser.Id, token = token }, Request.Scheme);
@@ -202,6 +206,7 @@ namespace SkyKotApp.Controllers
                     PhotoHelper.DeleteProfilePhoto(hostEnvironment, model.ExistingPhotoPath);
 
                     await skyKotRepository.UpdateUser(user);
+
                     if (skyKotRepository.GetCurrentUserRole() == Roles.Admin)
                     {
                         //update role

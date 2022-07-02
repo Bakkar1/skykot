@@ -35,6 +35,15 @@ namespace SkyKotApp.Services.General
             }
             return null;
         }
+        public async Task<RenterRoom> GetRenterRoom(int renterRoomId)
+        {
+            return await context.RenterRooms
+                    .Include(r => r.AcademicYear)
+                    .Include(r => r.CustomUser)
+                    .Include(r => r.Room)
+                    .Include(r => r.RenterContracts)
+                    .FirstOrDefaultAsync(m => m.RenterRoomId == renterRoomId);
+        }
         public async Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel()
         {
             return new RenterRoomCreateViewModel()

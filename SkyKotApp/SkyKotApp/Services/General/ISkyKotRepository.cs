@@ -26,12 +26,14 @@ namespace SkyKotApp.Services.General
         #region Role
         public SelectList GetRoles();
         string GetRoleName(string UserId);
+        Task AddToRole(CustomUser identityUser, string role);
         void DeleteOldRole(string UserId);
         Task UpdateRole(CustomUser identityUser, string roleId);
         #endregion
 
         #region IsOwn
         Task<bool> IsOwnHouseAsync(int? houseId);
+        Task<bool> IsOwnRenterRoom(int renterRoomId);
         Task<bool> IsOwnRoom(int? roomId);
         Task<bool> IsUserOwner(string userId);
         #endregion
@@ -60,12 +62,17 @@ namespace SkyKotApp.Services.General
 
         #region RenterRoom
         Task<ICollection<RenterRoom>> GetRenterRooms();
+        Task<RenterRoom> GetRenterRoom(int renterRoomId);
         Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel();
         #endregion
 
         #region Renter
         Task<ICollection<RenterRoom>> GetRenters();
         Task<RenterRoom> GetRenter(int renterRoomId);
+        #endregion
+        #region RenterContract
+        Task<RenterContract> GetRenterContract(int renterContractId);
+        Task<RenterContract> UpdateRenterContract(RenterContract renterContract);
         #endregion
     }
 }

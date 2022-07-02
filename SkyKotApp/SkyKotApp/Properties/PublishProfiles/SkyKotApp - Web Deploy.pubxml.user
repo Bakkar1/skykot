@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAC3bzcb0zA0SZubMeW2w5OgAAAAACAAAAAAAQZgAAAAEAACAAAABTf0hp/N+7P/TDc222dqUpssu3Gg7vJKNmYAdsPbsj+gAAAAAOgAAAAAIAACAAAAA/mkDlHqhINAT8pakS5gLrzATAgNaoMZc9B+fju6iLu4AAAABOwOshlU2WEJkEnr/DYd5r04rXfDZaW1s9YK4VM1er0VTBxxfH1tLP7QzWq2pDsT0QUqH1iKpqIbxVxkFWChcvLuk2p4+oKeIfFENk9A9vWgbMLCza5nxPXs8QW2ktLYKl0pro7UFSKSOY280j5EQZYRX958gI8HfO4KK2El18R0AAAADkDG0qfmz3boltY8MMMdL1xWeBCnbP1BUssdcMI14IBzxbJZElQkupN2aZNa21KQybavlcbfWRKpM+x2cmU0Cq</EncryptedPassword>
+    <History>True|2022-07-02T13:22:32.4019910Z;True|2022-07-01T15:29:46.0865332+02:00;True|2022-07-01T15:11:57.0847999+02:00;True|2022-07-01T14:44:06.3100929+02:00;True|2022-07-01T14:30:42.1641172+02:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="SkyKotConnString">
+      <Value>Data Source=tcp:skykotappdbserver.database.windows.net,1433%3bInitial Catalog=SkyKotApp_db%3bUser Id=skykot%40skykotappdbserver%3bPassword=Riahub20!</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

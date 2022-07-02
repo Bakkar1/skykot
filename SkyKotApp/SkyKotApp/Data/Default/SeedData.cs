@@ -37,6 +37,7 @@ namespace SkyKotApp.Data.Default
         {
             if (!context.Roles.Any())
             {
+                await CreateRoleAsync(roleManager, Roles.NormalUser);
                 await CreateRoleAsync(roleManager, Roles.Admin);
                 await CreateRoleAsync(roleManager, Roles.Owner);
                 await CreateRoleAsync(roleManager, Roles.Renter);
@@ -108,7 +109,7 @@ namespace SkyKotApp.Data.Default
                         CountryId = belgium.CountryId
                     }
                     );
-                await context.SaveChangesAsync();
+                //await context.SaveChangesAsync();
             }
             if (!context.AcademicYears.Any())
             {
@@ -121,8 +122,59 @@ namespace SkyKotApp.Data.Default
                         });
                     date = date.AddYears(1);
                 }
-                await context.SaveChangesAsync();
+                //await context.SaveChangesAsync();
             }
+            if (!context.Expences.Any())
+            {
+                await context.Expences.AddRangeAsync(
+                        new Expence()
+                        {
+                            Description = "Taks"
+                        },
+                        new Expence()
+                        {
+                            Description = "Water"
+                        },
+                        new Expence()
+                        {
+                            Description = "Heating In The Room"
+                        },
+                        new Expence()
+                        {
+                            Description = "Electricity"
+                        },
+                        new Expence()
+                        {
+                            Description = "Heating In The Building"
+                        }
+                    );
+            }
+            if (!context.Expences.Any())
+            {
+                await context.Specifications.AddRangeAsync(
+                        new Specification()
+                        {
+                            Description = "Tuin"
+                        },
+                        new Specification()
+                        {
+                            Description = "Parking"
+                        },
+                        new Specification()
+                        {
+                            Description = "Wifi"
+                        },
+                        new Specification()
+                        {
+                            Description = "Douche"
+                        },
+                        new Specification()
+                        {
+                            Description = "Bemeubeld"
+                        }
+                    );
+            }
+            await context.SaveChangesAsync();
         }
     }
 }

@@ -51,23 +51,21 @@ namespace SkyKotApp.Controllers
             {
                 return RedirecToNotFound();
             }
-            RenterContract contract = await dbContext.RenterContracts
-                .Include(rc => rc.RenterRoom)
-                //.Where(rc => rc.renr)
-                .FirstOrDefaultAsync(rc => rc.RenterContractId == renterContractId);
+            RenterContract contract = await skyKotRepository.GetRenterContract(renterContractId);
             if (contract == null)
             {
                 return RedirecToNotFound();
             }
             
             float toPay = contract.RenterRoom.AmountToPay;
+
             contract.IsPayed = true;
 
-            dbContext.RenterContracts.Update(contract);
-            await dbContext.SaveChangesAsync();
+            await skyKotRepository.UpdateRenterContract(contract);
+
             return RedirectToAction("Details", new {id = contract.RenterRoomId});
         }
-            private RedirectToActionResult RedirecToNotFound()
+        private RedirectToActionResult RedirecToNotFound()
         {
             return RedirectToAction(NotFoundIdInfo.ActionName, NotFoundIdInfo.ControllerName, new { categorie = "Renter Room" });
         }
