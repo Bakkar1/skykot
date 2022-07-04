@@ -23,12 +23,84 @@ a {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+/* General styles
+-------------------------------------------------- */
+.custom-background{
+    background-position: center;
+    background-size: cover;
+}
 
+.default-transition {
+    transition: all .5s ease-in-out;
+}
+
+.home-background {
+    background-position: center;
+    background-size: cover;
+    background-image: url('/Images/General/home_back.jpg');
+    background-color: rgba(0,0,0, .2);
+    background-blend-mode: overlay;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -100;
+}
+.carousel .carousel-inner {
+    background-color: rgba(0,0,0, 1);
+    border-radius: 10px;
+}
+.carousel-item {
+    transition: all .5s ease-in-out;
+    opacity: .3;
+}
+.carousel-item.active {
+    transition: all .5s ease-in-out;
+    opacity: 1;
+}
+    /* Modal
+-------------------------------------------------- */
+.modal-dialog {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+
+}
+.modal .carousel-inner{
+
+}
+
+.modal-content {
+    height: auto !important;
+    min-height: 100% !important;
+    border-radius: 0 !important;
+    background-color: #ececec !important;
+    background-color: rgba(0,0,0, .5) !important;
+}
+.modal-content .custom-background {
+    border-radius: 10px;
+    height: 80vh;
+    width: 100%;
+}
+
+.modal-header {
+    border-bottom: 1px solid transparent !important;
+}
+
+.modal-footer {
+    border-top: 1px solid transparent !important;
+}
+.modal .modal-content .modal-footer button {
+    margin: auto;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-  font-size: 14px;
-}
+    html {
+        font-size: 14px;
+    }
 @media (min-width: 768px) {
   html {
     font-size: 16px;

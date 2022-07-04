@@ -3,6 +3,9 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\css\site.css
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\css\User.css
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\favicon.ico
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\General\home_back.jpg
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\General\s.jpg
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\General\sky_back.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Profile\035f79e6-a7ef-4d6b-a17d-d0dc9afa7a63IMG_0060.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Profile\10cfd5df-0f6d-4501-b860-c544dbd92792GOPR0653.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Profile\24ffaed9-20ef-46ed-a36c-d33173fcb988IMG_0617.jpeg
@@ -16,6 +19,9 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Profile\f3eec86a-0a0f-40a3-a401-77dff402655bIMG_0938.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Profile\fff3134a-af99-4f35-b87d-828b71f9a6deIMG_6812.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\04973d2a-99a9-4874-ba52-949fcaa4eb8aGOPR0386.JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\121ad465-324c-459e-9abb-0b85078bf513pexels-pixabay-259962.jpg
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\154101ff-8693-427c-b25f-c5612f04a861pexels-monica-silvestre-803908.jpg
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\196bd5b2-b7bf-4896-b4bd-78417535a78dpexels-rene-asmussen-20943.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\1cd5036b-5b49-4e95-be83-b3db5716cff0IMG_8763.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\215df339-eb38-4ff1-825b-197904d741caIMG_8748.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\2b9ce97d-5c36-4823-8f75-754060d5b043IMG_8748.JPG
@@ -25,10 +31,15 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\36574930-4c7f-4d19-896f-9c4ac452226fNDCIE9590.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\3a33df66-c65b-4a88-bda2-4ca91ca306abIMG_0932.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\3b9883f8-6676-4c95-a789-31489040c737GOPR0327.JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\3c9fa5ab-b1bc-4c0a-a701-67a41055458dpexels-rene-asmussen-20943.jpg
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\3d1b6fe9-223a-46ff-a98a-8d3bfa11057cpexels-daria-shevtsova-892618.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\46daf94f-4ffe-4fb3-8801-0ec79ee0dba5IMG_1377 (1).JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\4a20edf4-1753-423e-8ce4-75d3d36d284bIMG_8748.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\5084c9f4-f6d5-4a24-82f7-d0ad163ad002NDCIE9590.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\54e9c523-5a11-490d-ad16-4f604cd9dacdIMG_0942.JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\583d1126-e86e-4d5b-aae7-aa4d436110b9pexels-huy-phan-2826787.jpg
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\5a31f7a0-e575-4935-84e6-678a329aea0cpexels-cats-coming-707581.jpg
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\5b2da0d0-804d-4db5-aaab-136703472a4dpexels-pixabay-259962.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\673f08f7-b547-4268-99fd-71c287fdb191IMG_1480.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\67618093-ce92-49af-899b-13a96441c3dbIMG_8763.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\67e2d178-c991-42de-ba36-c4fe8c2a2800IMG_8086.JPG
@@ -36,6 +47,7 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\6a93cc10-c33b-457b-a272-c466c765817aIMG_6812.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\6f3e58e5-fbd2-401b-ab1b-a6aa460f4240IMG_8745.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\71fa5306-731c-4d0e-a927-759b18bb8044IMG_8747.JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\73baa348-fcd9-458e-818b-2e66e526e439pexels-vecislavas-popa-1669799.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\7915fe00-b96d-4da3-bf1a-050a634671a2IMG_8735.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\79304b7b-79f1-4035-94d9-f4372637518dIMG_8747.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\7ccca0a7-e56d-4bd7-8dd3-ee579e78eaa0IMG_8735.JPG
@@ -50,13 +62,17 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\8f33c0dd-3c39-4a5b-a943-5c34c15b5359IMG_8748.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\8fd5b490-5794-4c4f-b81f-70d93cd64876IMG_1468.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\925c00ad-1f29-4fd4-ade5-542adcc5f347IMG_0072 (1).JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\9261ac6c-8960-4543-bd50-c8be39bb6726pexels-vecislavas-popa-1669799.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\9505e6ac-5669-4d43-a454-29ef85128f8bIMG_0929.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\9760fc72-81b0-4673-8a7b-b1b0f944d3c9IMG_8086.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\97901f61-8193-4544-9ee7-ae619a349b3eIMG_8745.JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\989e3d35-efa3-45b0-bbc8-4681f6517b1apexels-daria-shevtsova-892618.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\99ff029b-e87c-4524-b782-ae91bf828c5fNDCIE9590.JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\a557f7d0-e035-4d23-a905-3058f81470ffpexels-祝-鹤槐-683929.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\a9b57fcf-b041-4c68-9f4a-f0d0886475f6TIMF4259.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\aa5cba8e-b30c-4614-a445-eef7492bf689GOPR0395.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\ab0a85e1-e235-408f-af99-c82be066aabfIMG_8747.JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\ac207d74-c04b-44e9-9f42-8120c393b1ecpexels-huy-phan-2826787.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\ac3d9e2c-fbee-4847-a77f-e25b13e993b0GOPR0368.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\b2b4d0ac-8409-45d3-9ee0-6b6334b12223IMG_7446.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\b5cdae2b-2410-4625-83f7-23ce92aff489TIMF4259.JPG
@@ -74,6 +90,8 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\eecb400f-b512-4105-8941-f8dc3770dd1dIMG_0942.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\eeee4926-5ea5-49ce-8140-39fb2405dc13GOPR0393.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\f4259460-631c-4631-b77d-c00cab1fa68fIMG_8748.JPG
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\f494fbe1-e898-4173-aad4-c2f8f338d681pexels-daria-shevtsova-930004.jpg
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\f5b81a57-505a-4ac5-bc0c-55044e0549bbpexels-daria-shevtsova-930004.jpg
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\fa3ea027-46cc-424a-961e-ccf830f8b318IMG_0933.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\Images\Room\ff4aae1a-7cc0-4efb-a4e6-0afc432e18eeIMG_8748.JPG
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net5.0\PubTmp\Out\wwwroot\js\fontawesome-file.js

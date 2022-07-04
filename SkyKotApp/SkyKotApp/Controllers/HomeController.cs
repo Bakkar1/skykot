@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SkyKotApp.Models;
+using SkyKotApp.Services.General;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,16 +12,16 @@ namespace SkyKotApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ISkyKotRepository skyKotRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ISkyKotRepository skyKotRepository)
         {
-            _logger = logger;
+            this.skyKotRepository = skyKotRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await skyKotRepository.GetRoomsForHome());
         }
 
         public IActionResult Privacy()

@@ -46,6 +46,7 @@ namespace SkyKotApp.Services.General
 
         #region Room
         Task<ICollection<Room>> GetRooms();
+        Task<ICollection<Room>> GetRoomsForHome(int count = 5);
         Task<Room> GetRoom(int roomId);
         Task<Room> AddRoom(RoomCreateViewModel model);
         Task<Room> UpdateRoom(RoomEditViewModel model);

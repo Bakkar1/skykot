@@ -34,23 +34,25 @@
     background-position: center center;
 }
 
-    .card.card-has-bg:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: inherit;
-        -webkit-filter: grayscale(1);
-        -moz-filter: grayscale(100%);
-        filter: grayscale(100%);
-    }
-.card .media img {
+.card.card-has-bg:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+.card .media img,
+.card .media .custom-background {
     min-width: 100px;
     min-height: 100px;
     max-width: 100px;
     max-height: 100px;
+    margin-right: 10px;
 }
 .card .card-footer {
     background: none;

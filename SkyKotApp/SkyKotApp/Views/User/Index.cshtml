@@ -15,16 +15,17 @@
     {
         var photoPath = "/Images/Profile/" + (user.ProfileImage ?? "avatar.png");
         <div style="width: 300px">
-            <div class="card text-white card-has-bg click-col"
-                 style=" background-image: url('https://www.pxl.be/Assets/website/pxl_algemeen/afbeeldingen/x-factor.jpg'); ">
+            <div class="card text-white card-has-bg click-col custom-background"
+                 style=" background-image: url('/Images/General/sky_back.jpg'); ">
                 <div class="card-img-overlay d-flex flex-column">
                     <div class="card-body">
                         <div class="media">
-                            <img class="mr-3 rounded-circle"
+                           @* <img class="mr-3 rounded-circle"
                                  asp-append-version="true"
                                  src="@photoPath"
                                  alt="Generic placeholder image"
-                                 style="max-width: 50px" />
+                                 style="max-width: 50px" />*@
+                                  <div class="custom-background rounded-circle"  style=" background-image: url('@photoPath');"></div>
                             <div class="media-body">
                                 <h6 class="my-0 text-white d-block">@user.LastName</h6>
                                 <small>@user.FirstName</small>

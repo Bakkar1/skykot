@@ -41,13 +41,15 @@
     {
         @foreach (Room room in SortedRooms)
         {
+            var carouselId = "carousel-" + room.RoomId;
+            var modalCarouselId = "modal-carousel-" + room.RoomId;
+            var modalId = "modal-" + room.RoomId;
             <div class="card" style="width: 18rem;">
               <div class="card-img-top">
                   @if (room.RoomImages.Any())
                     {
                         <div>
-                            @{var carouselId = "carousel-" + room.RoomId;}
-                            <div id="@carouselId" class="carousel slide col-12 p-0" data-ride="carousel">
+                            <div id="@carouselId" class="carousel slide col-12 p-0" data-ride="@modalCarouselId">
                                 <div class="carousel-inner">
                                     @{var teller3 = 0;}
                                     @foreach (var image in room.RoomImages)
@@ -55,12 +57,17 @@
                                         var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
                                         if (teller3 == 0)
                                         {
-                                            <div class="carousel-item active" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
+                                            @*<div class="carousel-item active custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')" data-toggle="@modalId" data-target="#@modalId"></div>*@
+                                             <div style="cursor:pointer;" class="carousel-item active" data-toggle="modal" data-target="#@modalId.ToUpper()">
+                                                 <div data-target="#@modalCarouselId" data-slide-to=@teller3  class="custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')"></div>
                                             </div>
                                         }
                                         else
                                         {
-                                             <div class="carousel-item" style="cursor:pointer; height: 30vh; background-image : url('@img');background-position: center;background-size: cover;" data-toggle="modal" data-target="#Modal">
+                                             @*<div class="carousel-item custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')" data-toggle="@modalId" data-target="#@modalId">
+                                            </div>*@
+                                            <div style="cursor:pointer;" class="carousel-item" data-toggle="modal" data-target="#@modalId.ToUpper()">
+                                                 <div data-target="#@modalCarouselId" data-slide-to=@teller3  class="custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')"></div>
                                             </div>
                                         }
                                         teller3++;
@@ -121,11 +128,62 @@
                     }
               </div>
             </div>
+
+            <div class="modal fade" id="@modalId.ToUpper()" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                           <button type="button" class="close default-transition" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fa-solid fa-xmark text-white "></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div id="@modalCarouselId" class="carousel slide text-center" data-ride="@modalCarouselId">
+                                <div class="carousel-inner">
+                                    @if (room.RoomImages.Any())
+                                    {
+                                        var teller2 = 0;
+                                        foreach (var image in room.RoomImages)
+                                        {
+                                                var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
+                                            if (teller2 == 0)
+                                            {
+                                                <div class="carousel-item active">
+                                                        <div class="custom-background" style="background-image: url('@img')"></div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="carousel-item">
+                                                        <div class="custom-background" style="background-image: url('@img')"></div>
+                                                </div>
+                                            }
+                                            teller2++;
+                                        }   
+                                    }
+                                </div>
+                                <a class="carousel-control-prev ml-auto" href="#@modalCarouselId" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next mr-auto" href="#@modalCarouselId" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
     }
     else
     {
-        <p>Loading</p>
+        <p>@message</p>
     }
 </div>
 
@@ -139,6 +197,7 @@
     public ICollection<Room> SortedRooms = new List<Room>();
     public ICollection<ZipCode> ZipCodes = new List<ZipCode>();
     public bool isLoading { get; set; } = true;
+    public string message { get; set; } = "Loading";
 
     public bool IsNormalUser { get; set; } = true;
 
@@ -157,6 +216,13 @@
         ZipCodes = await BlazorRepository.GetZipCodes();
         SortedRooms = Rooms;
         isLoading = false;
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!SortedRooms.Any())
+        {
+            message = "No rooms";
+        }
     }
     protected void SortRooms()
     {

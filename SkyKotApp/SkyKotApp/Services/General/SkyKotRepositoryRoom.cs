@@ -33,6 +33,16 @@ namespace SkyKotApp.Services.General
 
             }
         }
+        public async Task<ICollection<Room>> GetRoomsForHome(int count)
+        {
+            return await context.Rooms
+                .Include(r => r.House.ZipCode)
+                .Include(r => r.RoomImages)
+                .Where(r => r.IsAvailable)
+                .OrderByDescending(r => r.RoomId)
+                .Take(count)
+                .ToListAsync();
+        }
         public async Task<Room> GetRoom(int roomId)
         {
             return await context.Rooms

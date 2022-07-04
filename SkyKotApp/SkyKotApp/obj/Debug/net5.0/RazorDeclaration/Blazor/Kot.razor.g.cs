@@ -124,7 +124,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 132 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
+#line 190 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
        
     public IBlazorRepository BlazorRepository => ScopedServices.GetService<IBlazorRepository>();
     [Inject]
@@ -135,6 +135,7 @@ using Microsoft.AspNetCore.Components.Authorization;
     public ICollection<Room> SortedRooms = new List<Room>();
     public ICollection<ZipCode> ZipCodes = new List<ZipCode>();
     public bool isLoading { get; set; } = true;
+    public string message { get; set; } = "Loading";
 
     public bool IsNormalUser { get; set; } = true;
 
@@ -153,6 +154,13 @@ using Microsoft.AspNetCore.Components.Authorization;
         ZipCodes = await BlazorRepository.GetZipCodes();
         SortedRooms = Rooms;
         isLoading = false;
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!SortedRooms.Any())
+        {
+            message = "No rooms";
+        }
     }
     protected void SortRooms()
     {

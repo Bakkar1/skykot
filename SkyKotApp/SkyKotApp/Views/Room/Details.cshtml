@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>@Model.House.Name</h1>
+<h1 class="text-center">@Model.House.Name.ToUpperInvariant() : @Model.RoomNumber Nb</h1>
 
 <partial name="PartialRoomImages" model="@Model.RoomImages" />
 
