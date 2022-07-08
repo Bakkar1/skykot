@@ -41,35 +41,36 @@
     {
         @foreach (Room room in SortedRooms)
         {
-            var carouselId = "carousel-" + room.RoomId;
-            var modalCarouselId = "modal-carousel-" + room.RoomId;
-            var modalId = "modal-" + room.RoomId;
+            int roomId = room.RoomId;
+            var carouselId = ModalHelper.GetCarouselId(roomId);
+            var modalCarouselId = ModalHelper.GetModalCarouselId(roomId);
+            var modalId = ModalHelper.GetModalId(roomId);
             <div class="card" style="width: 18rem;">
               <div class="card-img-top">
                   @if (room.RoomImages.Any())
                     {
                         <div>
                             <div id="@carouselId" class="carousel slide col-12 p-0" data-ride="@modalCarouselId">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#@carouselId" data-slide-to="0" class="active"></li>
+                                    @for(int i = 1; i < room.RoomImages.Count(); i++)
+                                    {
+                                        <li data-target="#@carouselId" data-slide-to="@i"></li>
+                                    }
+                                </ol>
                                 <div class="carousel-inner">
                                     @{var teller3 = 0;}
                                     @foreach (var image in room.RoomImages)
                                     {
                                         var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
+                                        var activeClass = "";
                                         if (teller3 == 0)
                                         {
-                                            @*<div class="carousel-item active custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')" data-toggle="@modalId" data-target="#@modalId"></div>*@
-                                             <div style="cursor:pointer;" class="carousel-item active" data-toggle="modal" data-target="#@modalId.ToUpper()">
-                                                 <div data-target="#@modalCarouselId" data-slide-to=@teller3  class="custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')"></div>
-                                            </div>
+                                            activeClass = "active";
                                         }
-                                        else
-                                        {
-                                             @*<div class="carousel-item custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')" data-toggle="@modalId" data-target="#@modalId">
-                                            </div>*@
-                                            <div style="cursor:pointer;" class="carousel-item" data-toggle="modal" data-target="#@modalId.ToUpper()">
-                                                 <div data-target="#@modalCarouselId" data-slide-to=@teller3  class="custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')"></div>
-                                            </div>
-                                        }
+                                        <div style="cursor:pointer;" class="carousel-item @activeClass" data-toggle="modal" data-target="#@modalId.ToUpper()">
+                                            <div data-target="#@modalCarouselId" data-slide-to=@teller3  class="custom-background" style="cursor:pointer; height: 30vh; background-image : url('@img')"></div>
+                                        </div>
                                         teller3++;
 
                                     }
@@ -93,22 +94,16 @@
                         </div>
                     }
               </div>
-
               <div class="card-body">
                     <div class="media">
                         <div class="media-body">
-                            <h6 class="my-0 text-white d-block">@room.House.Name</h6>
-                            <div>
-                                <p>House Name : @room.House.Name</p>
-                                 <p>Price : @room.Price$</p>
-                                <p>Room Number : @room.RoomNumber</p>
-                                    @if(room.IsAvailable)
-                                    {
-                                        <p>Available from @room.AvailableFrom.ToLongDateString()</p>
-                                    }
-                                    else{
-                                        <p>Not available</p>
-                                    }
+                            <div class="d-flex justify-content-between" style="min-width: 200px">
+                                <p>@room.House.StreetName</p>
+                                <p>@room.Price€</p>
+                            </div>
+                            <div class="d-flex justify-content-between" style="min-width: 200px">
+                                <p>@room.House.ZipCode.City</p>
+                                <p>22m</p>
                             </div>
                         </div>
                     </div>
@@ -146,19 +141,15 @@
                                         var teller2 = 0;
                                         foreach (var image in room.RoomImages)
                                         {
-                                                var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
+                                            var img = "/images/Room/" + (image.Path ?? "default_room.jpg");
+                                            var activeClass = "";
                                             if (teller2 == 0)
                                             {
-                                                <div class="carousel-item active">
-                                                        <div class="custom-background" style="background-image: url('@img')"></div>
-                                                </div>
+                                                activeClass = "active";
                                             }
-                                            else
-                                            {
-                                                <div class="carousel-item">
-                                                        <div class="custom-background" style="background-image: url('@img')"></div>
-                                                </div>
-                                            }
+                                            <div class="carousel-item @activeClass">
+                                                <div class="custom-background" style="background-image: url('@img')"></div>
+                                            </div>
                                             teller2++;
                                         }   
                                     }

@@ -377,7 +377,9 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razo
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Room\Index.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\PartialLoginNav.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\PartialModal.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\PartialRoomImages.cshtml.g.cs
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\PartialRoomList.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\User\Create.cshtml.g.cs
@@ -400,5 +402,3 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\refi
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\SkyKotApp.pdb
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\SkyKotApp.genruntimeconfig.cache
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\ref\SkyKotApp.dll
-C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\PartialRoomList.cshtml.g.cs
-C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net5.0\Razor\Views\Shared\PartialModal.cshtml.g.cs

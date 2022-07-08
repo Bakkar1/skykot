@@ -2,9 +2,9 @@
 
 @{
     int roomId = Model.Any() ? Model.FirstOrDefault().RoomId : 0;
-    var carouselId = "carousel-" + roomId;
-    var modalCarouselId = "modal-carousel-" +  roomId;
-    var modalId = "Modal-" +  roomId;
+    var carouselId = ModalHelper.GetCarouselId(roomId);
+    var modalCarouselId = ModalHelper.GetModalCarouselId(roomId);
+    var modalId = ModalHelper.GetModalId(roomId);
 }
  <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">

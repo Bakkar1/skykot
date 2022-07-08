@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using SkyKotApp.Services.General;
 using SkyKotApp.Data.Default;
 using KotClassLibrary.Helpers;
+using KotClassLibrary.ViewModels.RenterRoomVM;
 using Microsoft.AspNetCore.Authorization;
 
 namespace SkyKotApp.Controllers
@@ -71,44 +72,38 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RenterRoomId,RoomId,Id,AcademicYearId,StartDate,EndDate")] RenterRoom renterRoom)
+        //[Bind("RenterRoomId,RoomId,Id,AcademicYearId,StartDate,EndDate")]
+        public async Task<IActionResult> Create(RenterRoomCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
+                // validate Dates
+                //if(!await skyKotRepository.Checkoverlapping(model))
+                //{
+                //    ModelState.AddModelError("EndDate", "Overlaping");
+                //    return View(await skyKotRepository.GetRenterRoomCreateViewModel(model));
+                //}
+                var errors = await skyKotRepository.CheckoverlappingModalError(model);
+                if (errors.Any())
+                {
+                    foreach(var err in errors)
+                    {
+                        ModelState.AddModelError(err.Key, err.Value);
+                    }
+                    return View(await skyKotRepository.GetRenterRoomCreateViewModel(model));
+                }
                 if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
                 {
                     //check if is owner of the Room
-                    if (!await skyKotRepository.IsOwnRoom(renterRoom.RoomId) && !await skyKotRepository.IsUserOwner(renterRoom.Id))
+                    if (!await skyKotRepository.IsOwnRoom(model.RoomId) && !await skyKotRepository.IsUserOwner(model.Id))
                     {
                         return RedirecToNotFound();
                     }
                 }
-                Room room = await skyKotRepository.GetRoom(renterRoom.RoomId);
-                var toPay = room.RoomExpenses.Sum(re => re.Value) + room.Price;
-                renterRoom.AmountToPay = toPay;
-
-                _context.Add(renterRoom);
-                await _context.SaveChangesAsync();
-                
-                int renterRoomId = renterRoom.RenterRoomId;
-
-                DateTime startDate = renterRoom.StartDate;
-                DateTime endDate = renterRoom.EndDate;
-
-                while (startDate <= endDate)
-                {
-                    _context.RenterContracts.Add(new RenterContract()
-                    {
-                        StartDate = startDate,
-                        RenterRoomId = renterRoomId,
-                        IsPayed = false
-                    });
-                    startDate = startDate.AddMonths(1);
-                }
-                await _context.SaveChangesAsync();
+                await skyKotRepository.CreateRenterRoom(model);
                 return RedirectToAction(nameof(Index));
             }
-            return View(renterRoom);
+            return View(await skyKotRepository.GetRenterRoomCreateViewModel(model));
         }
 
         // GET: RenterRoom/Edit/5
@@ -131,10 +126,7 @@ namespace SkyKotApp.Controllers
             {
                 return RedirecToNotFound();
             }
-            ViewData["AcademicYearId"] = new SelectList(_context.AcademicYears, "AcademicYearId", "AcademicYearId", renterRoom.AcademicYearId);
-            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", renterRoom.Id);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomType", renterRoom.RoomId);
-            return View(renterRoom);
+            return View(await skyKotRepository.GetRenterRoomEditViewModel(renterRoom));
         }
 
         // POST: RenterRoom/Edit/5
@@ -142,19 +134,20 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RenterRoomId,RoomId,Id,AcademicYearId,StartDate,EndDate")] RenterRoom renterRoom)
+        public async Task<IActionResult> Edit(int renterRoomId, [Bind("RenterRoomId,RoomId,Id,AcademicYearId,StartDate,EndDate")] RenterRoomEditViewModel model)
         {
-            if (id != renterRoom.RenterRoomId)
+            if (renterRoomId != model.RenterRoomId)
             {
                 return RedirecToNotFound();
             }
 
             if (ModelState.IsValid)
             {
+                RenterRoom renterRoom = (RenterRoom)model;
                 if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
                 {
                     //check if is own renter Room
-                    if (!await skyKotRepository.IsOwnRenterRoom(id))
+                    if (!await skyKotRepository.IsOwnRenterRoom(renterRoomId))
                     {
                         return RedirecToNotFound();
                     }
@@ -177,10 +170,7 @@ namespace SkyKotApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AcademicYearId"] = new SelectList(_context.AcademicYears, "AcademicYearId", "AcademicYearId", renterRoom.AcademicYearId);
-            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", renterRoom.Id);
-            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomType", renterRoom.RoomId);
-            return View(renterRoom);
+            return View(model);
         }
 
         // GET: RenterRoom/Delete/5

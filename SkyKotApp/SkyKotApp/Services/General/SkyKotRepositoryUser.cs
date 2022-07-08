@@ -80,6 +80,11 @@ namespace SkyKotApp.Services.General
         {
             return await context.Users.FirstOrDefaultAsync(u => u.UserName == userName);
         }
+        public async Task<bool> IsAlredyEmailExist(string email, string userId)
+        {
+            return await context.Users.AnyAsync(u => u.Email == email && u.Id != userId);
+        }
+
         public string GetCurrentUserId()
         {
             return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);

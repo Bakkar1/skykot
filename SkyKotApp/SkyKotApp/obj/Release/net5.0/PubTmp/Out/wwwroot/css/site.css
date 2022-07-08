@@ -47,17 +47,21 @@ a {
     top: 0;
     z-index: -100;
 }
+/* General styles
+-------------------------------------------------- */
 .carousel .carousel-inner {
     background-color: rgba(0,0,0, 1);
     border-radius: 10px;
 }
 .carousel-item {
-    transition: all .5s ease-in-out;
+    display: block !important;
+    visibility: hidden;
     opacity: .3;
 }
 .carousel-item.active {
-    transition: all .5s ease-in-out;
+    visibility: visible;
     opacity: 1;
+    transition: display 0s ease-in-out, opacity .5s ease-in-out;
 }
     /* Modal
 -------------------------------------------------- */

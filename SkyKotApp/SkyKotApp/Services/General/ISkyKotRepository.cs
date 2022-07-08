@@ -1,6 +1,7 @@
 ﻿using KotClassLibrary.Models;
 using KotClassLibrary.ViewModels;
 using KotClassLibrary.ViewModels.RenterRoomVM;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace SkyKotApp.Services.General
         Task<CustomUser> UpdateUser(CustomUser user);
         Task<CustomUser> DeleteUser(string id);
         Task<CustomUser> GetUserByName(string userName);
+        Task<bool> IsAlredyEmailExist(string email, string userId);
         #endregion
 
         #region Role
@@ -64,7 +66,13 @@ namespace SkyKotApp.Services.General
         #region RenterRoom
         Task<ICollection<RenterRoom>> GetRenterRooms();
         Task<RenterRoom> GetRenterRoom(int renterRoomId);
+        Task<RenterRoom> CreateRenterRoom(RenterRoomCreateViewModel model);
         Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel();
+        Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel(RenterRoomCreateViewModel room);
+        Task<RenterRoomEditViewModel> GetRenterRoomEditViewModel(RenterRoom renterRoom);
+        Task<RenterRoomEditViewModel> GetRenterRoomEditViewModel(RenterRoomEditViewModel renterRoomEditViewModel);
+        Task<bool> Checkoverlapping(RenterRoomCreateViewModel model);
+        Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoomCreateViewModel model);
         #endregion
 
         #region Renter

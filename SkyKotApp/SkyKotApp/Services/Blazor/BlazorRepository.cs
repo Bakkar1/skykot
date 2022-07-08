@@ -27,7 +27,7 @@ namespace SkyKotApp.Services.Blazor
             if (role == Roles.Owner)
             {
                 return await context.Rooms
-                    .Include(r => r.House)
+                    .Include(r => r.House.ZipCode)
                     .Include(r => r.RoomImages)
                     .Where(r => r.House.UserHouses.Any(us => us.Id == GetCurrentUserId()))
                     .ToListAsync();
@@ -35,7 +35,7 @@ namespace SkyKotApp.Services.Blazor
             else if (role == Roles.Admin)
             {
                 return await context.Rooms
-                    .Include(r => r.House)
+                    .Include(r => r.House.ZipCode)
                     .Include(r => r.RoomImages)
                     .ToListAsync();
             }

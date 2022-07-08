@@ -47,27 +47,31 @@ a {
     top: 0;
     z-index: -100;
 }
+/* General styles
+-------------------------------------------------- */
 .carousel .carousel-inner {
     background-color: rgba(0,0,0, 1);
     border-radius: 10px;
 }
 .carousel-item {
-    transition: all .5s ease-in-out;
+    display: block !important;
+    visibility: hidden;
     opacity: .3;
 }
 .carousel-item.active {
-    transition: all .5s ease-in-out;
+    visibility: visible;
     opacity: 1;
+    transition: display 0s ease-in-out, opacity .5s ease-in-out;
 }
     /* Modal
 -------------------------------------------------- */
+.modal,
 .modal-dialog {
     width: 100vw !important;
     height: 100vh !important;
     margin: 0 !important;
     padding: 0 !important;
     max-width: none !important;
-
 }
 .modal .carousel-inner{
 
@@ -85,14 +89,22 @@ a {
     height: 80vh;
     width: 100%;
 }
-
-.modal-header {
-    border-bottom: 1px solid transparent !important;
+.modal-body{
+    padding: 10px;
 }
-
+.modal-header{
+    border: none;
+    padding: 5px 20px;
+}
 .modal-footer {
-    border-top: 1px solid transparent !important;
+    border: none;
+    padding: 0 0 10px;
 }
+
+.modal-header .close{
+
+}
+
 .modal .modal-content .modal-footer button {
     margin: auto;
 }

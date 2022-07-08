@@ -197,14 +197,28 @@ namespace SkyKotApp.Controllers
                 {
                     user = await skyKotRepository.GetUser(model.HelperId);
 
+                    if(await skyKotRepository.IsAlredyEmailExist(model.Email,model.HelperId))
+                    {
+                        ModelState.AddModelError("Email", "Email Alredy Exit");
+                        return View(model);
+                    }
+
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
                     user.Email = model.Email;
 
-                    user.ProfileImage = PhotoHelper.UploadProfilePhoto(hostEnvironment, model.Photo);
-
-                    PhotoHelper.DeleteProfilePhoto(hostEnvironment, model.ExistingPhotoPath);
-
+                    if(model.Photo == null)
+                    {
+                        if(!string.IsNullOrEmpty(model.ExistingPhotoPath))
+                        {
+                            model.ProfileImage = model.ExistingPhotoPath;
+                        }
+                    }
+                    else
+                    {
+                        user.ProfileImage = PhotoHelper.UploadProfilePhoto(hostEnvironment, model.Photo);
+                        PhotoHelper.DeleteProfilePhoto(hostEnvironment, model.ExistingPhotoPath);
+                    }
                     await skyKotRepository.UpdateUser(user);
 
                     if (skyKotRepository.GetCurrentUserRole() == Roles.Admin)

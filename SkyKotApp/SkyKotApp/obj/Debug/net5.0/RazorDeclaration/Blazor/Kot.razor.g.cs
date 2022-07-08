@@ -124,7 +124,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 190 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
+#line 181 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Blazor\Kot.razor"
        
     public IBlazorRepository BlazorRepository => ScopedServices.GetService<IBlazorRepository>();
     [Inject]
