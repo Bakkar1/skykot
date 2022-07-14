@@ -42,27 +42,34 @@ using KotClassLibrary.ViewModels;
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using KotClassLibrary.ViewModels.RenterRoomVM;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
-using SkyKotApp.Data.Default;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
+using SkyKotApp.Data.Default;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
 using KotClassLibrary.Helpers;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"02d875e626a97953090781916d79a4abc5158b15", @"/Views/Renter/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5f720072f458c62116a9eb03d0c6290be0ae8f0a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4b663632127d798b9031fd6db3064819e3692e33", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Renter_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ICollection<RenterRoom>>
     #nullable disable
@@ -317,7 +324,7 @@ WriteAttributeValue("", 2360, carouselId, 2360, 11, false);
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "02d875e626a97953090781916d79a4abc5158b1515508", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "02d875e626a97953090781916d79a4abc5158b1515721", async() => {
                 WriteLiteral("Details");
             }
             );

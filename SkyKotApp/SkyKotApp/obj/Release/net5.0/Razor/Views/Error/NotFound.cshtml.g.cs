@@ -42,27 +42,34 @@ using KotClassLibrary.ViewModels;
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using KotClassLibrary.ViewModels.RenterRoomVM;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
-using SkyKotApp.Data.Default;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
+using SkyKotApp.Data.Default;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
 using KotClassLibrary.Helpers;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dcb0c3ca044c929e0d53149cd95b4a9c588b7ede", @"/Views/Error/NotFound.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5f720072f458c62116a9eb03d0c6290be0ae8f0a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4b663632127d798b9031fd6db3064819e3692e33", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Error_NotFound : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorInfo>
     #nullable disable
@@ -105,7 +112,7 @@ using KotClassLibrary.Helpers;
 #nullable disable
             DefineSection("NotFoundStyle", async() => {
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "dcb0c3ca044c929e0d53149cd95b4a9c588b7ede5426", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "dcb0c3ca044c929e0d53149cd95b4a9c588b7ede5639", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -131,7 +138,7 @@ using KotClassLibrary.Helpers;
 #line hidden
 #nullable disable
             WriteLiteral(", please check if you have the right acces  </h2>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcb0c3ca044c929e0d53149cd95b4a9c588b7ede7231", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcb0c3ca044c929e0d53149cd95b4a9c588b7ede7444", async() => {
                 WriteLiteral("\r\n                <input type=\"text\" placeholder=\"Search...\" name=\"search\">\r\n                <button type=\"submit\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\r\n            ");
             }
             );

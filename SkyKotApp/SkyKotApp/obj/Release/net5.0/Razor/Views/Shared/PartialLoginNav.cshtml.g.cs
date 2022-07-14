@@ -42,27 +42,34 @@ using KotClassLibrary.ViewModels;
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using KotClassLibrary.ViewModels.RenterRoomVM;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
-using SkyKotApp.Data.Default;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
+using SkyKotApp.Data.Default;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\Views\_ViewImports.cshtml"
 using KotClassLibrary.Helpers;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9312dd4501375a79705af6059709904f2802c391", @"/Views/Shared/PartialLoginNav.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5f720072f458c62116a9eb03d0c6290be0ae8f0a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4b663632127d798b9031fd6db3064819e3692e33", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared_PartialLoginNav : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -124,7 +131,7 @@ using KotClassLibrary.Helpers;
 			</div>
 			<li class=""nav-item"">
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39110693", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39110906", async() => {
                 WriteLiteral("<i class=\"fas fa-house-user\"></i>Home");
             }
             );
@@ -145,7 +152,7 @@ using KotClassLibrary.Helpers;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39112439", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39112652", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-building\"></i>Room");
             }
             );
@@ -166,7 +173,7 @@ using KotClassLibrary.Helpers;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t</li>\r\n            <li class=\"nav-item\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39114190", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39114403", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-key\"></i>Privacy");
             }
             );
@@ -205,7 +212,7 @@ using KotClassLibrary.Helpers;
 #line hidden
 #nullable disable
             WriteLiteral("                    <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39116501", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39116714", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-building-circle-arrow-right\"></i>Renter");
             }
             );
@@ -242,7 +249,7 @@ using KotClassLibrary.Helpers;
 #line hidden
 #nullable disable
             WriteLiteral("                    <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39118804", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39119017", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-house\"></i>House");
             }
             );
@@ -263,7 +270,7 @@ using KotClassLibrary.Helpers;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39120583", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39120796", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-users\"></i>User");
             }
             );
@@ -284,7 +291,7 @@ using KotClassLibrary.Helpers;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </li>   \r\n                        <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39122368", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39122581", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-building-circle-arrow-right\"></i>Renter Room");
             }
             );
@@ -321,7 +328,7 @@ using KotClassLibrary.Helpers;
 #line hidden
 #nullable disable
             WriteLiteral("                    <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39124646", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39124859", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-calendar-days\"></i>AcademicYear");
             }
             );
@@ -350,7 +357,7 @@ using KotClassLibrary.Helpers;
 #line hidden
 #nullable disable
             WriteLiteral("                <li class=\"nav-item\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39126660", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39126873", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-user-check\" style=\"color: blue;\"></i>Profile");
             }
             );
@@ -371,7 +378,7 @@ using KotClassLibrary.Helpers;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39128465", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39128678", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-arrow-right-from-bracket\"></i>Logout");
             }
             );
@@ -402,7 +409,7 @@ using KotClassLibrary.Helpers;
 #line hidden
 #nullable disable
             WriteLiteral("                <li class=\"nav-item\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39130511", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39130724", async() => {
                 WriteLiteral("\r\n                        <i class=\"fa-solid fa-arrow-right-to-bracket\"></i>Login\r\n                    ");
             }
             );
@@ -422,7 +429,7 @@ using KotClassLibrary.Helpers;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39132235", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9312dd4501375a79705af6059709904f2802c39132448", async() => {
                 WriteLiteral("\r\n                        <i class=\"fa-solid fa-right-to-bracket\"></i>Register\r\n                    ");
             }
             );

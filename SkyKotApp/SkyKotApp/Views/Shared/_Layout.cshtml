@@ -1,47 +1,46 @@
-﻿@inject SignInManager<CustomUser> signInManager;
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SkyKotApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - SkyKotApp</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-    <link rel="stylesheet" href="~/css/User.css" />
-    @if (IsSectionDefined("Style"))
-    {
-        @RenderSection("Style", required: true);
-    }
-    <base href="~/" />
-</head>
-<body>
-    <header>
-       <partial name="PartialLoginNav"/>
-    </header>
-    <div class="container" style="padding-top: 15px">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <!-- Import Blazor Server JavaScript here -->
-    <script src="_framework/blazor.server.js"></script>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - SkyKotApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <link rel="stylesheet" href="~/css/User.css" />
+        @if (IsSectionDefined("Style"))
+        {
+            @RenderSection("Style", required: true);
+        }
+        <base href="~/" />
+    </head>
+    <body>
+        <header>
+           <partial name="PartialLoginNav"/>
+        </header>
+        <div class="container" style="padding-top: 15px">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/fontawesome-file.js"></script>
-    <script src="~/js/responsive-navbar.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+        <!-- Import Blazor Server JavaScript here -->
+        <script src="_framework/blazor.server.js"></script>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - SkyKotApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/fontawesome-file.js"></script>
+        <script src="~/js/responsive-navbar.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 </html>
