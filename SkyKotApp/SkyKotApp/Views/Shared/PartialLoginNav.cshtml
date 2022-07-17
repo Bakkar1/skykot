@@ -1,67 +1,72 @@
 ﻿@inject SignInManager<CustomUser> signInManager;
 
-<nav class="navbar sticky-top navbar-expand-custom navbar-mainbg">
-	<a class="navbar-brand navbar-logo" href="#">Sky Kot</a>
-	<button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<i class="fas fa-bars text-white"></i>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-house-user"></i>Home</a>
-			</li>
-			<li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Room" asp-action="Index"><i class="fa-solid fa-building"></i>Room</a>
-			</li>
+<nav class="navbar navbar-expand-xl navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#">Sky Kot</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa-solid fa-key"></i>Privacy</a>
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-house-user"></i>Home</a>
+	        </li>
+	        <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Room" asp-action="Index"><i class="fa-solid fa-building"></i>Room</a>
+	        </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa-solid fa-key"></i>Privacy</a>
             </li>
             @if (signInManager.IsSignedIn(User))
             {
-                 @if (User.IsInRole(Roles.Renter))
+                    @if (User.IsInRole(Roles.Renter))
                 {  
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Renter" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>Renter</a>
+                        <a class="nav-link" asp-area="" asp-controller="Renter" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>Renter</a>
                     </li>
                 }
                 @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Owner))
                 {
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="House" asp-action="Index"><i class="fa-solid fa-house"></i>House</a>
+                        <a class="nav-link" asp-area="" asp-controller="House" asp-action="Index"><i class="fa-solid fa-house"></i>House</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index"><i class="fa-solid fa-users"></i>User</a>
+                        <a class="nav-link" asp-area="" asp-controller="User" asp-action="Index"><i class="fa-solid fa-users"></i>User</a>
                     </li>   
                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="RenterRoom" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>Renter Room</a>
+                        <a class="nav-link" asp-area="" asp-controller="RenterRoom" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>Renter Room</a>
                     </li>
                 }
                 @if (User.IsInRole(Roles.Admin))
                 {
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="AcademicYear" asp-action="Index"><i class="fa-solid fa-calendar-days"></i>AcademicYear</a>
+                        <a class="nav-link" asp-area="" asp-controller="AcademicYear" asp-action="Index"><i class="fa-solid fa-calendar-days"></i>AcademicYear</a>
                     </li>
                 }
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa-solid fa-user-check"></i>Profile</a>
+                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa-solid fa-user-check"></i>Profile</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
                 </li>
             }
             else
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark" data-link="Login" asp-controller="account" asp-action="Login">
+                    <a class="nav-link" data-link="Login" asp-controller="account" asp-action="Login">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>Login
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" data-link="Register" asp-controller="account" asp-action="Register">
+                    <a class="nav-link" data-link="Register" asp-controller="account" asp-action="Register">
                         <i class="fa-solid fa-right-to-bracket"></i>Register
                     </a>
                 </li>
             }
-		</ul>
-	</div>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
 </nav>
