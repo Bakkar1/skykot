@@ -107,6 +107,7 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: RenterRoom/Edit/5
+        //[Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == 0)
@@ -134,6 +135,7 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(int renterRoomId, [Bind("RenterRoomId,RoomId,Id,AcademicYearId,StartDate,EndDate")] RenterRoomEditViewModel model)
         {
             if (renterRoomId != model.RenterRoomId)
@@ -143,7 +145,15 @@ namespace SkyKotApp.Controllers
 
             if (ModelState.IsValid)
             {
-                RenterRoom renterRoom = (RenterRoom)model;
+                var errors = await skyKotRepository.CheckoverlappingModalError(model);
+                if (errors.Any())
+                {
+                    foreach (var err in errors)
+                    {
+                        ModelState.AddModelError(err.Key, err.Value);
+                    }
+                    return View(await skyKotRepository.GetRenterRoomEditViewModel(model));
+                }
                 if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
                 {
                     //check if is own renter Room
@@ -154,12 +164,11 @@ namespace SkyKotApp.Controllers
                 }
                 try
                 {
-                    _context.Update(renterRoom);
-                    await _context.SaveChangesAsync();
+                    await skyKotRepository.UpdateRenterRoom(model);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RenterRoomExists(renterRoom.RenterRoomId))
+                    if (!RenterRoomExists(model.RenterRoomId))
                     {
                         return RedirecToNotFound();
                     }
@@ -170,7 +179,7 @@ namespace SkyKotApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(model);
+            return View(await skyKotRepository.GetRenterRoomEditViewModel(model));
         }
 
         // GET: RenterRoom/Delete/5

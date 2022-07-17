@@ -1,4 +1,5 @@
-﻿@model IEnumerable<KotClassLibrary.Models.RenterRoom>
+﻿@inject SignInManager<CustomUser> signInManager;
+@model IEnumerable<KotClassLibrary.Models.RenterRoom>
 
 @{
     ViewData["Title"] = "Index";
@@ -49,9 +50,13 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RenterRoomId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RenterRoomId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RenterRoomId">Delete</a>
+                @if (User.IsInRole(Roles.Admin))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.RenterRoomId">Edit</a> 
+                    <a asp-action="Delete" asp-route-id="@item.RenterRoomId">Delete</a>
+                }
+                
+                <a asp-action="Details" asp-route-id="@item.RenterRoomId">Details</a>
             </td>
         </tr>
 }

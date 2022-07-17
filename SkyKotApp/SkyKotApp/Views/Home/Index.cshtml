@@ -81,9 +81,11 @@
         </div>
     </div>
 </div>
-
-<hr style="border-top: 1px solid white;"/>
-<h2 class="text-center text-white">Recently added</h2>
-<div class="custom-container" style="margin-top: 20px">
-    <partial name="PartialRoomList" model="@Model" />
+<div>
+    <hr style="border-top: 1px solid white;"/>
+    <h2 class="text-center text-white">Recently added</h2>
+    <div class="custom-container" style="margin-top: 20px">
+        <partial name="PartialRoomList" model="@Model" />
+    </div>
+    <a class="btn btn-primary d-block m-auto w-25" asp-controller="Room" asp-action="Index">More</a>
 </div>

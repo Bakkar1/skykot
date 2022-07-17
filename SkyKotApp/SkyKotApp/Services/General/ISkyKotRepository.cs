@@ -67,12 +67,14 @@ namespace SkyKotApp.Services.General
         Task<ICollection<RenterRoom>> GetRenterRooms();
         Task<RenterRoom> GetRenterRoom(int renterRoomId);
         Task<RenterRoom> CreateRenterRoom(RenterRoomCreateViewModel model);
+        Task<RenterRoom> UpdateRenterRoom(RenterRoomEditViewModel model);
         Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel();
         Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel(RenterRoomCreateViewModel room);
         Task<RenterRoomEditViewModel> GetRenterRoomEditViewModel(RenterRoom renterRoom);
         Task<RenterRoomEditViewModel> GetRenterRoomEditViewModel(RenterRoomEditViewModel renterRoomEditViewModel);
         Task<bool> Checkoverlapping(RenterRoomCreateViewModel model);
         Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoomCreateViewModel model);
+        Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoomEditViewModel model);
         #endregion
 
         #region Renter
