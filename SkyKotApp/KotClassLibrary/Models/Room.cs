@@ -24,13 +24,19 @@ namespace KotClassLibrary.Models
         public int Period { get; set; }
         [Required]
         [DisplayFormat(DataFormatString = "{0:C2}")]
-        [Range(1, float.MaxValue, ErrorMessage = "Only positive number allowed")]
-        public float Price { get; set; }
+        [Range(1, double.MaxValue, ErrorMessage = "Only positive number allowed")]
+        public double Price { get; set; }
         [Required]
         public DateTime AvailableFrom { get; set; }
         [Required]
         public bool IsAvailable { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
+        [Display(Name = "Surface (2m)")]
+        [Range(1, double.MaxValue, ErrorMessage = "Only positive number allowed")]
+        public double Surface { get; set; }
 
         public ICollection<RoomSpecification> RoomSpecifications { get; set; }
         public ICollection<RenterRoom> RenterRooms { get; set; }

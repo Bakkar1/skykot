@@ -56,8 +56,8 @@ namespace SkyKotApp.Controllers
             {
                 return RedirecToNotFound();
             }
-            
-            float toPay = contract.RenterRoom.AmountToPay;
+
+            double toPay = contract.RenterRoom.AmountToPay;
 
             contract.IsPayed = true;
 

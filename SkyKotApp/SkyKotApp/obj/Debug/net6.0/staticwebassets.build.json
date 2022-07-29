@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dPQgR4V2Acdm2rDaaS4CygcE2OYrV+HSqFOF1kGZrUE=",
+  "Hash": "VY68yCOD71GSM7237WAq/9Mnrp5WFhW95/jIS2HtEYE=",
   "Source": "SkyKotApp",
   "BasePath": "_content/SkyKotApp",
   "Mode": "Default",
@@ -238,6 +238,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\Profile\\2a75e178-2fe0-4114-9ad4-8abd54a830cev3_0256371.jpg"
     },
     {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Profile\\4825eb2b-acc9-4a28-b223-3a0cfc278162IMG_0617.jpeg",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Profile/4825eb2b-acc9-4a28-b223-3a0cfc278162IMG_0617.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Profile\\4825eb2b-acc9-4a28-b223-3a0cfc278162IMG_0617.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Profile\\79160831-857c-4298-972f-44bd450661d1mijn (1).jpg",
       "SourceId": "SkyKotApp",
       "SourceType": "Discovered",
@@ -304,6 +321,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Profile\\92452695-635a-4d9d-a38a-c4e23449af57IMG_6812.JPG"
+    },
+    {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Profile\\948b25c3-4021-40dd-858c-c2f763a1a414v3_0256371.jpg",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Profile/948b25c3-4021-40dd-858c-c2f763a1a414v3_0256371.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Profile\\948b25c3-4021-40dd-858c-c2f763a1a414v3_0256371.jpg"
     },
     {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Profile\\avatar.png",

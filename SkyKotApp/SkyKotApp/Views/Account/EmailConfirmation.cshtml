@@ -1,0 +1,14 @@
+﻿@model AfterRegisterViewModel
+
+<div>
+    <p>@Model.Title</p>
+    @if (@Model.IsEmailSended)
+    {
+        <p>@Model.Message</p>
+        <a asp-controller="Account" asp-action="SendConfirmationEmail" asp-route-email="@Model.Email">Recend</a>
+    } else
+    {
+        <p>Faild to Send Email , something goes wrong</p>
+    }
+
+</div>

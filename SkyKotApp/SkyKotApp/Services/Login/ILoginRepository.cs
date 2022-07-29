@@ -10,6 +10,14 @@ namespace SkyKotApp.Services.Login
 {
     public interface ILoginRepository
     {
+        #region Password
+        Task<CustomUser> GetCurrentUser();
+        Task<IdentityResult> ChangePassword(CustomUser user, string currentPassword, string newPassword);
+        Task RefreshSignIn(CustomUser user);
+        Task<string> GeneratePasswordResetToken(CustomUser user);
+        Task<IdentityResult> ResetPasswordAsync(CustomUser user, string token, string newPassword);
+        #endregion
+
         #region Account
         IEnumerable<CustomUser> GetUsers();
         Task<CustomUser> GetUserAsync(string email);
@@ -24,6 +32,7 @@ namespace SkyKotApp.Services.Login
         Task<bool> IsAdmin(CustomUser user);
         Task AddToUserRole(CustomUser identityUser);
         #endregion
+
         #region External Login
         Task<ExternalLoginInfo> GetExternalLoginInfoAsync();
         Task<CustomUser> GetUserByEmail(string email);

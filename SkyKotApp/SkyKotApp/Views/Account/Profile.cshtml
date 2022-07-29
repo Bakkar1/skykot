@@ -9,8 +9,12 @@
         <div class="card-body">
             <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
             <p class="card-text">@Model.Email</p>
-            <div>
-                <a class="btn btn-primary">Edit</a>
+            <div class="d-flex">
+                <a class="btn btn-primary m-1" asp-controller="Account" asp-action="EditProfile">Edit</a>
+                <a class="dropdown-item m-1" asp-controller="Account"
+                    asp-action="ChangePassword">
+                    Password
+                </a>
             </div>
         </div>
     </div>

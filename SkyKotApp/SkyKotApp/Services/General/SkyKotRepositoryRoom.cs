@@ -66,7 +66,8 @@ namespace SkyKotApp.Services.General
                 Period = model.Period,
                 AvailableFrom = model.AvailableFrom,
                 IsAvailable = model.IsAvailable,
-                HouseId = model.HouseId
+                HouseId = model.HouseId,
+                Surface = model.Surface
             };
             context.Update(room);
             
@@ -150,7 +151,8 @@ namespace SkyKotApp.Services.General
                 MaxPeople = model.MaxPeople,
                 Period = model.Period,
                 AvailableFrom = model.AvailableFrom,
-                IsAvailable = model.IsAvailable
+                IsAvailable = model.IsAvailable,
+                Surface = model.Surface
             };
             await context.Rooms.AddAsync(room);
             await context.SaveChangesAsync();

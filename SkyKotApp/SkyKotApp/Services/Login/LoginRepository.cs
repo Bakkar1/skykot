@@ -1,4 +1,5 @@
 ﻿using KotClassLibrary.Models;
+using KotClassLibrary.ViewModels.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -137,6 +138,33 @@ namespace SkyKotApp.Services.Login
         public async Task<string> GenerateEmailConfirmationToken(CustomUser user)
         {
             return await userManager.GenerateEmailConfirmationTokenAsync(user);
+        }
+        #endregion
+
+        #region Password
+        public async Task<IdentityResult> ChangePassword(CustomUser user, string currentPassword, string newPassword)
+        {
+            return await userManager.ChangePasswordAsync(await GetCurrentUser(),
+                    currentPassword, newPassword);
+        }
+        public async Task<CustomUser> GetCurrentUser()
+        {
+            var user = _httpContextAccessor.HttpContext.User;
+           return await userManager.GetUserAsync(user);
+        }
+        public async Task RefreshSignIn(CustomUser user)
+        {
+            await singInManager.RefreshSignInAsync(user);
+        }
+
+        public async Task<string> GeneratePasswordResetToken(CustomUser user)
+        {
+            return await userManager.GeneratePasswordResetTokenAsync(user);
+        }
+
+        public async Task<IdentityResult> ResetPasswordAsync(CustomUser user, string token, string newPassword)
+        {
+            return await userManager.ResetPasswordAsync(user, token, newPassword);
         }
         #endregion
     }

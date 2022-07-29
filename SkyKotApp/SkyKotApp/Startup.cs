@@ -34,6 +34,8 @@ namespace SkyKotApp
             services.AddControllersWithViews();
             services.AddServerSideBlazor();
 
+            services.AddMvc().AddViewLocalization();
+
             services.AddDbContextPool<AppDbContext>(
                         options => options.UseSqlServer(Configuration.GetConnectionString("SkyKotConnString"))
                     );
@@ -89,6 +91,8 @@ namespace SkyKotApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            //app.UseRequestLocalization();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

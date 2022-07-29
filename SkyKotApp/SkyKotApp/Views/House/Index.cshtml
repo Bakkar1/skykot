@@ -1,53 +1,28 @@
 ﻿@model IEnumerable<KotClassLibrary.Models.House>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Houses";
 }
 
-<h1>Index</h1>
+<h1>Houses</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New House</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ZipCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StreetName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HouseNumber)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StreetName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HouseNumber)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.HouseId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HouseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HouseId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="custom-container">
+    @foreach (var item in Model) {
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@item.ZipCode.City @item.StreetName</h6>
+            <p class="card-text text-center">@item.Description</p>
+            <div>
+                <a asp-action="Edit" asp-route-id="@item.HouseId" class="btn btn-primary">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.HouseId" class="btn btn-info">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.HouseId" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    }
+</div>

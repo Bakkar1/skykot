@@ -2,63 +2,37 @@
 @model IEnumerable<KotClassLibrary.Models.RenterRoom>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Renters";
 }
 
-<h1>Index</h1>
+<h1>Renter Rooms</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Contract</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AcademicYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.RoomType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomUser.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AcademicYear.AcademicYearId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @if (User.IsInRole(Roles.Admin))
-                {
-                    <a asp-action="Edit" asp-route-id="@item.RenterRoomId">Edit</a> 
-                    <a asp-action="Delete" asp-route-id="@item.RenterRoomId">Delete</a>
-                }
-                
-                <a asp-action="Details" asp-route-id="@item.RenterRoomId">Details</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="custom-container">
+    @foreach (var item in Model) {
+        var photoPath = "/Images/Profile/" + (item.CustomUser.ProfileImage ?? "avatar.png");
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@item.CustomUser.FirstName @item.CustomUser.LastName</h5>
+                <img class="mr-3 rounded-circle"
+                                 asp-append-version="true"
+                                 src="@photoPath"
+                                 alt="Generic placeholder image"
+                                 style="max-width: 100px"/>
+                <h6 class="card-subtitle mb-2 text-muted">@item.AcademicYear.StartDate.ToLongDateString()</h6>
+                <p class="card-text text-center">Start From @item.StartDate To @item.EndDate</p>
+                <div>
+                    @if (User.IsInRole(Roles.Admin))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.RenterRoomId" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.RenterRoomId" class="btn btn-danger">Delete</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.RenterRoomId" class="btn btn-info">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

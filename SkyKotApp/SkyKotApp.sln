@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyKotApp", "SkyKotApp\SkyK
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KotClassLibrary", "KotClassLibrary\KotClassLibrary.csproj", "{AC0D08A1-C930-406B-AA08-E7ECA8FF2909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyKotApp.Test", "SkyKotApp.Test\SkyKotApp.Test.csproj", "{05B9F608-DC28-4746-B1F4-47608FFF4093}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyKotApp.Test", "SkyKotApp.Test\SkyKotApp.Test.csproj", "{D099F6F4-2FD2-41F0-94A3-99ED978ED8AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{AC0D08A1-C930-406B-AA08-E7ECA8FF2909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC0D08A1-C930-406B-AA08-E7ECA8FF2909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC0D08A1-C930-406B-AA08-E7ECA8FF2909}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05B9F608-DC28-4746-B1F4-47608FFF4093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05B9F608-DC28-4746-B1F4-47608FFF4093}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05B9F608-DC28-4746-B1F4-47608FFF4093}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05B9F608-DC28-4746-B1F4-47608FFF4093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D099F6F4-2FD2-41F0-94A3-99ED978ED8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D099F6F4-2FD2-41F0-94A3-99ED978ED8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D099F6F4-2FD2-41F0-94A3-99ED978ED8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D099F6F4-2FD2-41F0-94A3-99ED978ED8AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

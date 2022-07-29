@@ -75,7 +75,7 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HouseId,Name,ZipCodeId,StreetName,HouseNumber")] House house)
+        public async Task<IActionResult> Create([Bind("HouseId,Name,ZipCodeId,StreetName,HouseNumber,Description")] House house)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +118,7 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HouseId,Name,ZipCodeId,StreetName,HouseNumber")] House house)
+        public async Task<IActionResult> Edit(int id, [Bind("HouseId,Name,ZipCodeId,StreetName,HouseNumber,Description")] House house)
         {
             if (id != house.HouseId)
             {

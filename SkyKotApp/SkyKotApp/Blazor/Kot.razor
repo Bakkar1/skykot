@@ -35,6 +35,12 @@
             }
         }
      </select>
+
+     <select @onchange="FilterOnAvailbale" >
+        <option value="">Avilable</option>
+        <option value="ASC">ASC</option>
+        <option value="DESC">DESC</option>
+     </select>
 </div>
 <div class="custom-container" style="margin-top: 20px">
     @if (SortedRooms.Any())
@@ -103,7 +109,7 @@
                             </div>
                             <div class="d-flex justify-content-between" style="min-width: 200px">
                                 <p>@room.House.ZipCode.City</p>
-                                <p>22m</p>
+                                <p>@room.Surface (2m)</p>
                             </div>
                         </div>
                     </div>
@@ -247,6 +253,24 @@
         else
         {
             SortedRooms = Rooms.Where(r => r.House.ZipCodeId == zipId).ToList();
+        }  
+        isLoading = false;
+    }
+    protected  void FilterOnAvailbale(ChangeEventArgs e)
+    {
+        isLoading = true;
+        string avilValue = e.Value.ToString();
+        if (avilValue == "ASC")
+        {
+            SortedRooms = SortedRooms.OrderBy(r => r.AvailableFrom).ToList();
+        }
+        else if (avilValue == "DESC")
+        {
+            SortedRooms = SortedRooms.OrderByDescending(r => r.AvailableFrom).ToList();
+        }
+        else
+        {
+            SortedRooms = Rooms;
         }  
         isLoading = false;
     }

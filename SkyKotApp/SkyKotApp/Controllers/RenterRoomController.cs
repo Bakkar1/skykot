@@ -107,7 +107,7 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: RenterRoom/Edit/5
-        //[Authorize(Roles = Roles.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == 0)
@@ -135,7 +135,7 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = Roles.Admin)]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(int renterRoomId, [Bind("RenterRoomId,RoomId,Id,AcademicYearId,StartDate,EndDate")] RenterRoomEditViewModel model)
         {
             if (renterRoomId != model.RenterRoomId)
