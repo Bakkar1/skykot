@@ -20,6 +20,17 @@
         },
         "runtime": {
           "SkyKotApp.dll": {}
+        },
+        "resources": {
+          "en/SkyKotApp.resources.dll": {
+            "locale": "en"
+          },
+          "fr/SkyKotApp.resources.dll": {
+            "locale": "fr"
+          },
+          "nl/SkyKotApp.resources.dll": {
+            "locale": "nl"
+          }
         }
       },
       "Humanizer.Core/2.8.26": {

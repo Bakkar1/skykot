@@ -79,7 +79,7 @@ namespace SkyKotApp.Controllers
                 RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate(),
                 RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate(),
                 HousesSelectList = await skyKotRepository.GetHousesSelectList(),
-                AvailableFrom = DateTime.Now
+                AvailableFrom = DateTime.Now.AddDays(1),
             };
             return View(model);
         }
@@ -92,14 +92,14 @@ namespace SkyKotApp.Controllers
         //[Bind("RoomId,HouseId,RoomNumber,RoomType,MaxPeople,Period,AvailableFrom,IsAvailable")]
         public async Task<IActionResult> Create(RoomCreateViewModel model)
         {
-            model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate();
-            model.RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate();
-            model.HousesSelectList = await skyKotRepository.GetHousesSelectList();
             if (ModelState.IsValid)
             {
                 //check date
                 if(model.AvailableFrom < DateTime.Now)
                 {
+                    model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate();
+                    model.RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate();
+                    model.HousesSelectList = await skyKotRepository.GetHousesSelectList();
                     ModelState.AddModelError("AvailableFrom", "Date must be in the future");
                     return View(model);
                 }
@@ -108,6 +108,9 @@ namespace SkyKotApp.Controllers
                     //check if is owner of the house
                     if (!await skyKotRepository.IsOwnHouseAsync(model.HouseId))
                     {
+                        model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate();
+                        model.RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate();
+                        model.HousesSelectList = await skyKotRepository.GetHousesSelectList();
                         ModelState.AddModelError("", "Not your House, fuck you");
                         return View(model);
                     }
@@ -116,6 +119,9 @@ namespace SkyKotApp.Controllers
                 await skyKotRepository.AddRoom(model);
                 return RedirectToAction(nameof(Index));
             }
+            model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate();
+            model.RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate();
+            model.HousesSelectList = await skyKotRepository.GetHousesSelectList();
             return View(model);
         }
 
@@ -145,7 +151,7 @@ namespace SkyKotApp.Controllers
             RoomEditViewModel model = new RoomEditViewModel(room)
             {
                 RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToEdit(room.RoomSpecifications),
-                RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate(),
+                RoomExpensesList = await skyKotRepository.GetRoomExpensesToEdit(room.RoomExpenses),
                 HousesSelectList = await skyKotRepository.GetHousesSelectList(),
             };
 
@@ -199,8 +205,8 @@ namespace SkyKotApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToCreate();
-            model.RoomExpensesList = await skyKotRepository.GetRoomExpenseToCreate();
+            model.RoomSpecificationsList = await skyKotRepository.GetRoomSpecificationsToEdit(model.RoomSpecifications);
+            model.RoomExpensesList = await skyKotRepository.GetRoomExpensesToEdit(model.RoomExpenses);
             model.HousesSelectList = await skyKotRepository.GetHousesSelectList();
             return View(model);
         }

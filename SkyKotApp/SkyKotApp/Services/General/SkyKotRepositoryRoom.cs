@@ -93,10 +93,13 @@ namespace SkyKotApp.Services.General
                     if (rSpecification.RoomSpecificationId != 0)
                     {
                         RoomSpecification roomSpec = await context.RoomSpecifications.FindAsync(rSpecification.RoomSpecificationId);
-                        roomSpec.IsAvailAble = string.IsNullOrWhiteSpace(rSpecification.WhereAvailAble) ? false : rSpecification.IsAvailAble;
-                        roomSpec.WhereAvailAble = rSpecification.WhereAvailAble;
+                        if (roomSpec != null)
+                        {
+                            roomSpec.IsAvailAble = string.IsNullOrWhiteSpace(rSpecification.WhereAvailAble) ? false : rSpecification.IsAvailAble;
+                            roomSpec.WhereAvailAble = rSpecification.WhereAvailAble;
 
-                        context.RoomSpecifications.Update(roomSpec);
+                            context.RoomSpecifications.Update(roomSpec);
+                        }
                     }
                     else if (rSpecification.IsAvailAble)
                     {
@@ -115,23 +118,23 @@ namespace SkyKotApp.Services.General
             {
                 foreach (var rExpense in model.RoomExpensesList)
                 {
-                    if (rExpense.Value != 0)
+                    if (rExpense.RoomExpenseId != 0)
                     {
-                        if (rExpense.RoomExpenseId != 0)
+                        RoomExpense roomExpense = await context.RoomExpenses.FindAsync(rExpense.RoomExpenseId);
+                        if (roomExpense != null)
                         {
-                            RoomExpense roomExpense = await context.RoomExpenses.FindAsync(rExpense.RoomExpenseId);
                             roomExpense.Value = rExpense.Value;
                             context.RoomExpenses.Update(roomExpense);
                         }
-                        else
+                    }
+                    else
+                    {
+                        await context.RoomExpenses.AddAsync(new RoomExpense()
                         {
-                            await context.RoomExpenses.AddAsync(new RoomExpense()
-                            {
-                                ExpenceId = rExpense.ExpenceId,
-                                RoomId = roomId,
-                                Value = rExpense.Value
-                            });
-                        }
+                            ExpenceId = rExpense.ExpenceId,
+                            RoomId = roomId,
+                            Value = rExpense.Value
+                        });
                     }
                 }
             }
@@ -271,6 +274,25 @@ namespace SkyKotApp.Services.General
                 });
             }
             return roomExpenses;
+        }
+        public async Task<List<RoomExpense>> GetRoomExpensesToEdit(ICollection<RoomExpense> roomExpenses)
+        {
+            foreach (Expence expence in await GetExpences())
+            {
+                RoomExpense roomExpense = roomExpenses.Where(re => re.ExpenceId == expence.ExpenceId).FirstOrDefault();
+                if (roomExpense == null)
+                {
+                    roomExpenses.Add(new RoomExpense()
+                    {
+                        ExpenceId = expence.ExpenceId,
+                        Expence = new Expence()
+                        {
+                            Description = expence.Description
+                        }
+                    });
+                }
+            }
+            return roomExpenses.ToList();
         }
         public async Task<SelectList> GetSpecificationsSelect()
         {

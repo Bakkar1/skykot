@@ -56,6 +56,7 @@ namespace SkyKotApp.Services.General
         Task<List<RoomExpense>> GetRoomExpenseToCreate();
 
         Task<List<RoomSpecification>> GetRoomSpecificationsToEdit(ICollection<RoomSpecification> roomSpecifications);
+        Task<List<RoomExpense>> GetRoomExpensesToEdit(ICollection<RoomExpense> roomExpenses);
 
         Task<ICollection<Specification>> GetSpecifications();
         Task<ICollection<Expence>> GetExpences();

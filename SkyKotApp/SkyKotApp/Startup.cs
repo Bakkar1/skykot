@@ -1,18 +1,23 @@
+using KotClassLibrary.Helpers;
 using KotClassLibrary.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using SkyKotApp.Data;
 using SkyKotApp.Services.Blazor;
 using SkyKotApp.Services.General;
 using SkyKotApp.Services.Login;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,6 +30,7 @@ namespace SkyKotApp
             Configuration = configuration;
         }
 
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -34,7 +40,24 @@ namespace SkyKotApp
             services.AddControllersWithViews();
             services.AddServerSideBlazor();
 
-            services.AddMvc().AddViewLocalization();
+            #region Culture
+            services.AddLocalization(options =>
+            {
+                options.ResourcesPath = "Resources";
+            });
+
+            services.Configure<RequestLocalizationOptions>(opt =>
+            {
+                opt.DefaultRequestCulture = new RequestCulture(SuportedCultresHelper.English);
+                opt.SupportedCultures = SuportedCultresHelper.GetCultrueInfoList;
+                opt.SupportedUICultures = SuportedCultresHelper.GetCultrueInfoList;
+            });
+
+            services.AddMvc().AddViewLocalization(
+                LanguageViewLocationExpanderFormat.Suffix
+                )
+                .AddDataAnnotationsLocalization();
+            #endregion
 
             services.AddDbContextPool<AppDbContext>(
                         options => options.UseSqlServer(Configuration.GetConnectionString("SkyKotConnString"))
@@ -100,6 +123,16 @@ namespace SkyKotApp
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+
+            //var localizationOptions = new RequestLocalizationOptions()
+            //    .SetDefaultCulture(SuportedCultresHelper.English)
+            //    .AddSupportedCultures(SuportedCultresHelper.GetList)
+            //    .AddSupportedUICultures(SuportedCultresHelper.GetList);
+
+            //app.UseRequestLocalization(localizationOptions);
+
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
             app.UseEndpoints(endpoints =>
             {

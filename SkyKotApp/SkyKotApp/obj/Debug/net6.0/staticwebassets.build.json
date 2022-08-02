@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VY68yCOD71GSM7237WAq/9Mnrp5WFhW95/jIS2HtEYE=",
+  "Hash": "MNnmX5zpkzL0CqI672K4eM2z/eKTktV9pT64RfBXK7U=",
   "Source": "SkyKotApp",
   "BasePath": "_content/SkyKotApp",
   "Mode": "Default",
@@ -202,6 +202,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Profile\\10cfd5df-0f6d-4501-b860-c544dbd92792GOPR0653.JPG"
+    },
+    {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Profile\\13079f9e-6e73-4992-a703-aa63e93d28a0IMG_0695.PNG",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Profile/13079f9e-6e73-4992-a703-aa63e93d28a0IMG_0695.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Profile\\13079f9e-6e73-4992-a703-aa63e93d28a0IMG_0695.PNG"
     },
     {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Profile\\24ffaed9-20ef-46ed-a36c-d33173fcb988IMG_0617.jpeg",
@@ -442,6 +459,40 @@
       "OriginalItemSpec": "wwwroot\\Images\\Room\\04973d2a-99a9-4874-ba52-949fcaa4eb8aGOPR0386.JPG"
     },
     {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\098b65bf-1cf1-4e2e-a33d-0b22509733e3pexels-monica-silvestre-803908.jpg",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Room/098b65bf-1cf1-4e2e-a33d-0b22509733e3pexels-monica-silvestre-803908.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Room\\098b65bf-1cf1-4e2e-a33d-0b22509733e3pexels-monica-silvestre-803908.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\09ed6b98-0996-4f4e-92a7-613f72517228pexels-祝-鹤槐-683929.jpg",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Room/09ed6b98-0996-4f4e-92a7-613f72517228pexels-祝-鹤槐-683929.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Room\\09ed6b98-0996-4f4e-92a7-613f72517228pexels-祝-鹤槐-683929.jpg"
+    },
+    {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\121ad465-324c-459e-9abb-0b85078bf513pexels-pixabay-259962.jpg",
       "SourceId": "SkyKotApp",
       "SourceType": "Discovered",
@@ -457,6 +508,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Room\\121ad465-324c-459e-9abb-0b85078bf513pexels-pixabay-259962.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\12743828-cf43-493c-aee7-67adc08d4c65pexels-huy-phan-2826787.jpg",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Room/12743828-cf43-493c-aee7-67adc08d4c65pexels-huy-phan-2826787.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Room\\12743828-cf43-493c-aee7-67adc08d4c65pexels-huy-phan-2826787.jpg"
     },
     {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\154101ff-8693-427c-b25f-c5612f04a861pexels-monica-silvestre-803908.jpg",
@@ -644,6 +712,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Room\\315bb49c-2063-41f1-bea6-a0dcd4bbd52eIMG_0938.JPG"
+    },
+    {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\31dba5f7-1ac1-4dac-8997-96b89b173c73pexels-vecislavas-popa-1669799.jpg",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Room/31dba5f7-1ac1-4dac-8997-96b89b173c73pexels-vecislavas-popa-1669799.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Room\\31dba5f7-1ac1-4dac-8997-96b89b173c73pexels-vecislavas-popa-1669799.jpg"
     },
     {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\364a0ade-01c9-4f15-9118-38126848d339home_back.jpg",
@@ -1394,6 +1479,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\Room\\8c05b00d-7467-4664-b542-eb13a6f72e06IMG_0933.JPG"
     },
     {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\8c30e439-1096-4d00-b876-6e913d3b1696pexels-kristina-paukshtite-5429260.jpg",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Room/8c30e439-1096-4d00-b876-6e913d3b1696pexels-kristina-paukshtite-5429260.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Room\\8c30e439-1096-4d00-b876-6e913d3b1696pexels-kristina-paukshtite-5429260.jpg"
+    },
+    {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\8cb8d424-4182-4c73-b034-ffdeb41766c9pexels-pixabay-259962.jpg",
       "SourceId": "SkyKotApp",
       "SourceType": "Discovered",
@@ -1902,6 +2004,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Room\\b5cdae2b-2410-4625-83f7-23ce92aff489TIMF4259.JPG"
+    },
+    {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\bfe36004-9ea6-4bf5-83b2-0aa86a796501pexels-祝-鹤槐-683929.jpg",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Room/bfe36004-9ea6-4bf5-83b2-0aa86a796501pexels-祝-鹤槐-683929.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Room\\bfe36004-9ea6-4bf5-83b2-0aa86a796501pexels-祝-鹤槐-683929.jpg"
     },
     {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Room\\c25e3441-9854-4aaa-8bb1-28931bf0ac06IMG_8735.JPG",

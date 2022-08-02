@@ -1,12 +1,15 @@
 ﻿@model ICollection<Room>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
     ViewData["Title"] = "Home";
 }
 <div class="home-background"></div>
 
 <div class="text-center text-white mb-2">
-    Let's increase your service and spare your time
+    @*<div>@ViewBag.Cloc</div>*@
+    @localizer["HelloHome"]
 </div>
+
 <div class="custom-container">
     <div style="width: 300px">
         <div class="card text-white card-has-bg click-col custom-background"
