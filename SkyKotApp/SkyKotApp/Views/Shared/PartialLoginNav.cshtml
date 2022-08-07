@@ -1,6 +1,7 @@
 ﻿@inject SignInManager<CustomUser> signInManager;
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="#">Sky Kot</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,57 +10,57 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-house-user"></i>Home</a>
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-house-user"></i>@localizer["home-link"]</a>
 	        </li>
 	        <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Room" asp-action="Index"><i class="fa-solid fa-building"></i>Room</a>
+                    <a class="nav-link" asp-area="" asp-controller="Room" asp-action="Index"><i class="fa-solid fa-building"></i>@localizer["room-link"]</a>
 	        </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa-solid fa-key"></i>Privacy</a>
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa-solid fa-key"></i>@localizer["privacy-link"]</a>
             </li>
             @if (signInManager.IsSignedIn(User))
             {
                     @if (User.IsInRole(Roles.Renter))
                 {  
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Renter" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>Renter</a>
+                        <a class="nav-link" asp-area="" asp-controller="Renter" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>@localizer["renter-link"]</a>
                     </li>
                 }
                 @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Owner))
                 {
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="House" asp-action="Index"><i class="fa-solid fa-house"></i>House</a>
+                        <a class="nav-link" asp-area="" asp-controller="House" asp-action="Index"><i class="fa-solid fa-house"></i>@localizer["house-link"]</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="User" asp-action="Index"><i class="fa-solid fa-users"></i>User</a>
+                        <a class="nav-link" asp-area="" asp-controller="User" asp-action="Index"><i class="fa-solid fa-users"></i>@localizer["user-link"]</a>
                     </li>   
                         <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="RenterRoom" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>Renter Room</a>
+                        <a class="nav-link" asp-area="" asp-controller="RenterRoom" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>@localizer["renter-room-link"]</a>
                     </li>
                 }
                 @if (User.IsInRole(Roles.Admin))
                 {
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="AcademicYear" asp-action="Index"><i class="fa-solid fa-calendar-days"></i>AcademicYear</a>
+                        <a class="nav-link" asp-area="" asp-controller="AcademicYear" asp-action="Index"><i class="fa-solid fa-calendar-days"></i>@localizer["academicyear-link"]</a>
                     </li>
                 }
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa-solid fa-user-check"></i>Profile</a>
+                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa-solid fa-user-check"></i>@localizer["profile-link"]</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>@localizer["logout-link"]</a>
                 </li>
             }
             else
             {
                 <li class="nav-item">
                     <a class="nav-link" data-link="Login" asp-controller="account" asp-action="Login">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>Login
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>@localizer["login-link"]
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-link="Register" asp-controller="account" asp-action="Register">
-                        <i class="fa-solid fa-right-to-bracket"></i>Register
+                        <i class="fa-solid fa-right-to-bracket"></i>@localizer["register-link"]
                     </a>
                 </li>
             }
@@ -68,8 +69,8 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" disabled placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="search" disabled placeholder="@localizer["search-lbl"]" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@localizer["search-btn"]</button>
         </form>
       </div>
 </nav>

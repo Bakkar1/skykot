@@ -288,3 +288,4 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\fr\S
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\SkyKotApp.Resources.Views.Shared._Culture.en.resources
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\SkyKotApp.Resources.Views.Shared._Culture.fr.resources
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\SkyKotApp.Resources.Views.Shared._Culture.nl.resources
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\SkyKotApp.Resources.Views.Shared.PartialLoginNav.en.resources
