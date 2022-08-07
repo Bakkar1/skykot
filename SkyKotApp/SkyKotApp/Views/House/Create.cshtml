@@ -1,4 +1,4 @@
-﻿@model KotClassLibrary.Models.House
+﻿@model KotClassLibrary.ViewModels.HouseVM.HouseCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -35,6 +35,64 @@
                 <label asp-for="HouseNumber" class="control-label"></label>
                 <input asp-for="HouseNumber" class="form-control" />
                 <span asp-validation-for="HouseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h3>House Specification</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width:150px">Description</th>
+                            <th style="min-width:150px">Is Available</th>
+                            <th style="min-width:150px">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.HouseSpecificationsList.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <label>@Model.HouseSpecificationsList[i].Specification.Description</label>
+                                    <input type="hidden" asp-for="@Model.HouseSpecificationsList[i].SpecificationId" />
+                                </td>
+                                <td>
+                                    <input class="form-control" type="checkbox" onchange="this.value=this.checked"
+                                           value="@Model.HouseSpecificationsList[i].IsAvailAble"
+                                           asp-for="@Model.HouseSpecificationsList[i].IsAvailAble" />
+                                </td>
+                                <td>
+                                    <input class="form-control" value="@Model.HouseSpecificationsList[i].WhereAvailAble"
+                                           asp-for="@Model.HouseSpecificationsList[i].WhereAvailAble" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group">
+                <h3>House Expence</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width:150px">Description</th>
+                            <th style="min-width:150px">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.HouseExpensesList.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <label>@Model.HouseExpensesList[i].Expence.Description</label>
+                                    <input type="hidden" asp-for="@Model.HouseExpensesList[i].ExpenceId" />
+                                </td>
+                                <td>
+                                    <input value="@Model.HouseExpensesList[i].Value"
+                                           asp-for="@Model.HouseExpensesList[i].Value" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using SkyKotApp.Data.Default;
 using System.Security.Claims;
 using SkyKotApp.Services.General;
+using KotClassLibrary.ViewModels.HouseVM;
 
 namespace SkyKotApp.Controllers
 {
@@ -35,9 +36,9 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: House/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -51,10 +52,7 @@ namespace SkyKotApp.Controllers
                 }
             }
 
-            var house = await _context.Houses
-                .Include(h => h.Rooms)
-                .Include(h => h.ZipCode)
-                .FirstAsync(m => m.HouseId == id);
+            var house = await skyKotRepository.GetHouse(id);
             if (house == null)
             {
                 return NotFound();
@@ -64,10 +62,15 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: House/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
+            HouseCreateViewModel model = new HouseCreateViewModel()
+            {
+                HouseSpecificationsList = await skyKotRepository.GetHouseSpecificationsToCreate(),
+                HouseExpensesList = await skyKotRepository.GetHouseExpenseToCreate(),
+            };
             ViewData["ZipCodeId"] = new SelectList(_context.ZipCodes, "ZipCodeId", "City");
-            return View();
+            return View(model);
         }
 
         // POST: House/Create
@@ -75,16 +78,18 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HouseId,Name,ZipCodeId,StreetName,HouseNumber,Description")] House house)
+        //[Bind("HouseId,Name,ZipCodeId,StreetName,HouseNumber,Description")]
+        public async Task<IActionResult> Create(HouseCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                //var userName = User.FindFirstValue(ClaimTypes.Name);
-                await skyKotRepository.AddHouse(house);
+                await skyKotRepository.AddHouse(model);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ZipCodeId"] = new SelectList(_context.ZipCodes, "ZipCodeId", "City", house.ZipCodeId);
-            return View(house);
+            model.HouseSpecificationsList = await skyKotRepository.GetHouseSpecificationsToCreate();
+            model.HouseExpensesList = await skyKotRepository.GetHouseExpenseToCreate();
+            ViewData["ZipCodeId"] = new SelectList(_context.ZipCodes, "ZipCodeId", "City", model.ZipCodeId);
+            return View(model);
         }
 
         // GET: House/Edit/5

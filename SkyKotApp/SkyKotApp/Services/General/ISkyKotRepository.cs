@@ -1,5 +1,6 @@
 ﻿using KotClassLibrary.Models;
 using KotClassLibrary.ViewModels;
+using KotClassLibrary.ViewModels.HouseVM;
 using KotClassLibrary.ViewModels.RenterRoomVM;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -44,6 +45,12 @@ namespace SkyKotApp.Services.General
         Task<ICollection<House>> GetHouses();
         Task<SelectList> GetHousesSelectList();
         Task<House> AddHouse(House house);
+        Task<House> GetHouse(int houseId);
+        Task<House> AddHouse(HouseCreateViewModel model);
+
+        Task<List<HouseSpecification>> GetHouseSpecificationsToCreate();
+        Task<List<HouseExpense>> GetHouseExpenseToCreate();
+
         #endregion
 
         #region Room

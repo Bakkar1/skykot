@@ -13,5 +13,6 @@ namespace KotClassLibrary.Models
         [Required]
         public string Description { get; set; }
         public ICollection<RoomSpecification> RoomSpecifications { get; set; }
+        public ICollection<HouseSpecification> HouseSpecifications { get; set; }
     }
 }

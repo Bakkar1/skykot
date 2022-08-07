@@ -184,6 +184,61 @@ namespace SkyKotApp.Migrations
                     b.ToTable("Houses");
                 });
 
+            modelBuilder.Entity("KotClassLibrary.Models.HouseExpense", b =>
+                {
+                    b.Property<int>("HouseExpenseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HouseExpenseId"), 1L, 1);
+
+                    b.Property<int>("ExpenceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HouseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("HouseExpenseId");
+
+                    b.HasIndex("ExpenceId");
+
+                    b.HasIndex("HouseId");
+
+                    b.ToTable("HouseExpenses");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.HouseSpecification", b =>
+                {
+                    b.Property<int>("HouseSpecificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HouseSpecificationId"), 1L, 1);
+
+                    b.Property<int>("HouseId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsAvailAble")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SpecificationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WhereAvailAble")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HouseSpecificationId");
+
+                    b.HasIndex("HouseId");
+
+                    b.HasIndex("SpecificationId");
+
+                    b.ToTable("HouseSpecifications");
+                });
+
             modelBuilder.Entity("KotClassLibrary.Models.RenterContract", b =>
                 {
                     b.Property<int>("RenterContractId")
@@ -579,6 +634,44 @@ namespace SkyKotApp.Migrations
                     b.Navigation("ZipCode");
                 });
 
+            modelBuilder.Entity("KotClassLibrary.Models.HouseExpense", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.Expence", "Expence")
+                        .WithMany("HouseExpenses")
+                        .HasForeignKey("ExpenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KotClassLibrary.Models.House", "House")
+                        .WithMany("HouseExpenses")
+                        .HasForeignKey("HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Expence");
+
+                    b.Navigation("House");
+                });
+
+            modelBuilder.Entity("KotClassLibrary.Models.HouseSpecification", b =>
+                {
+                    b.HasOne("KotClassLibrary.Models.House", "House")
+                        .WithMany("HouseSpecifications")
+                        .HasForeignKey("HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KotClassLibrary.Models.Specification", "Specification")
+                        .WithMany("HouseSpecifications")
+                        .HasForeignKey("SpecificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
+
+                    b.Navigation("Specification");
+                });
+
             modelBuilder.Entity("KotClassLibrary.Models.RenterContract", b =>
                 {
                     b.HasOne("KotClassLibrary.Models.RenterRoom", "RenterRoom")
@@ -773,11 +866,17 @@ namespace SkyKotApp.Migrations
 
             modelBuilder.Entity("KotClassLibrary.Models.Expence", b =>
                 {
+                    b.Navigation("HouseExpenses");
+
                     b.Navigation("RoomExpenses");
                 });
 
             modelBuilder.Entity("KotClassLibrary.Models.House", b =>
                 {
+                    b.Navigation("HouseExpenses");
+
+                    b.Navigation("HouseSpecifications");
+
                     b.Navigation("Rooms");
 
                     b.Navigation("UserHouses");
@@ -801,6 +900,8 @@ namespace SkyKotApp.Migrations
 
             modelBuilder.Entity("KotClassLibrary.Models.Specification", b =>
                 {
+                    b.Navigation("HouseSpecifications");
+
                     b.Navigation("RoomSpecifications");
                 });
 

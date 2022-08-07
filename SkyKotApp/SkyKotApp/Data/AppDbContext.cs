@@ -19,6 +19,8 @@ namespace SkyKotApp.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<Expence> Expences { get; set; }
         public DbSet<House> Houses { get; set; }
+        public DbSet<HouseSpecification> HouseSpecifications { get; set; }
+        public DbSet<HouseExpense> HouseExpenses { get; set; }
         public DbSet<RenterRoom> RenterRooms { get; set; }
         public DbSet<RenterContract> RenterContracts { get; set; }
         public DbSet<Room> Rooms { get; set; }

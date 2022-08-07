@@ -36,6 +36,21 @@
         </dd>
     </dl>
 </div>
+ <div>
+    <div>Specifications</div>
+    @foreach (var spec in Model.HouseSpecifications)
+    {
+        <p>@spec.Specification.Description : @spec.IsAvailAble , @spec.WhereAvailAble</p>
+    }
+</div>
+<div>
+    <div>Expenses</div>
+    @foreach (var expense in Model.HouseExpenses)
+    {
+        <p>@expense.Expence.Description : @expense.Value€</p>
+    }
+    <p>Extra Expenses : @Model.HouseExpenses.Sum(re =>re.Value)€</p>
+</div>
 <div>
     @if (Model.Rooms.Any())
     {

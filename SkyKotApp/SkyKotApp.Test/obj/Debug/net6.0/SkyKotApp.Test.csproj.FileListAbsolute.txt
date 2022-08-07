@@ -351,3 +351,6 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp.Test\obj\Debug\net6.0
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp.Test\obj\Debug\net6.0\SkyKotApp.Test.pdb
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp.Test\obj\Debug\net6.0\SkyKotApp.Test.genruntimeconfig.cache
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp.Test\obj\Debug\net6.0\ref\SkyKotApp.Test.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp.Test\bin\Debug\net6.0\en\SkyKotApp.resources.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp.Test\bin\Debug\net6.0\fr\SkyKotApp.resources.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp.Test\bin\Debug\net6.0\nl\SkyKotApp.resources.dll
