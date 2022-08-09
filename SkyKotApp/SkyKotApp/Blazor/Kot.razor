@@ -106,7 +106,7 @@
                             <div class="d-flex justify-content-between" style="min-width: 200px">
                                 <p>@room.House.StreetName</p>
                                 @{
-                                    var price = @room.Price + @room.RoomExpenses.Sum(re => re.Value);
+                                    var price = @room.Price + @room.House.HouseExpenses.Sum(re => re.Value);
                                 }
                                 <p>@price€</p>
                             </div>

@@ -14,7 +14,5 @@ namespace KotClassLibrary.ViewModels
         public List<IFormFile> Photos { get; set; }
         public List<string> ImagesPaths { get; set; }
         public SelectList HousesSelectList { get; set; }
-        public List<RoomSpecification> RoomSpecificationsList { get; set; }
-        public List<RoomExpense> RoomExpensesList { get; set; }
     }
 }

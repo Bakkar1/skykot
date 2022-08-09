@@ -222,7 +222,7 @@ namespace SkyKotApp.Controllers
                 if (identityUser != null)
                 {
 
-                    if (await loginRepository.IsAdmin(identityUser) || await loginRepository.IsEmailConfirmed(identityUser))
+                    if (true /*await loginRepository.IsAdmin(identityUser) || await loginRepository.IsEmailConfirmed(identityUser)*/)
                     {
                         var userName = identityUser.UserName;
                         var result = await loginRepository.SignInWithPassword(

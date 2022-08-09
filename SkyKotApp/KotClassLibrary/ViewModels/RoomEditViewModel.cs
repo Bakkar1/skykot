@@ -29,14 +29,10 @@ namespace KotClassLibrary.ViewModels
             HouseId = room.HouseId;
             House = room.House;
             RoomImages = room.RoomImages;
-            RoomExpenses = room.RoomExpenses;
-            RoomSpecifications = room.RoomSpecifications;
             Surface = room.Surface;
         }
         public List<IFormFile> Photos { get; set; }
         public List<string> ImagesPaths { get; set; }
         public SelectList HousesSelectList { get; set; }
-        public List<RoomSpecification> RoomSpecificationsList { get; set; }
-        public List<RoomExpense> RoomExpensesList { get; set; }
     }
 }

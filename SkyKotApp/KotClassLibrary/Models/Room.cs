@@ -38,9 +38,7 @@ namespace KotClassLibrary.Models
         [Range(1, double.MaxValue, ErrorMessage = "Only positive number allowed")]
         public double Surface { get; set; }
 
-        public ICollection<RoomSpecification> RoomSpecifications { get; set; }
         public ICollection<RenterRoom> RenterRooms { get; set; }
         public ICollection<RoomImage> RoomImages { get; set; }
-        public ICollection<RoomExpense> RoomExpenses { get; set; }
     }
 }

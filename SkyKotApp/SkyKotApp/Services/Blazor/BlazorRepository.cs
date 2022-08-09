@@ -29,7 +29,7 @@ namespace SkyKotApp.Services.Blazor
                 return await context.Rooms
                     .Include(r => r.House.ZipCode)
                     .Include(r => r.RoomImages)
-                    .Include(r => r.RoomExpenses)
+                    .Include(r => r.House.HouseExpenses)
                     .Where(r => r.House.UserHouses.Any(us => us.Id == GetCurrentUserId()))
                     .ToListAsync();
             }
@@ -38,7 +38,7 @@ namespace SkyKotApp.Services.Blazor
                 return await context.Rooms
                     .Include(r => r.House.ZipCode)
                     .Include(r => r.RoomImages)
-                    .Include(r => r.RoomExpenses)
+                    .Include(r => r.House.HouseExpenses)
                     .ToListAsync();
             }
             else
@@ -46,7 +46,7 @@ namespace SkyKotApp.Services.Blazor
                 return await context.Rooms
                 .Include(r => r.House.ZipCode)
                 .Include(r => r.RoomImages)
-                .Include(r => r.RoomExpenses)
+                .Include(r => r.House.HouseExpenses)
                 .Where(r => r.IsAvailable)
                 .ToListAsync();
             }

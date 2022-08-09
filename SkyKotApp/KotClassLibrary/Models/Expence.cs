@@ -12,7 +12,6 @@ namespace KotClassLibrary.Models
         public int ExpenceId { get; set; }
         [Required]
         public string Description { get; set; }
-        public ICollection<RoomExpense> RoomExpenses { get; set; }
         public ICollection<HouseExpense> HouseExpenses { get; set; }
     }
 }

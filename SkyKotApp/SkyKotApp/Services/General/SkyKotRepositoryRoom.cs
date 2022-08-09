@@ -46,10 +46,9 @@ namespace SkyKotApp.Services.General
         public async Task<Room> GetRoom(int roomId)
         {
             return await context.Rooms
-                .Include(r => r.House)
+                .Include(r => r.House).ThenInclude(r => r.HouseExpenses).ThenInclude(e => e.Expence)
+                .Include(r => r.House).ThenInclude(r => r.HouseSpecifications).ThenInclude(s => s.Specification)
                 .Include(r => r.RoomImages)
-                .Include(r => r.RoomSpecifications).ThenInclude(rs => rs.Specification)
-                .Include(r => r.RoomExpenses).ThenInclude(re => re.Expence)
                 .FirstOrDefaultAsync(m => m.RoomId == roomId);
         }
         public async Task<Room> UpdateRoom(RoomEditViewModel model)
@@ -85,60 +84,6 @@ namespace SkyKotApp.Services.General
                     });
                 }
             }
-            // update Room Specification
-            if (model.RoomSpecificationsList != null)
-            {
-                foreach (var rSpecification in model.RoomSpecificationsList)
-                {
-                    if (rSpecification.RoomSpecificationId != 0)
-                    {
-                        RoomSpecification roomSpec = await context.RoomSpecifications.FindAsync(rSpecification.RoomSpecificationId);
-                        if (roomSpec != null)
-                        {
-                            roomSpec.IsAvailAble = string.IsNullOrWhiteSpace(rSpecification.WhereAvailAble) ? false : rSpecification.IsAvailAble;
-                            roomSpec.WhereAvailAble = rSpecification.WhereAvailAble;
-
-                            context.RoomSpecifications.Update(roomSpec);
-                        }
-                    }
-                    else if (rSpecification.IsAvailAble)
-                    {
-                        await context.RoomSpecifications.AddAsync(new RoomSpecification()
-                        {
-                            RoomId = roomId,
-                            SpecificationId = rSpecification.SpecificationId,
-                            IsAvailAble = string.IsNullOrWhiteSpace(rSpecification.WhereAvailAble) ? false : rSpecification.IsAvailAble,
-                            WhereAvailAble = rSpecification.WhereAvailAble
-                        });
-                    }
-                }
-            }
-            // update Room Expenses
-            if (model.RoomExpensesList != null)
-            {
-                foreach (var rExpense in model.RoomExpensesList)
-                {
-                    if (rExpense.RoomExpenseId != 0)
-                    {
-                        RoomExpense roomExpense = await context.RoomExpenses.FindAsync(rExpense.RoomExpenseId);
-                        if (roomExpense != null)
-                        {
-                            roomExpense.Value = rExpense.Value;
-                            context.RoomExpenses.Update(roomExpense);
-                        }
-                    }
-                    else
-                    {
-                        await context.RoomExpenses.AddAsync(new RoomExpense()
-                        {
-                            ExpenceId = rExpense.ExpenceId,
-                            RoomId = roomId,
-                            Value = rExpense.Value
-                        });
-                    }
-                }
-            }
-
             await context.SaveChangesAsync();
             return room;
         }
@@ -174,40 +119,6 @@ namespace SkyKotApp.Services.General
                         }) ;
                     }
                 }
-                //add spec
-                if (model.RoomSpecificationsList != null)
-                {
-                    foreach (var rSpecification in model.RoomSpecificationsList)
-                    {
-                        if (rSpecification.IsAvailAble)
-                        {
-                            await context.RoomSpecifications.AddAsync(new RoomSpecification()
-                            {
-                                RoomId = roomId,
-                                SpecificationId = rSpecification.SpecificationId,
-                                IsAvailAble = string.IsNullOrWhiteSpace(rSpecification.WhereAvailAble) ? false : rSpecification.IsAvailAble,
-                                WhereAvailAble = rSpecification.WhereAvailAble
-                            });
-                        }
-                    }
-                }
-
-                //add expence
-                if (model.RoomExpensesList != null)
-                {
-                    foreach (var rExpense in model.RoomExpensesList)
-                    {
-                        if (rExpense.Value != 0)
-                        {
-                            await context.RoomExpenses.AddAsync(new RoomExpense()
-                            {
-                                ExpenceId = rExpense.ExpenceId,
-                                RoomId = roomId,
-                                Value = rExpense.Value
-                            });
-                        }
-                    }
-                }
 
                 await context.SaveChangesAsync();
             }
@@ -220,79 +131,6 @@ namespace SkyKotApp.Services.General
         public async Task<ICollection<Expence>> GetExpences()
         {
             return await context.Expences.ToListAsync();
-        }
-        public async Task<List<RoomSpecification>> GetRoomSpecificationsToCreate()
-        {
-            List<RoomSpecification> roomSpecifications = new List<RoomSpecification>();
-            foreach(Specification specification in await GetSpecifications())
-            {
-                roomSpecifications.Add(new RoomSpecification()
-                {
-                    SpecificationId = specification.SpecificationId,
-                    IsAvailAble = false,
-                    Specification = new Specification()
-                    {
-                        Description = specification.Description
-                    }
-                }) ;
-            }
-            return roomSpecifications;
-        }
-        public async Task<List<RoomSpecification>> GetRoomSpecificationsToEdit(ICollection<RoomSpecification> roomSpecifications)
-        {
-            foreach (Specification specification in await GetSpecifications())
-            {
-                RoomSpecification roomSpecification = roomSpecifications.Where(rm => rm.Specification.SpecificationId == specification.SpecificationId).FirstOrDefault();
-                if(roomSpecification == null)
-                {
-                    roomSpecifications.Add(new RoomSpecification()
-                    {
-                        SpecificationId = specification.SpecificationId,
-                        IsAvailAble = false,
-                        Specification = new Specification()
-                        {
-                            Description = specification.Description
-                        }
-                    });
-                }
-            }
-            return roomSpecifications.ToList();
-        }
-
-        public async Task<List<RoomExpense>> GetRoomExpenseToCreate()
-        {
-            List<RoomExpense> roomExpenses = new List<RoomExpense>();
-            foreach(Expence expence in await GetExpences())
-            {
-                roomExpenses.Add(new RoomExpense()
-                {
-                    ExpenceId = expence.ExpenceId,
-                    Expence = new Expence()
-                    {
-                        Description = expence.Description
-                    }
-                });
-            }
-            return roomExpenses;
-        }
-        public async Task<List<RoomExpense>> GetRoomExpensesToEdit(ICollection<RoomExpense> roomExpenses)
-        {
-            foreach (Expence expence in await GetExpences())
-            {
-                RoomExpense roomExpense = roomExpenses.Where(re => re.ExpenceId == expence.ExpenceId).FirstOrDefault();
-                if (roomExpense == null)
-                {
-                    roomExpenses.Add(new RoomExpense()
-                    {
-                        ExpenceId = expence.ExpenceId,
-                        Expence = new Expence()
-                        {
-                            Description = expence.Description
-                        }
-                    });
-                }
-            }
-            return roomExpenses.ToList();
         }
         public async Task<SelectList> GetSpecificationsSelect()
         {

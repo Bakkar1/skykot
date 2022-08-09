@@ -73,66 +73,6 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <h3>Room Specification</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="min-width:150px">Description</th>
-                            <th style="min-width:150px">Is Available</th>
-                            <th style="min-width:150px">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 0; i < Model.RoomSpecificationsList.Count; i++)
-                        {
-                            <tr>
-                                <td>
-                                    <label>@Model.RoomSpecificationsList[i].Specification.Description</label>
-                                    <input type="hidden" asp-for="@Model.RoomSpecificationsList[i].SpecificationId" />
-                                    <input type="hidden" asp-for="@Model.RoomSpecificationsList[i].RoomSpecificationId" />
-                                </td>
-                                <td>
-                                    <input class="form-control" type="checkbox" onchange="this.value=this.checked"
-                                           value="@Model.RoomSpecificationsList[i].IsAvailAble"
-                                           asp-for="@Model.RoomSpecificationsList[i].IsAvailAble" />
-                                </td>
-                                <td>
-                                    <input class="form-control" value="@Model.RoomSpecificationsList[i].WhereAvailAble"
-                                           asp-for="@Model.RoomSpecificationsList[i].WhereAvailAble" />
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="form-group">
-                <h3>Room Expence</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="min-width:150px">Description</th>
-                            <th style="min-width:150px">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 0; i < Model.RoomExpensesList.Count; i++)
-                        {
-                            <tr>
-                                <td>
-                                    <label>@Model.RoomExpensesList[i].Expence.Description</label>
-                                    <input type="hidden" asp-for="@Model.RoomExpensesList[i].ExpenceId" />
-                                    <input type="hidden" asp-for="@Model.RoomExpensesList[i].RoomExpenseId" />
-                                </td>
-                                <td>
-                                    <input value="@Model.RoomExpensesList[i].Value"
-                                           asp-for="@Model.RoomExpensesList[i].Value" />
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
             <div class="form-group text-center">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

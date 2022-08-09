@@ -21,7 +21,7 @@ namespace SkyKotApp.Services.General
                 .Include(r => r.RenterContracts)
                 .Include(r => r.Room.House)
                 .Include(r => r.Room.RoomImages)
-                .Include(r => r.Room.RoomExpenses)
+                .Include(r => r.Room.House.HouseExpenses)
                 .Where(r => r.Id == GetCurrentUserId())
                 .ToListAsync();
             }
@@ -32,7 +32,7 @@ namespace SkyKotApp.Services.General
                 .Include(r => r.RenterContracts)
                 .Include(r => r.Room.House)
                 .Include(r => r.Room.RoomImages)
-                .Include(r => r.Room.RoomExpenses)
+                .Include(r => r.Room.House.HouseExpenses)
                 .ToListAsync();
             }
             return null;
@@ -47,7 +47,7 @@ namespace SkyKotApp.Services.General
                     .Include(r => r.RenterContracts)
                     .Include(r => r.Room.House)
                     .Include(r => r.Room.RoomImages)
-                    .Include(r => r.Room.RoomExpenses)
+                    .Include(r => r.Room.House.HouseExpenses)
                     .Where(r => r.Id == GetCurrentUserId())
                     .FirstOrDefaultAsync(r => r.RenterRoomId == renterRoomId);
             }
@@ -59,7 +59,7 @@ namespace SkyKotApp.Services.General
                     .Include(r => r.RenterContracts)
                     .Include(r => r.Room.House)
                     .Include(r => r.Room.RoomImages)
-                    .Include(r => r.Room.RoomExpenses)
+                    .Include(r => r.Room.House.HouseExpenses)
                     .FirstOrDefaultAsync(r => r.RenterRoomId == renterRoomId);
             }
             return null;

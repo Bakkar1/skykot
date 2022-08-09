@@ -62,11 +62,6 @@ namespace SkyKotApp.Services.General
         Task<Room> GetRoom(int roomId);
         Task<Room> AddRoom(RoomCreateViewModel model);
         Task<Room> UpdateRoom(RoomEditViewModel model);
-        Task<List<RoomSpecification>> GetRoomSpecificationsToCreate();
-        Task<List<RoomExpense>> GetRoomExpenseToCreate();
-
-        Task<List<RoomSpecification>> GetRoomSpecificationsToEdit(ICollection<RoomSpecification> roomSpecifications);
-        Task<List<RoomExpense>> GetRoomExpensesToEdit(ICollection<RoomExpense> roomExpenses);
 
         Task<ICollection<Specification>> GetSpecifications();
         Task<ICollection<Expence>> GetExpences();

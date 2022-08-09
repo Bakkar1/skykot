@@ -24,9 +24,7 @@ namespace SkyKotApp.Data
         public DbSet<RenterRoom> RenterRooms { get; set; }
         public DbSet<RenterContract> RenterContracts { get; set; }
         public DbSet<Room> Rooms { get; set; }
-        public DbSet<RoomExpense> RoomExpenses { get; set; }
         public DbSet<RoomImage> RoomImages { get; set; }
-        public DbSet<RoomSpecification> RoomSpecifications { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<UserHouse> UserHouses { get; set; }
         public DbSet<ZipCode> ZipCodes { get; set; }

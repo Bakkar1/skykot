@@ -48,7 +48,7 @@ namespace SkyKotApp.Services.General
         public async Task<RenterRoom> CreateRenterRoom(RenterRoomCreateViewModel model)
         {
             Room room = await GetRoom(model.RoomId);
-            var toPay = room.RoomExpenses.Sum(re => re.Value) + room.Price;
+            var toPay = room.House.HouseExpenses.Sum(re => re.Value) + room.Price;
             model.AmountToPay = toPay;
 
             RenterRoom renterRoom = model;
