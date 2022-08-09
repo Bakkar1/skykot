@@ -1,4 +1,5 @@
 ﻿using KotClassLibrary.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,8 @@ namespace KotClassLibrary.ViewModels.HouseVM
         }
         public List<HouseSpecification> HouseSpecificationsList { get; set; }
         public List<HouseExpense> HouseExpensesList { get; set; }
+        public SelectList ZipCodesSelectList { get; set; }
+
+        
     }
 }

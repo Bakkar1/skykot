@@ -44,12 +44,15 @@ namespace SkyKotApp.Services.General
         #region House
         Task<ICollection<House>> GetHouses();
         Task<SelectList> GetHousesSelectList();
+        Task<SelectList> GetZipCodesSelect();
         Task<House> AddHouse(House house);
         Task<House> GetHouse(int houseId);
         Task<House> AddHouse(HouseCreateViewModel model);
-
+        Task<House> UpdateHouse(HouseEditViewModel model);
         Task<List<HouseSpecification>> GetHouseSpecificationsToCreate();
         Task<List<HouseExpense>> GetHouseExpenseToCreate();
+        Task<List<HouseSpecification>> GetHouseSpecificationsToEdit(ICollection<HouseSpecification> HouseSpecifications);
+        Task<List<HouseExpense>> GetHouseExpensesToEdit(ICollection<HouseExpense> HouseExpenses);
 
         #endregion
 

@@ -93,9 +93,9 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: House/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -109,13 +109,19 @@ namespace SkyKotApp.Controllers
                 }
             }
 
-            var house = await _context.Houses.FindAsync(id);
+            var house = await skyKotRepository.GetHouse(id);
             if (house == null)
             {
                 return NotFound();
             }
-            ViewData["ZipCodeId"] = new SelectList(_context.ZipCodes, "ZipCodeId", "City", house.ZipCodeId);
-            return View(house);
+
+            HouseEditViewModel model = new HouseEditViewModel(house)
+            {
+                HouseSpecificationsList = await skyKotRepository.GetHouseSpecificationsToEdit(house.HouseSpecifications),
+                HouseExpensesList = await skyKotRepository.GetHouseExpensesToEdit(house.HouseExpenses),
+                ZipCodesSelectList = await skyKotRepository.GetZipCodesSelect()
+            };
+            return View(model);
         }
 
         // POST: House/Edit/5
@@ -123,9 +129,10 @@ namespace SkyKotApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HouseId,Name,ZipCodeId,StreetName,HouseNumber,Description")] House house)
+        //[Bind("HouseId,Name,ZipCodeId,StreetName,HouseNumber,Description")]
+        public async Task<IActionResult> Edit(int id, HouseEditViewModel model)
         {
-            if (id != house.HouseId)
+            if (id != model.HouseId)
             {
                 return NotFound();
             }
@@ -143,12 +150,11 @@ namespace SkyKotApp.Controllers
             {
                 try
                 {
-                    _context.Update(house);
-                    await _context.SaveChangesAsync();
+                    await skyKotRepository.UpdateHouse(model);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HouseExists(house.HouseId))
+                    if (!HouseExists(model.HouseId))
                     {
                         return NotFound();
                     }
@@ -159,8 +165,10 @@ namespace SkyKotApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ZipCodeId"] = new SelectList(_context.ZipCodes, "ZipCodeId", "City", house.ZipCodeId);
-            return View(house);
+            model.HouseSpecificationsList = await skyKotRepository.GetHouseSpecificationsToEdit(model.HouseSpecifications);
+            model.HouseExpensesList = await skyKotRepository.GetHouseExpensesToEdit(model.HouseExpenses);
+            model.ZipCodesSelectList = await skyKotRepository.GetZipCodesSelect();
+            return View(model);
         }
 
         // GET: House/Delete/5

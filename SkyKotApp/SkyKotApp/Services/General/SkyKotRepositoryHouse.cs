@@ -1,5 +1,6 @@
 ﻿using KotClassLibrary.Models;
 using KotClassLibrary.ViewModels.HouseVM;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkyKotApp.Data.Default;
 using System;
@@ -160,6 +161,125 @@ namespace SkyKotApp.Services.General
                 });
             }
             return houseExpenses;
+        }
+
+         public async Task<House> UpdateHouse(HouseEditViewModel model)
+        {
+            //update House
+            House house = await context.Houses.FindAsync(model.HouseId);
+            if(house != null)
+            {
+                house.Name = model.Name;
+                house.ZipCodeId = model.ZipCodeId;
+                house.StreetName = model.StreetName;
+                house.HouseNumber = model.HouseNumber;
+                house.Description = model.Description;
+            }
+
+            context.Update(house);
+
+            int houseId = house.HouseId;
+
+            // update House Specification
+            if (model.HouseSpecificationsList != null)
+            {
+                foreach (var rSpecification in model.HouseSpecificationsList)
+                {
+                    if (rSpecification.HouseSpecificationId != 0)
+                    {
+                        HouseSpecification HouseSpec = await context.HouseSpecifications.FindAsync(rSpecification.HouseSpecificationId);
+                        if (HouseSpec != null)
+                        {
+                            HouseSpec.IsAvailAble = string.IsNullOrWhiteSpace(rSpecification.WhereAvailAble) ? false : rSpecification.IsAvailAble;
+                            HouseSpec.WhereAvailAble = rSpecification.WhereAvailAble;
+
+                            context.HouseSpecifications.Update(HouseSpec);
+                        }
+                    }
+                    else if (rSpecification.IsAvailAble)
+                    {
+                        await context.HouseSpecifications.AddAsync(new HouseSpecification()
+                        {
+                            HouseId = houseId,
+                            SpecificationId = rSpecification.SpecificationId,
+                            IsAvailAble = string.IsNullOrWhiteSpace(rSpecification.WhereAvailAble) ? false : rSpecification.IsAvailAble,
+                            WhereAvailAble = rSpecification.WhereAvailAble
+                        });
+                    }
+                }
+            }
+            // update House Expenses
+            if (model.HouseExpensesList != null)
+            {
+                foreach (var rExpense in model.HouseExpensesList)
+                {
+                    if (rExpense.HouseExpenseId != 0)
+                    {
+                        HouseExpense HouseExpense = await context.HouseExpenses.FindAsync(rExpense.HouseExpenseId);
+                        if (HouseExpense != null)
+                        {
+                            HouseExpense.Value = rExpense.Value;
+                            context.HouseExpenses.Update(HouseExpense);
+                        }
+                    }
+                    else
+                    {
+                        await context.HouseExpenses.AddAsync(new HouseExpense()
+                        {
+                            ExpenceId = rExpense.ExpenceId,
+                            HouseId = houseId,
+                            Value = rExpense.Value
+                        });
+                    }
+                }
+            }
+
+            await context.SaveChangesAsync();
+            return house;
+        }
+
+        public async Task<List<HouseSpecification>> GetHouseSpecificationsToEdit(ICollection<HouseSpecification> HouseSpecifications)
+        {
+            foreach (Specification specification in await GetSpecifications())
+            {
+                HouseSpecification HouseSpecification = HouseSpecifications.Where(rm => rm.Specification.SpecificationId == specification.SpecificationId).FirstOrDefault();
+                if (HouseSpecification == null)
+                {
+                    HouseSpecifications.Add(new HouseSpecification()
+                    {
+                        SpecificationId = specification.SpecificationId,
+                        IsAvailAble = false,
+                        Specification = new Specification()
+                        {
+                            Description = specification.Description
+                        }
+                    });
+                }
+            }
+            return HouseSpecifications.ToList();
+        }
+        public async Task<List<HouseExpense>> GetHouseExpensesToEdit(ICollection<HouseExpense> HouseExpenses)
+        {
+            foreach (Expence expence in await GetExpences())
+            {
+                HouseExpense HouseExpense = HouseExpenses.Where(re => re.ExpenceId == expence.ExpenceId).FirstOrDefault();
+                if (HouseExpense == null)
+                {
+                    HouseExpenses.Add(new HouseExpense()
+                    {
+                        ExpenceId = expence.ExpenceId,
+                        Expence = new Expence()
+                        {
+                            Description = expence.Description
+                        }
+                    });
+                }
+            }
+            return HouseExpenses.ToList();
+        }
+        public async Task<SelectList> GetZipCodesSelect()
+        {
+            return new SelectList(await context.ZipCodes.ToListAsync(), nameof(ZipCode.ZipCodeId), nameof(ZipCode.City));
         }
     }
 }

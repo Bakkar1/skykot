@@ -1,12 +1,11 @@
-﻿@model KotClassLibrary.Models.House
+﻿@model HouseEditViewModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Edit House</h1>
 
-<h4>House</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ZipCodeId" class="control-label"></label>
-                <select asp-for="ZipCodeId" class="form-control" asp-items="ViewBag.ZipCodeId"></select>
+                <select asp-for="ZipCodeId" class="form-control" asp-items="@Model.ZipCodesSelectList"></select>
                 <span asp-validation-for="ZipCodeId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,6 +36,66 @@
                 <label asp-for="HouseNumber" class="control-label"></label>
                 <input asp-for="HouseNumber" class="form-control" />
                 <span asp-validation-for="HouseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h3>House Specification</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width:150px">Description</th>
+                            <th style="min-width:150px">Is Available</th>
+                            <th style="min-width:150px">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.HouseSpecificationsList.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <label>@Model.HouseSpecificationsList[i].Specification.Description</label>
+                                    <input type="hidden" asp-for="@Model.HouseSpecificationsList[i].SpecificationId" />
+                                    <input type="hidden" asp-for="@Model.HouseSpecificationsList[i].HouseSpecificationId" />
+                                </td>
+                                <td>
+                                    <input class="form-control" type="checkbox" onchange="this.value=this.checked"
+                                           value="@Model.HouseSpecificationsList[i].IsAvailAble"
+                                           asp-for="@Model.HouseSpecificationsList[i].IsAvailAble" />
+                                </td>
+                                <td>
+                                    <input class="form-control" value="@Model.HouseSpecificationsList[i].WhereAvailAble"
+                                           asp-for="@Model.HouseSpecificationsList[i].WhereAvailAble" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group">
+                <h3>House Expence</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="min-width:150px">Description</th>
+                            <th style="min-width:150px">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.HouseExpensesList.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <label>@Model.HouseExpensesList[i].Expence.Description</label>
+                                    <input type="hidden" asp-for="@Model.HouseExpensesList[i].ExpenceId" />
+                                    <input type="hidden" asp-for="@Model.HouseExpensesList[i].HouseExpenseId" />
+                                </td>
+                                <td>
+                                    <input value="@Model.HouseExpensesList[i].Value"
+                                           asp-for="@Model.HouseExpensesList[i].Value" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
