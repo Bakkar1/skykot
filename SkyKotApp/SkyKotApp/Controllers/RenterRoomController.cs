@@ -62,9 +62,10 @@ namespace SkyKotApp.Controllers
         }
 
         // GET: RenterRoom/Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            return View(await skyKotRepository.GetRenterRoomCreateViewModel());
+            //return View(await skyKotRepository.GetRenterRoomCreateViewModel());
+            return View();
         }
 
         // POST: RenterRoom/Create
@@ -77,12 +78,6 @@ namespace SkyKotApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // validate Dates
-                //if(!await skyKotRepository.Checkoverlapping(model))
-                //{
-                //    ModelState.AddModelError("EndDate", "Overlaping");
-                //    return View(await skyKotRepository.GetRenterRoomCreateViewModel(model));
-                //}
                 var errors = await skyKotRepository.CheckoverlappingModalError(model);
                 if (errors.Any())
                 {

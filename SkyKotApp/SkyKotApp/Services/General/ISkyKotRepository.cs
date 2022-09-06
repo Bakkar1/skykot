@@ -73,13 +73,16 @@ namespace SkyKotApp.Services.General
         Task<ICollection<RenterRoom>> GetRenterRooms();
         Task<RenterRoom> GetRenterRoom(int renterRoomId);
         Task<RenterRoom> CreateRenterRoom(RenterRoomCreateViewModel model);
+        Task<RenterRoom> CreateRenterRoom(RenterRoom renterRoom);
         Task<RenterRoom> UpdateRenterRoom(RenterRoomEditViewModel model);
         Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel();
         Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel(RenterRoomCreateViewModel room);
         Task<RenterRoomEditViewModel> GetRenterRoomEditViewModel(RenterRoom renterRoom);
         Task<RenterRoomEditViewModel> GetRenterRoomEditViewModel(RenterRoomEditViewModel renterRoomEditViewModel);
         Task<bool> Checkoverlapping(RenterRoomCreateViewModel model);
+        Task<bool> Checkoverlapping(RenterRoom model);
         Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoomCreateViewModel model);
+        Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoom model);
         Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoomEditViewModel model);
         #endregion
 
@@ -90,6 +93,10 @@ namespace SkyKotApp.Services.General
         #region RenterContract
         Task<RenterContract> GetRenterContract(int renterContractId);
         Task<RenterContract> UpdateRenterContract(RenterContract renterContract);
+        #endregion
+
+        #region AcademicYear
+        Task<ICollection<AcademicYear>> GetAcademicYearsAsync();
         #endregion
     }
 }

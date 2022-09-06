@@ -3907,6 +3907,18 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
+      "TextCopy/6.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/TextCopy.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/TextCopy.dll": {}
+        }
+      },
       "KotClassLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -11352,6 +11364,32 @@
         "system.xml.xdocument.nuspec"
       ]
     },
+    "TextCopy/6.1.0": {
+      "sha512": "7CxK3AOMTvACGGpRz9ZSVt0k+Ohx9tSPxGtauYKh8IdjTGZ7XzclyQh3m94E5Zk3pvWbZ3j/HjHpSHCuRUtDjA==",
+      "type": "package",
+      "path": "textcopy/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/monoandroid90/TextCopy.dll",
+        "lib/monoandroid90/TextCopy.xml",
+        "lib/net461/TextCopy.dll",
+        "lib/net461/TextCopy.xml",
+        "lib/net5.0/TextCopy.dll",
+        "lib/net5.0/TextCopy.xml",
+        "lib/net6.0/TextCopy.dll",
+        "lib/net6.0/TextCopy.xml",
+        "lib/netstandard2.0/TextCopy.dll",
+        "lib/netstandard2.0/TextCopy.xml",
+        "lib/netstandard2.1/TextCopy.dll",
+        "lib/netstandard2.1/TextCopy.xml",
+        "lib/xamarinios10/TextCopy.dll",
+        "lib/xamarinios10/TextCopy.xml",
+        "textcopy.6.1.0.nupkg.sha512",
+        "textcopy.nuspec"
+      ]
+    },
     "KotClassLibrary/1.0.0": {
       "type": "project",
       "path": "../KotClassLibrary/KotClassLibrary.csproj",
@@ -11368,7 +11406,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.7",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.7",
       "Microsoft.Extensions.Caching.Abstractions >= 6.0.0",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.7"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.7",
+      "TextCopy >= 6.1.0"
     ]
   },
   "packageFolders": {
@@ -11448,6 +11487,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.7, )"
+          },
+          "TextCopy": {
+            "target": "Package",
+            "version": "[6.1.0, )"
           }
         },
         "imports": [

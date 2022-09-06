@@ -62,7 +62,11 @@
         <div>Expenses</div>
         @foreach (var expense in Model.House.HouseExpenses)
         {
-            <p>@expense.Expence.Description : @expense.Value€</p>
+            if(@expense.Value > 0)
+            {
+                <p>@expense.Expence.Description : @expense.Value€</p>
+            }
+            
         }
         <p>Price : @Model.Price€</p>
         <p>Extra Expenses : @Model.House.HouseExpenses.Sum(re =>re.Value)€</p>
@@ -75,7 +79,11 @@
     <div>Specifications</div>
         @foreach (var spec in Model.House.HouseSpecifications)
         {
-            <p>@spec.Specification.Description : @spec.IsAvailAble , @spec.WhereAvailAble</p>
+            if(@spec.IsAvailAble)
+            {
+                <p>@spec.Specification.Description : @spec.IsAvailAble , @spec.WhereAvailAble</p>
+            }
+            
         }
     </div>
 

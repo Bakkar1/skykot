@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="academicyear-link" xml:space="preserve">
+    <value>Academic Year</value>
+  </data>
   <data name="home-link" xml:space="preserve">
-    <value>Home e</value>
+    <value>Home</value>
+  </data>
+  <data name="house-link" xml:space="preserve">
+    <value>House</value>
   </data>
   <data name="login-link" xml:space="preserve">
     <value>Login</value>
@@ -127,18 +133,30 @@
     <value>Logout</value>
   </data>
   <data name="privacy-link" xml:space="preserve">
-    <value>Privacy e</value>
+    <value>Privacy</value>
+  </data>
+  <data name="profile-link" xml:space="preserve">
+    <value>Profile</value>
   </data>
   <data name="register-link" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="renter-link" xml:space="preserve">
+    <value>Renter</value>
+  </data>
+  <data name="renter-room-link" xml:space="preserve">
+    <value>Contract</value>
+  </data>
   <data name="room-link" xml:space="preserve">
-    <value>Room e</value>
+    <value>Room</value>
   </data>
   <data name="search-btn" xml:space="preserve">
     <value>Search</value>
   </data>
   <data name="search-lbl" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="user-link" xml:space="preserve">
+    <value>User</value>
   </data>
 </root>

@@ -3,12 +3,17 @@
 @{
     ViewData["Title"] = "Edit";
 }
+@section Style{
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">*@
+  <link rel="stylesheet" href="~/css/froala_editor.min.css">
+  <link rel="stylesheet" href="~/css/froala_style.css">
+}
 
-<h1>Edit House</h1>
+<h4 class="text-center">Edit House</h4>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row justify-content-center">
+    <div>
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="HouseId" />
@@ -36,6 +41,11 @@
                 <label asp-for="HouseNumber" class="control-label"></label>
                 <input asp-for="HouseNumber" class="form-control" />
                 <span asp-validation-for="HouseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="editor">
+                <label asp-for="ContractRules" class="control-label"></label>
+                <textarea id='edit' asp-for="ContractRules" placeholder="Contract"></textarea>
+                <span asp-validation-for="ContractRules" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <h3>House Specification</h3>
@@ -110,4 +120,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript" src="~/js/froala_editor.min.js"></script>
+    <script>
+    (function () {
+        const editorInstance = new FroalaEditor('#edit', {
+        enter: FroalaEditor.ENTER_P,
+        placeholderText: null
+        })
+    })()
+    </script>
 }

@@ -159,6 +159,9 @@ namespace SkyKotApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HouseId"), 1L, 1);
 
+                    b.Property<string>("ContractRules")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -276,6 +279,9 @@ namespace SkyKotApp.Migrations
 
                     b.Property<double>("AmountToPay")
                         .HasColumnType("float");
+
+                    b.Property<byte[]>("Contract")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");

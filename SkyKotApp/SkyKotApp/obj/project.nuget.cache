@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GtFEkbrrUGZQ+9pT/qDj5OBq5cw2TecFzc09qZaTQSIQ52GHxExvLY+ZXs/1cKmu8Lhoc3vSGmXHoMpvWaT3nQ==",
+  "dgSpecHash": "MyiQ+SkdzQg/PcgVI8icuzj18Vt7VjPq1RhAGuk6ItGIsc/GGOcnZCGvkB9vLSyn7Bcp3Jq7k5VqJ69EOsOhxg==",
   "success": true,
   "projectFilePath": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\SkyKotApp.csproj",
   "expectedPackageFiles": [
@@ -236,7 +236,8 @@
     "C:\\Users\\mbark\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\mbark\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\mbark\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\mbark\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\mbark\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\mbark\\.nuget\\packages\\textcopy\\6.1.0\\textcopy.6.1.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,0 +1,291 @@
+﻿@using Microsoft.Extensions.DependencyInjection
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Hosting
+@using System.IO
+@using System
+@using Microsoft.Extensions.Logging
+@inject IWebHostEnvironment Environment
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inherits OwningComponentBase
+@inject IJSRuntime JSRuntime
+
+<h3>CreateRenterRoom</h3>
+
+<div class="row justify-content-center">
+    <div>
+        <EditForm Model="Model" OnValidSubmit="HandleValidSubmit" @onchange="ClearValidationError" enctype="multipart/form-data" method="post">
+            <DataAnnotationsValidator/>
+            @*<ValidationSummary/>*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="HouseId" class="control-label">House</label>
+                <select @onchange="FilterRoomsOnHouse"  id="HouseId" class ="form-control">
+                    @foreach(var house in Houses)
+                    {
+                        <option value="@house.HouseId">@house.Name, @house.ZipCode.City</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Room</label>
+                <CustomInputSelect @bind-Value="Model.RoomId" class="form-control">
+                    @foreach(var room in Rooms)
+                    {
+                        <option value="@room.RoomId" data-contract="@room.House.ContractRules">Nb @room.RoomNumber</option>
+                    }
+                </CustomInputSelect>
+                <ValidationMessage For="@(()=> Model.RoomId)"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">User</label>
+                <CustomInputSelect @bind-Value="Model.Id" id="Id" class ="form-control">
+                    @foreach(var user in CustomUsers)
+                    {
+                        <option value="@user.Id">@user.FirstName , @user.Email</option>
+                    }
+                </CustomInputSelect>
+                <ValidationMessage For="@(()=> Model.Id)"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Academic Year</label>
+                <CustomInputSelect @bind-Value="Model.AcademicYearId" id="AcademicYearId" class ="form-control">
+                     @foreach(var year in AcademicYears)
+                    {
+                        <option value="@year.AcademicYearId">@year.StartDate.ToLongDateString()</option>
+                    }
+                </CustomInputSelect>
+                <ValidationMessage For="@(()=> Model.AcademicYearId)"/>
+            </div>
+            <div class="form-group">
+                <label for="StartDate" class="control-label">Start Date</label>
+                <InputDate @bind-Value="Model.StartDate" id="StartDate" class="form-control" />
+                <ValidationMessage For="@(()=> Model.StartDate)"/>
+            </div>
+            <div class="form-group">
+                <label for="EndDate" class="control-label">End Date</label>
+                <InputDate @bind-Value="Model.EndDate" id="EndDate" class="form-control" />
+                <ValidationMessage For="@(()=> Model.EndDate)"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Contract</label>
+                <div>
+                    <div class="custom-file">
+                        <InputFile OnChange="@LoadFile" class="form-control custom-file-input" accept="application/pdf" />
+                        <label class="custom-file-label">@fileUploadTxt</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">House Contract</label>
+                <div style="border: 1px solid black;
+                    max-height: 300px;
+                    overflow-x: hidden;
+                    overflow-y: scroll;">
+                    @((MarkupString)contractRules)
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <NavLink class="btn btn-secondary" href="/Home/index">Back</NavLink>
+            </div>
+            <div>
+                @foreach(string error in ValidationErros)
+                {
+                    <div style="color: red">* @error</div>
+                }
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@*<div>
+    <h1>Blazor Save & Generate File</h1><textarea @bind="fileContent" 
+     style="width:150px;height:100px" />
+     
+    <button @onclick="DownloadFile">GenerateFile</button>
+</div>*@
+
+
+@code {
+    public ISkyKotRepository skyKotRepository => ScopedServices.GetService<ISkyKotRepository>();
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public RenterRoom Model = new();
+    public ICollection<Room> AllRooms = new List<Room>();
+    public ICollection<Room> Rooms = new List<Room>();
+    public ICollection<House> Houses = new List<House>();
+    public ICollection<CustomUser> CustomUsers = new List<CustomUser>();
+    public ICollection<AcademicYear> AcademicYears = new List<AcademicYear>();
+    public ICollection<string> ValidationErros = new List<string>();
+    public IBrowserFile FileToUpload = null;
+    public string contractRules { get; set; } = "";
+    public string fileUploadTxt { get; set; } = "Choose File...";
+
+    string Content;
+
+    string fileContent;
+
+    string fileName = "file.txt";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.IsInRole(Roles.Admin) || user.IsInRole(Roles.Owner))
+        {
+            Houses = await skyKotRepository.GetHouses();
+            AllRooms = await skyKotRepository.GetRooms();
+            House house = Houses.FirstOrDefault();
+            Rooms = AllRooms.Where(r => r.HouseId == house.HouseId).ToList();
+
+            AcademicYears = await skyKotRepository.GetAcademicYearsAsync();
+            if (user.IsInRole(Roles.Admin))
+            {
+                CustomUsers = await skyKotRepository.GetCustomUsers();
+            }
+            else
+            {
+                CustomUsers = await skyKotRepository.GetOwnCustomUsers();
+            }
+
+            contractRules = house.ContractRules;
+            Model.RoomId = Rooms.FirstOrDefault().RoomId;
+            Model.Id = CustomUsers.FirstOrDefault().Id;
+            Model.AcademicYearId = AcademicYears.FirstOrDefault().AcademicYearId;
+            Model.StartDate = DateTime.Now;
+            Model.EndDate = DateTime.Now.AddMonths(12);
+
+
+        }
+    }
+
+    protected  void FilterRoomsOnHouse(ChangeEventArgs e)
+    {
+        int.TryParse(e.Value.ToString(), out int houseId);
+        if(houseId != 0)
+        {
+            Rooms = AllRooms.Where(r => r.HouseId == houseId).ToList();
+
+            contractRules = Houses.FirstOrDefault(h => h.HouseId == houseId).ContractRules;
+        }
+    }
+
+    public async Task HandleValidSubmit()
+    {
+
+        ValidationErros.Clear();
+        var errors = await skyKotRepository.CheckoverlappingModalError(Model);
+        if (errors.Any())
+        {
+            foreach(var err in errors)
+            {
+                //add errors
+                ValidationErros.Add(err.Value);
+            }
+            StateHasChanged();
+        }
+        else
+        {
+            if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+            {
+                //check if is owner of the Room
+                if (!await skyKotRepository.IsOwnRoom(Model.RoomId) && !await skyKotRepository.IsUserOwner(Model.Id))
+                {
+                    ValidationErros.Add("Not Your Own Room");
+                    StateHasChanged();
+                }
+                else
+                {
+
+                    await AddModel();
+                }
+            }
+            else
+            {
+                await AddModel();
+            }
+        }
+    }
+    private void LoadFile(InputFileChangeEventArgs e)
+    {
+
+        IBrowserFile file = e.GetMultipleFiles().FirstOrDefault();
+        if(file != null)
+        {
+            if(file.ContentType.ToLower() != "application/pdf")
+            {
+                ValidationErros.Add("Accept only Pdf");
+                fileUploadTxt = "Choose File...";
+                file = null;
+            }
+            else
+            {
+                FileToUpload = file;
+                fileUploadTxt = file.Name;
+            }
+        }
+    }
+    private async Task<string> UploadFile()
+    {
+        try
+        {
+            if(FileToUpload != null)
+            {
+                string uniqueFileName = Guid.NewGuid().ToString() + FileToUpload.Name;
+                string uploadsFolder = Path.Combine(Environment.WebRootPath, @"Contracts");
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+
+                await using FileStream fs = new(filePath, FileMode.Create);
+                await FileToUpload.OpenReadStream(long.MaxValue).CopyToAsync(fs);
+                return uniqueFileName;
+            }
+        }
+        catch (Exception ex)
+        {
+            // faild to upload file
+        }
+        return "";
+    }
+
+    public async Task<byte[]> GetBytesFromFile()
+    {
+        if (FileToUpload != null)
+        {
+            using (var ms = new MemoryStream())
+            {
+                await FileToUpload.OpenReadStream(long.MaxValue).CopyToAsync(ms);
+                return ms.ToArray();
+            }
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task AddModel()
+    {
+        Model.Contract = await GetBytesFromFile();
+        await skyKotRepository.CreateRenterRoom(Model);
+        NavigationManager.NavigateTo($"/RenterRoom/Details/{Model.RenterRoomId}", true);
+    }
+    public void CopyToClipBoard(){
+        TextCopy.ClipboardService.SetText(contractRules);
+    }
+
+    public async void DownloadFile()
+    {
+        Content = fileContent;
+        await JSRuntime.InvokeAsync<object>("saveFile",fileName,contractRules); 
+    }
+    public void ClearValidationError()
+    {
+        ValidationErros.Clear();
+        StateHasChanged();
+    }
+}

@@ -22,6 +22,7 @@ namespace KotClassLibrary.ViewModels.HouseVM
             StreetName = house.StreetName;
             HouseNumber = house.HouseNumber;
             Description = house.Description;
+            ContractRules = house.ContractRules;
         }
         public List<HouseSpecification> HouseSpecificationsList { get; set; }
         public List<HouseExpense> HouseExpensesList { get; set; }

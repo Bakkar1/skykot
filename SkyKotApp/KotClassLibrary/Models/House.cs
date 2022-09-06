@@ -20,6 +20,7 @@ namespace KotClassLibrary.Models
         [Required]
         public string HouseNumber { get; set; }
         public string Description { get; set; }
+        public string ContractRules { get; set; }
         public ICollection<UserHouse> UserHouses { get; set; }
         public ICollection<Room> Rooms { get; set; }
         public ICollection<HouseSpecification> HouseSpecifications { get; set; }

@@ -4,6 +4,9 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\SkyKotApp.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\SkyKotApp.runtimeconfig.json
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\SkyKotApp.pdb
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\en\SkyKotApp.resources.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\fr\SkyKotApp.resources.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\nl\SkyKotApp.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Humanizer.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\MessagePack.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\MessagePack.Annotations.dll
@@ -81,6 +84,7 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\System.Security.Permissions.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\System.Windows.Extensions.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\TextCopy.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\es\Microsoft.CodeAnalysis.resources.dll
@@ -243,8 +247,6 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\runtimes\win-arm\lib\net6.0\dotnet-aspnet-codegenerator-design.exe
-C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\runtimes\win-arm64\lib\net6.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Drawing.Common.dll

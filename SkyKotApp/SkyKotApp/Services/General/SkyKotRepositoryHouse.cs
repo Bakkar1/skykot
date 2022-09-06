@@ -28,7 +28,8 @@ namespace SkyKotApp.Services.General
                       Description = uh.House.Description,
                       HouseNumber = uh.House.HouseNumber,
                       StreetName = uh.House.StreetName,
-                      ZipCode = uh.House.ZipCode
+                      ZipCode = uh.House.ZipCode,
+                      ContractRules = uh.House.ContractRules
                   })
                    .ToListAsync();
             }
@@ -75,6 +76,7 @@ namespace SkyKotApp.Services.General
                 StreetName = model.StreetName,
                 HouseNumber = model.HouseNumber,
                 Description = model.Description,
+                ContractRules = model.ContractRules
             };
             await context.Houses.AddAsync(house);
             await context.SaveChangesAsync();
@@ -174,6 +176,7 @@ namespace SkyKotApp.Services.General
                 house.StreetName = model.StreetName;
                 house.HouseNumber = model.HouseNumber;
                 house.Description = model.Description;
+                house.ContractRules = model.ContractRules;
             }
 
             context.Update(house);

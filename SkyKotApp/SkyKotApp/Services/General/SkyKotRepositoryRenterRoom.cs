@@ -74,6 +74,35 @@ namespace SkyKotApp.Services.General
 
             return renterRoom;
         }
+
+        public async Task<RenterRoom> CreateRenterRoom(RenterRoom renterRoom)
+        {
+            Room room = await GetRoom(renterRoom.RoomId);
+            var toPay = room.House.HouseExpenses.Sum(re => re.Value) + room.Price;
+            renterRoom.AmountToPay = toPay;
+
+            context.Add(renterRoom);
+            await context.SaveChangesAsync();
+
+            int renterRoomId = renterRoom.RenterRoomId;
+
+            DateTime startDate = renterRoom.StartDate;
+            DateTime endDate = renterRoom.EndDate;
+
+            while (startDate <= endDate)
+            {
+                context.RenterContracts.Add(new RenterContract()
+                {
+                    StartDate = startDate,
+                    RenterRoomId = renterRoomId,
+                    IsPayed = false
+                });
+                startDate = startDate.AddMonths(1);
+            }
+            await context.SaveChangesAsync();
+
+            return renterRoom;
+        }
         public async Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel()
         {
             var model = new RenterRoomCreateViewModel()
@@ -81,7 +110,8 @@ namespace SkyKotApp.Services.General
                 AcademicYears = await context.AcademicYears.ToListAsync(),
                 Rooms = await GetRooms(),
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddMonths(12)
+                EndDate = DateTime.Now.AddMonths(12),
+                Houses = await GetHouses()
             };
             if(GetCurrentUserRole() == Roles.Admin)
             {
@@ -225,9 +255,145 @@ namespace SkyKotApp.Services.General
                 }
             }
             return true;
-        }  
+        }
+
+        public async Task<bool> Checkoverlapping(RenterRoom model)
+        {
+            if (await context.RenterRooms.AnyAsync(rr => rr.RoomId == model.RoomId && rr.AcademicYearId == model.AcademicYearId))
+            {
+                return false;
+            }
+
+            List<RenterRoom> renterRooms = await context.RenterRooms
+                .Where(rr => rr.RoomId == model.RoomId)
+                .OrderBy(rr => rr.StartDate)
+                .ToListAsync();
+
+
+            int i = 0;
+            if (model.StartDate >= model.EndDate)
+            {
+                return false;
+            }
+            else if (renterRooms != null)
+            {
+                foreach (var r in renterRooms)
+                {
+                    DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
+
+                    if (model.StartDate == r.StartDate || model.EndDate == r.EndDate)
+                    {
+                        return false;
+                    }
+                    else if (model.StartDate > r.StartDate && model.EndDate < r.EndDate)
+                    {
+                        return false;
+                    }
+                    else if (model.StartDate < r.StartDate)
+                    {
+                        if (model.EndDate >= r.StartDate)
+                        {
+                            return false;
+                        }
+                    }
+                    else if (model.StartDate > r.EndDate)
+                    {
+                        if (nextStartDate != DateTime.MinValue)
+                        {
+                            if (model.EndDate > nextStartDate && nextStartDate > model.StartDate)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    else if (model.StartDate > r.StartDate)
+                    {
+                        if (model.EndDate <= r.EndDate || model.StartDate <= model.EndDate)
+                        {
+                            return false;
+                        }
+                    }
+                    i++;
+                }
+            }
+            return true;
+        }
 
         public async Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoomCreateViewModel model)
+        {
+            Dictionary<string, string> lst = new Dictionary<string, string>();
+            if (await context.RenterRooms.AnyAsync(rr => rr.RoomId == model.RoomId && rr.AcademicYearId == model.AcademicYearId))
+            {
+                lst.Add("AcademicYearId", "Room is alerdy reserved for this year");
+            }
+
+            List<RenterRoom> renterRooms = await context.RenterRooms
+                .Where(rr => rr.RoomId == model.RoomId)
+                .OrderBy(rr => rr.StartDate)
+                .ToListAsync();
+
+
+            int i = 0;
+            if (model.StartDate >= model.EndDate)
+            {
+                lst.Add("SartDate", "Start date must be before end date");
+                return lst;
+            }
+            else if (renterRooms != null)
+            {
+                foreach (var r in renterRooms)
+                {
+                    DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
+
+                    if (model.StartDate.ToShortDateString() == r.StartDate.ToShortDateString())
+                    {
+                        lst.Add("StartDate", "StartDate cannot be Start at the same date of an other contract");
+                        return lst;
+                    }
+                    else if (model.EndDate.ToShortDateString() == r.EndDate.ToShortDateString())
+                    {
+                        lst.Add("EndDate", "EndDate cannot be End at the same date of an other contract");
+                        return lst;
+                    }
+                    else if (model.StartDate > r.StartDate && model.EndDate < r.EndDate)
+                    {
+                        lst.Add("EndDate", "Dates Overlaping with Athor contract");
+                        return lst;
+                    }
+                    else if (model.StartDate < r.StartDate)
+                    {
+                        if (model.EndDate >= r.StartDate)
+                        {
+                            lst.Add("EndDate", "Dates Overlaping with an athor contract");
+                            return lst;
+                        }
+                    }
+                    else if (model.StartDate > r.EndDate)
+                    {
+                        if (nextStartDate != DateTime.MinValue)
+                        {
+                            if (model.EndDate > nextStartDate && nextStartDate > model.StartDate)
+                            {
+                                lst.Add("EndDate", "Dates Overlaping with an athor contract");
+                                return lst;
+                            }
+                        }
+                    }
+                    else if (model.StartDate > r.StartDate)
+                    {
+                        if (model.EndDate <= r.EndDate || model.StartDate <= model.EndDate)
+                        {
+                            lst.Add("EndDate", "Dates Overlaping with an athor contract");
+                            return lst;
+                        }
+                    }
+                    i++;
+                }
+            }
+            return lst;
+        }
+
+        public async Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoom model)
         {
             Dictionary<string, string> lst = new Dictionary<string, string>();
             if (await context.RenterRooms.AnyAsync(rr => rr.RoomId == model.RoomId && rr.AcademicYearId == model.AcademicYearId))

@@ -26,7 +26,7 @@ namespace KotClassLibrary.Models
         public DateTime EndDate { get; set; }
         [Required]
         public double AmountToPay { get; set; }
-        //public byte[] Contract { get; set; }
+        public byte[] Contract { get; set; }
         public ICollection<RenterContract> RenterContracts { get; set; }
 
     }

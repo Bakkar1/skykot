@@ -289,3 +289,4 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\refi
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\SkyKotApp.pdb
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\SkyKotApp.genruntimeconfig.cache
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Debug\net6.0\ref\SkyKotApp.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Debug\net6.0\TextCopy.dll

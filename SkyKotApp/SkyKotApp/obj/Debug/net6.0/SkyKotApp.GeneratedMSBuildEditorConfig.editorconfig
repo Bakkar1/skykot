@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/mbark/Documents/Github/skykot/SkyKotApp/SkyKotApp/Blazor/CreateRenterRoom.razor]
+build_metadata.AdditionalFiles.TargetPath = Qmxhem9yXENyZWF0ZVJlbnRlclJvb20ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mbark/Documents/Github/skykot/SkyKotApp/SkyKotApp/Blazor/Kot.razor]
 build_metadata.AdditionalFiles.TargetPath = Qmxhem9yXEtvdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

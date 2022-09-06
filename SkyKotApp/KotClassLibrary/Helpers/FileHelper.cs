@@ -31,6 +31,12 @@ namespace KotClassLibrary.Helpers
             string imageDataURL = string.Format("Data:image/jpg;base64,{0}", imageBase64Data);
             return imageDataURL;
         }
+        public static string GeneratePdf(byte[] byteArray)
+        {
+            string imageBase64Data = Convert.ToBase64String(byteArray);
+            string imageDataURL = string.Format("Data:application/pdf;base64,{0}", imageBase64Data);
+            return imageDataURL;
+        }
         public static byte[] GenerateContract()
         {
             byte[] fileAsBytes = null;
