@@ -15,8 +15,8 @@
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">@item.Name</h5>
-            <h6 class="card-subtitle mb-2 text-muted">@item.ZipCode.City @item.StreetName</h6>
-            <p class="card-text text-center">@item.Description</p>
+            <h6 class="card-subtitle mb-2 text-muted">@item.StreetName</h6>
+            <p>@item.ZipCode.City @item.ZipCode.Code</p>
             <div>
                 <a asp-action="Edit" asp-route-id="@item.HouseId" class="btn btn-primary">Edit</a>
                 <a asp-action="Details" asp-route-id="@item.HouseId" class="btn btn-info">Details</a>

@@ -190,7 +190,12 @@
         }
         else
         {
-            if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+            if(Model.StartDate.Year != GetAcademicYearStartDate())
+            {
+                ValidationErros.Add("StartDate and academic year start date must be de same");
+                StateHasChanged();
+            }
+            else if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
             {
                 //check if is owner of the Room
                 if (!await skyKotRepository.IsOwnRoom(Model.RoomId) && !await skyKotRepository.IsUserOwner(Model.Id))
@@ -287,5 +292,9 @@
     {
         ValidationErros.Clear();
         StateHasChanged();
+    }
+    public int GetAcademicYearStartDate()
+    {
+        return AcademicYears.FirstOrDefault(a => a.AcademicYearId == Model.AcademicYearId).StartDate.Year;
     }
 }

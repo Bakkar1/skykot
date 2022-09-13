@@ -33,9 +33,9 @@ namespace KotClassLibrary.Helpers
         }
         public static string GeneratePdf(byte[] byteArray)
         {
-            string imageBase64Data = Convert.ToBase64String(byteArray);
-            string imageDataURL = string.Format("Data:application/pdf;base64,{0}", imageBase64Data);
-            return imageDataURL;
+            string pdfBase64Data = Convert.ToBase64String(byteArray);
+            string pdfDataURL = $"Data:application/pdf;base64,{pdfBase64Data}";
+            return pdfDataURL;
         }
         public static byte[] GenerateContract()
         {
