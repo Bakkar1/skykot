@@ -20,7 +20,8 @@
             @Html.DisplayNameFor(model => model.CustomUser)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomUser.Id)
+            @Html.DisplayFor(model => model.CustomUser.FirstName)
+            @Html.DisplayFor(model => model.CustomUser.LastName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AcademicYear)
@@ -74,7 +75,10 @@
       </tbody>
 </table>
 <div>
-     <iframe src="@FileHelper.GeneratePdf(Model.Contract)" style="min-width: 80vw; min-height: 90vh; margin: auto" type="application/pdf" allowfullscreen/>
+    @if (Model.Contract != null)
+    {
+        <iframe src="@FileHelper.GeneratePdf(Model.Contract)" style="min-width: 80vw; min-height: 90vh; margin: auto" type="application/pdf" allowfullscreen></iframe>
+    }
 </div>
 
 <div>

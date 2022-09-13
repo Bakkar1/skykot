@@ -57,7 +57,6 @@ namespace SkyKotApp.Controllers
             {
                 return RedirecToNotFound();
             }
-
             return View(renterRoom);
         }
 

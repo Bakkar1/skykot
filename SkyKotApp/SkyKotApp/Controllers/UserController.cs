@@ -141,6 +141,7 @@ namespace SkyKotApp.Controllers
         #endregion
 
         #region Edit
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -175,6 +176,7 @@ namespace SkyKotApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Edit(string id, UserEditViewModel model)
         {
             if (id != model.HelperId)
@@ -244,8 +246,10 @@ namespace SkyKotApp.Controllers
             return View(model);
         }
         #endregion
+
         #region Delete
         // GET: Gebruiker/Delete/5
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -273,6 +277,7 @@ namespace SkyKotApp.Controllers
         // POST: Gebruiker/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (skyKotRepository.GetCurrentUserRole() == Roles.Owner)
