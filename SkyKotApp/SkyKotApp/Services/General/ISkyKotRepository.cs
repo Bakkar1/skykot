@@ -75,6 +75,7 @@ namespace SkyKotApp.Services.General
         Task<RenterRoom> CreateRenterRoom(RenterRoomCreateViewModel model);
         Task<RenterRoom> CreateRenterRoom(RenterRoom renterRoom);
         Task<RenterRoom> UpdateRenterRoom(RenterRoomEditViewModel model);
+        Task<RenterRoom> StopContract(int renterRoomId);
         Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel();
         Task<RenterRoomCreateViewModel> GetRenterRoomCreateViewModel(RenterRoomCreateViewModel room);
         Task<RenterRoomEditViewModel> GetRenterRoomEditViewModel(RenterRoom renterRoom);

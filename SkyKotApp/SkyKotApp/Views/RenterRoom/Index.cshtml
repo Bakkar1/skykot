@@ -31,6 +31,11 @@
                         <a asp-action="Delete" asp-route-id="@item.RenterRoomId" class="btn btn-danger">Delete</a>
                     }
                     <a asp-action="Details" asp-route-id="@item.RenterRoomId" class="btn btn-info">Details</a>
+                    @if(!item.IsStoped)
+                    {
+                        <a asp-action="Stop" asp-route-id="@item.RenterRoomId" class="btn btn-danger">Stop</a>
+                    }
+
                 </div>
             </div>
         </div>

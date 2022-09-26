@@ -60,13 +60,22 @@
               <td>@contract.StartDate.AddMonths(1).AddDays(-1).ToLongDateString()</td>
                 @if (!contract.IsPayed)
                 {
-                    <td class="d-flex">
-                         <a class="btn btn-danger">Not Pay</a>
-                        <form asp-action="Pay" method="post">
-                            <input name="renterContractId" value="@contract.RenterContractId" type="number" hidden>
-                            <input class="btn btn-secondary" type="submit" value="Pay">
-                        </form>
-                    </td>
+                    if(Model.IsStoped)
+                    {
+                        <td>
+                            Contract alredy stoped
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="d-flex">
+                             <a class="btn btn-danger">Not Pay</a>
+                            <form asp-action="Pay" method="post">
+                                <input name="renterContractId" value="@contract.RenterContractId" type="number" hidden>
+                                <input class="btn btn-secondary" type="submit" value="Pay">
+                            </form>
+                        </td>
+                    }
                 }
                 else
                 {

@@ -175,7 +175,7 @@ namespace SkyKotApp.Controllers
             }
             return View(await skyKotRepository.GetRenterRoomEditViewModel(model));
         }
-
+        #region Delete
         // GET: RenterRoom/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -226,6 +226,58 @@ namespace SkyKotApp.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
+
+        #region Stop
+        // GET: RenterRoom/Stop/5
+        public async Task<IActionResult> Stop(int id)
+        {
+            if (id == 0)
+            {
+                return RedirecToNotFound();
+            }
+
+            if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+            {
+                //check if is own renter Room
+                if (!await skyKotRepository.IsOwnRenterRoom(id))
+                {
+                    return RedirecToNotFound();
+                }
+            }
+
+            var renterRoom = await _context.RenterRooms
+                .Include(r => r.AcademicYear)
+                .Include(r => r.CustomUser)
+                .Include(r => r.Room)
+                .FirstOrDefaultAsync(m => m.RenterRoomId == id);
+            if (renterRoom == null)
+            {
+                return RedirecToNotFound();
+            }
+
+            return View(renterRoom);
+        }
+
+        // POST: RenterRoom/Delete/5
+        [HttpPost, ActionName("Stop")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> StopConfirmed(int id)
+        {
+
+            if (skyKotRepository.GetCurrentUserRole() != Roles.Admin)
+            {
+                //check if is own renter Room
+                if (!await skyKotRepository.IsOwnRenterRoom(id))
+                {
+                    return RedirecToNotFound();
+                }
+            }
+            // stop Contract
+            await skyKotRepository.StopContract(id);
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
 
         [HttpPost]
         [ValidateAntiForgeryToken]

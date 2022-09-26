@@ -24,6 +24,8 @@ namespace KotClassLibrary.Models
         public DateTime StartDate { get; set; }
         [Required]
         public DateTime EndDate { get; set; }
+        public bool IsStoped { get; set; } = false;
+        public DateTime StopDate { get; set; }
         [Required]
         public double AmountToPay { get; set; }
         public byte[] Contract { get; set; }

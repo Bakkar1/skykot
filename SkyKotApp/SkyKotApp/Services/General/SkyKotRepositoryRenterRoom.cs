@@ -195,6 +195,22 @@ namespace SkyKotApp.Services.General
             return renterRoom;
         }
 
+        public async Task<RenterRoom> StopContract(int renterRoomId)
+        {
+            RenterRoom renterRoom = await context.RenterRooms.FindAsync(renterRoomId);
+            if (renterRoom != null)
+            {
+                if (!renterRoom.IsStoped)
+                {
+                    renterRoom.IsStoped = true;
+                    renterRoom.StopDate = DateTime.Now;
+                    context.Update(renterRoom);
+                    await context.SaveChangesAsync();
+                }
+            }
+            return renterRoom;
+        }
+        #region Checkoverlapping
         public async Task<bool> Checkoverlapping(RenterRoomCreateViewModel model)
         {
             if(await context.RenterRooms.AnyAsync(rr => rr.RoomId == model.RoomId && rr.AcademicYearId == model.AcademicYearId))
@@ -279,6 +295,7 @@ namespace SkyKotApp.Services.General
             {
                 foreach (var r in renterRooms)
                 {
+
                     DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
 
                     if (model.StartDate == r.StartDate || model.EndDate == r.EndDate)
@@ -548,5 +565,6 @@ namespace SkyKotApp.Services.General
             }
             return lst;
         }
+        #endregion
     }
 }

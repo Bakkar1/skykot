@@ -289,10 +289,16 @@ namespace SkyKotApp.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsStoped")
+                        .HasColumnType("bit");
+
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StopDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("RenterRoomId");
