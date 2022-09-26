@@ -23,7 +23,15 @@
                                  alt="Generic placeholder image"
                                  style="max-width: 100px"/>
                 <h6 class="card-subtitle mb-2 text-muted">@item.AcademicYear.StartDate.ToLongDateString()</h6>
-                <p class="card-text text-center">Start From @item.StartDate To @item.EndDate</p>
+                @if(item.IsStoped)
+                {
+                    <p class="card-text text-center">Start From @item.StartDate To @item.StopDate</p>
+                }
+                else
+                {
+                    <p class="card-text text-center">Start From @item.StartDate To @item.EndDate</p>
+                }
+                
                 <div>
                     @if (User.IsInRole(Roles.Admin))
                     {

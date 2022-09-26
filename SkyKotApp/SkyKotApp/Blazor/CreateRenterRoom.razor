@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label>Room</label>
-                <CustomInputSelect @bind-Value="Model.RoomId" class="form-control">
+                <CustomInputSelect @oninput="RefrechTimeLine" @bind-Value="Model.RoomId" class="form-control">
                     @foreach(var room in Rooms)
                     {
                         <option value="@room.RoomId" data-contract="@room.House.ContractRules">Nb @room.RoomNumber</option>
@@ -98,6 +98,36 @@
             </div>
         </EditForm>
     </div>
+   
+</div>
+ <div>
+    <!-- The Timeline -->
+
+    <ul class="timeline">
+        @if(RenterRooms.Any()){
+            foreach(RenterRoom renterRoom in RenterRooms)
+            {
+                <li>
+		            <div class="direction-r">
+			            <div class="flag-wrapper">
+				            <span class="flag">@renterRoom.StartDate.ToLongDateString()</span>
+			            </div>
+		            </div>
+	            </li>
+                <li>
+                    <div class="direction-l">
+                        @{
+                            var endDate = renterRoom.IsStoped ? renterRoom.StopDate : renterRoom.EndDate;
+                        }
+                        <div class="flag-wrapper">
+				            <span class="flag">@endDate.ToLongDateString()</span>
+			            </div>
+		            </div>
+	            </li>
+            }
+        }
+  
+    </ul>
 </div>
 
 @*<div>
@@ -121,6 +151,8 @@
     public ICollection<CustomUser> CustomUsers = new List<CustomUser>();
     public ICollection<AcademicYear> AcademicYears = new List<AcademicYear>();
     public ICollection<string> ValidationErros = new List<string>();
+    public ICollection<RenterRoom> RenterRooms = new List<RenterRoom>();
+
     public IBrowserFile FileToUpload = null;
     public string contractRules { get; set; } = "";
     public string fileUploadTxt { get; set; } = "Choose File...";
@@ -160,6 +192,7 @@
             if (Rooms.Any())
             {
                 Model.RoomId = Rooms.FirstOrDefault().RoomId;
+                RenterRooms = await skyKotRepository.GetRenterRooms(Model.RoomId);
             }
             if (CustomUsers.Any())
             {
@@ -176,14 +209,29 @@
         }
     }
 
-    protected  void FilterRoomsOnHouse(ChangeEventArgs e)
+    protected async void FilterRoomsOnHouse(ChangeEventArgs e)
     {
         int.TryParse(e.Value.ToString(), out int houseId);
         if(houseId != 0)
         {
             Rooms = AllRooms.Where(r => r.HouseId == houseId).ToList();
-
+            if(Rooms.Any())
+            {
+                RenterRooms = await skyKotRepository.GetRenterRooms(
+                    Rooms.FirstOrDefault().RoomId
+                );
+            }
             contractRules = Houses.FirstOrDefault(h => h.HouseId == houseId).ContractRules;
+            StateHasChanged();
+        }
+    }
+    protected async void RefrechTimeLine(ChangeEventArgs e)
+    {
+        int.TryParse(e.Value.ToString(), out int roomId);
+        if(roomId != 0)
+        {
+            RenterRooms = await skyKotRepository.GetRenterRooms(roomId);
+            StateHasChanged();
         }
     }
 
@@ -205,7 +253,7 @@
         {
             if(Model.StartDate.Year != GetAcademicYearStartDate())
             {
-                ValidationErros.Add("StartDate and academic year start date must be de same");
+                ValidationErros.Add("StartDate and academic year start date must be start at de same year");
                 StateHasChanged();
             }
             else if (await GetCurrentUserRole() != Roles.Admin)

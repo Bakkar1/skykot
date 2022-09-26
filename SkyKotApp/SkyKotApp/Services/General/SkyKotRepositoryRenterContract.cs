@@ -12,6 +12,14 @@ namespace SkyKotApp.Services.General
 {
     public partial class SkyKotPartialRepository
     {
+        public async Task<ICollection<RenterContract>> GetRenterContracts(int roomId)
+        {
+            return await context.RenterContracts
+                .Include(rc => rc.RenterRoom)
+                .Where(rc => rc.RenterRoom.RoomId == roomId)
+                .OrderBy(rc => rc.StartDate)
+                .ToListAsync();
+        }
         public async Task<RenterContract> GetRenterContract(int renterContractId)
         {
             if (GetCurrentUserRole() == Roles.Renter)

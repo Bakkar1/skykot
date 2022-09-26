@@ -14,7 +14,7 @@ namespace SkyKotApp.Services.General
     {
         public async Task<ICollection<RenterRoom>> GetRenterRooms()
         {
-            if(GetCurrentUserRole() == Roles.Admin)
+            if (GetCurrentUserRole() == Roles.Admin)
             {
                 return await context
                     .RenterRooms
@@ -23,7 +23,7 @@ namespace SkyKotApp.Services.General
                     .Include(r => r.Room)
                     .ToListAsync();
             }
-            else if(GetCurrentUserRole() == Roles.Owner)
+            else if (GetCurrentUserRole() == Roles.Owner)
             {
                 string id = GetCurrentUserId();
                 return await context
@@ -35,6 +35,13 @@ namespace SkyKotApp.Services.General
                     .ToListAsync();
             }
             return null;
+        }
+        public async Task<ICollection<RenterRoom>> GetRenterRooms(int id)
+        {
+             return await context.RenterRooms
+                .Where(rr => rr.RoomId == id)
+                .OrderBy(rr => rr.StartDate)
+                .ToListAsync();
         }
         public async Task<RenterRoom> GetRenterRoom(int renterRoomId)
         {
@@ -295,7 +302,6 @@ namespace SkyKotApp.Services.General
             {
                 foreach (var r in renterRooms)
                 {
-
                     DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
 
                     if (model.StartDate == r.StartDate || model.EndDate == r.EndDate)
@@ -339,10 +345,10 @@ namespace SkyKotApp.Services.General
         public async Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoomCreateViewModel model)
         {
             Dictionary<string, string> lst = new Dictionary<string, string>();
-            if (await context.RenterRooms.AnyAsync(rr => rr.RoomId == model.RoomId && rr.AcademicYearId == model.AcademicYearId))
-            {
-                lst.Add("AcademicYearId", "Room is alerdy reserved for this year");
-            }
+            //if (await context.RenterRooms.AnyAsync(rr => rr.RoomId == model.RoomId && rr.AcademicYearId == model.AcademicYearId))
+            //{
+            //    lst.Add("AcademicYearId", "Room is alerdy reserved for this year");
+            //}
 
             List<RenterRoom> renterRooms = await context.RenterRooms
                 .Where(rr => rr.RoomId == model.RoomId)
@@ -358,34 +364,38 @@ namespace SkyKotApp.Services.General
             }
             else if (renterRooms != null)
             {
+                DateTime startDate;
+                DateTime endDate;
                 foreach (var r in renterRooms)
                 {
+                    startDate = r.StopDate;
+                    endDate = r.IsStoped ? r.StopDate : r.EndDate;
                     DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
 
-                    if (model.StartDate.ToShortDateString() == r.StartDate.ToShortDateString())
+                    if (model.StartDate.ToShortDateString() == startDate.ToShortDateString())
                     {
                         lst.Add("StartDate", "StartDate cannot be Start at the same date of an other contract");
                         return lst;
                     }
-                    else if (model.EndDate.ToShortDateString() == r.EndDate.ToShortDateString())
+                    else if (model.EndDate.ToShortDateString() == endDate.ToShortDateString())
                     {
                         lst.Add("EndDate", "EndDate cannot be End at the same date of an other contract");
                         return lst;
                     }
-                    else if (model.StartDate > r.StartDate && model.EndDate < r.EndDate)
+                    else if (model.StartDate > startDate && model.EndDate < endDate)
                     {
                         lst.Add("EndDate", "Dates Overlaping with Athor contract");
                         return lst;
                     }
-                    else if (model.StartDate < r.StartDate)
+                    else if (model.StartDate < startDate)
                     {
-                        if (model.EndDate >= r.StartDate)
+                        if (model.EndDate >= startDate)
                         {
                             lst.Add("EndDate", "Dates Overlaping with an athor contract");
                             return lst;
                         }
                     }
-                    else if (model.StartDate > r.EndDate)
+                    else if (model.StartDate > endDate)
                     {
                         if (nextStartDate != DateTime.MinValue)
                         {
@@ -396,9 +406,9 @@ namespace SkyKotApp.Services.General
                             }
                         }
                     }
-                    else if (model.StartDate > r.StartDate)
+                    else if (model.StartDate > startDate)
                     {
-                        if (model.EndDate <= r.EndDate || model.StartDate <= model.EndDate)
+                        if (model.EndDate <= endDate || model.StartDate <= model.EndDate)
                         {
                             lst.Add("EndDate", "Dates Overlaping with an athor contract");
                             return lst;
@@ -413,10 +423,10 @@ namespace SkyKotApp.Services.General
         public async Task<Dictionary<string, string>> CheckoverlappingModalError(RenterRoom model)
         {
             Dictionary<string, string> lst = new Dictionary<string, string>();
-            if (await context.RenterRooms.AnyAsync(rr => rr.RoomId == model.RoomId && rr.AcademicYearId == model.AcademicYearId))
-            {
-                lst.Add("AcademicYearId", "Room is alerdy reserved for this year");
-            }
+            //if (await context.RenterRooms.AnyAsync(rr => rr.RoomId == model.RoomId && rr.AcademicYearId == model.AcademicYearId))
+            //{
+            //    lst.Add("AcademicYearId", "Room is alerdy reserved for this year");
+            //}
 
             List<RenterRoom> renterRooms = await context.RenterRooms
                 .Where(rr => rr.RoomId == model.RoomId)
@@ -432,34 +442,38 @@ namespace SkyKotApp.Services.General
             }
             else if (renterRooms != null)
             {
+                DateTime startDate;
+                DateTime endDate;
                 foreach (var r in renterRooms)
                 {
+                    startDate = r.StopDate;
+                    endDate = r.IsStoped ? r.StopDate : r.EndDate;
                     DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
 
-                    if (model.StartDate.ToShortDateString() == r.StartDate.ToShortDateString())
+                    if (model.StartDate.ToShortDateString() == startDate.ToShortDateString())
                     {
                         lst.Add("StartDate", "StartDate cannot be Start at the same date of an other contract");
                         return lst;
                     }
-                    else if (model.EndDate.ToShortDateString() == r.EndDate.ToShortDateString())
+                    else if (model.EndDate.ToShortDateString() == endDate.ToShortDateString())
                     {
                         lst.Add("EndDate", "EndDate cannot be End at the same date of an other contract");
                         return lst;
                     }
-                    else if (model.StartDate > r.StartDate && model.EndDate < r.EndDate)
+                    else if (model.StartDate > startDate && model.EndDate < endDate)
                     {
                         lst.Add("EndDate", "Dates Overlaping with Athor contract");
                         return lst;
                     }
-                    else if (model.StartDate < r.StartDate)
+                    else if (model.StartDate < startDate)
                     {
-                        if (model.EndDate >= r.StartDate)
+                        if (model.EndDate >= startDate)
                         {
                             lst.Add("EndDate", "Dates Overlaping with an athor contract");
                             return lst;
                         }
                     }
-                    else if (model.StartDate > r.EndDate)
+                    else if (model.StartDate > endDate)
                     {
                         if (nextStartDate != DateTime.MinValue)
                         {
@@ -470,9 +484,9 @@ namespace SkyKotApp.Services.General
                             }
                         }
                     }
-                    else if (model.StartDate > r.StartDate)
+                    else if (model.StartDate > startDate)
                     {
-                        if (model.EndDate <= r.EndDate || model.StartDate <= model.EndDate)
+                        if (model.EndDate <= endDate || model.StartDate <= model.EndDate)
                         {
                             lst.Add("EndDate", "Dates Overlaping with an athor contract");
                             return lst;
@@ -490,15 +504,15 @@ namespace SkyKotApp.Services.General
 
             int renterRoomId = model.RenterRoomId;
 
-            bool isRoomReserved = await context.RenterRooms
-                .AnyAsync(rr => rr.RoomId == model.RoomId && 
-                rr.AcademicYearId == model.AcademicYearId &&
-                rr.RenterRoomId != renterRoomId);
+            //bool isRoomReserved = await context.RenterRooms
+            //    .AnyAsync(rr => rr.RoomId == model.RoomId && 
+            //    rr.AcademicYearId == model.AcademicYearId &&
+            //    rr.RenterRoomId != renterRoomId);
 
-            if (isRoomReserved)
-            {
-                lst.Add("AcademicYearId", "Room is alerdy reserved for this year");
-            }
+            //if (isRoomReserved)
+            //{
+            //    lst.Add("AcademicYearId", "Room is alerdy reserved for this year");
+            //}
 
             List<RenterRoom> renterRooms = await context.RenterRooms
                 .Where(rr => rr.RoomId == model.RoomId && rr.RenterRoomId != renterRoomId)
@@ -514,34 +528,38 @@ namespace SkyKotApp.Services.General
             }
             else if (renterRooms != null)
             {
+                DateTime startDate;
+                DateTime endDate;
                 foreach (var r in renterRooms)
                 {
+                    startDate = r.StopDate;
+                    endDate = r.IsStoped ? r.StopDate : r.EndDate;
                     DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
 
-                    if (model.StartDate.ToShortDateString() == r.StartDate.ToShortDateString())
+                    if (model.StartDate.ToShortDateString() == startDate.ToShortDateString())
                     {
                         lst.Add("StartDate", "StartDate cannot be Start at the same date of an other contract");
                         return lst;
                     }
-                    else if (model.EndDate.ToShortDateString() == r.EndDate.ToShortDateString())
+                    else if (model.EndDate.ToShortDateString() == endDate.ToShortDateString())
                     {
                         lst.Add("EndDate", "EndDate cannot be End at the same date of an other contract");
                         return lst;
                     }
-                    else if (model.StartDate > r.StartDate && model.EndDate < r.EndDate)
+                    else if (model.StartDate > startDate && model.EndDate < endDate)
                     {
                         lst.Add("EndDate", "Dates Overlaping with Athor contract");
                         return lst;
                     }
-                    else if (model.StartDate < r.StartDate)
+                    else if (model.StartDate < startDate)
                     {
-                        if (model.EndDate >= r.StartDate)
+                        if (model.EndDate >= startDate)
                         {
                             lst.Add("EndDate", "Dates Overlaping with an athor contract");
                             return lst;
                         }
                     }
-                    else if (model.StartDate > r.EndDate)
+                    else if (model.StartDate > endDate)
                     {
                         if (nextStartDate != DateTime.MinValue)
                         {
@@ -552,9 +570,9 @@ namespace SkyKotApp.Services.General
                             }
                         }
                     }
-                    else if (model.StartDate > r.StartDate)
+                    else if (model.StartDate > startDate)
                     {
-                        if (model.EndDate <= r.EndDate || model.StartDate <= model.EndDate)
+                        if (model.EndDate <= endDate || model.StartDate <= model.EndDate)
                         {
                             lst.Add("EndDate", "Dates Overlaping with an athor contract");
                             return lst;

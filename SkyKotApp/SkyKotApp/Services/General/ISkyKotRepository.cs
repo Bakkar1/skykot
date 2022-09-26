@@ -71,6 +71,7 @@ namespace SkyKotApp.Services.General
 
         #region RenterRoom
         Task<ICollection<RenterRoom>> GetRenterRooms();
+        Task<ICollection<RenterRoom>> GetRenterRooms(int id);
         Task<RenterRoom> GetRenterRoom(int renterRoomId);
         Task<RenterRoom> CreateRenterRoom(RenterRoomCreateViewModel model);
         Task<RenterRoom> CreateRenterRoom(RenterRoom renterRoom);
@@ -93,6 +94,7 @@ namespace SkyKotApp.Services.General
         #endregion
 
         #region RenterContract
+        Task<ICollection<RenterContract>> GetRenterContracts(int roomId);
         Task<RenterContract> GetRenterContract(int renterContractId);
         Task<RenterContract> UpdateRenterContract(RenterContract renterContract);
         #endregion
