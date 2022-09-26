@@ -90,6 +90,7 @@ namespace SkyKotApp.Services.General
         Task<ICollection<RenterRoom>> GetRenters();
         Task<RenterRoom> GetRenter(int renterRoomId);
         #endregion
+
         #region RenterContract
         Task<RenterContract> GetRenterContract(int renterContractId);
         Task<RenterContract> UpdateRenterContract(RenterContract renterContract);

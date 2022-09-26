@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAC3bzcb0zA0SZubMeW2w5OgAAAAACAAAAAAAQZgAAAAEAACAAAAAWMCQcUtOt4C5ANUyncqymUH1VU0sBCQeIzSZrOK+n5AAAAAAOgAAAAAIAACAAAADziDJ35OAp2qdia85sCCxs+YI5YML3HyKQUpHrmG3K1oAAAADEB+F1WASUtABihYHWNql/4RJJBWhCtsH0YQxcjsmNTiEvvEOe99O3Z8K4BNlkIoqOELu5dIVqTU9H5UtXgkEUk8sWoAPI8NKKPXMHki+PeJ+VUkUJL0kE359NrAINURLQG7F3xzzT3Wn2aq+nexvRiLZfylAPUcfx4wIExvfQI0AAAAAchtBuxtK76GUjHShiFnDi7I+zLh6aeqNpqhxvK/nt01BodTS6fNclnjOP3Smt3dhB3nyIzwkii3KreLySArZ7</EncryptedPassword>
+    <History>True|2022-09-26T09:26:44.8328366Z;True|2022-09-21T17:17:30.7164577+02:00;True|2022-09-21T16:45:47.1764747+02:00;True|2022-09-21T16:34:48.8526695+02:00;True|2022-09-21T16:29:21.5437565+02:00;True|2022-09-21T16:27:21.9427965+02:00;True|2022-09-21T16:25:25.8256070+02:00;True|2022-09-21T14:10:51.6574303+02:00;True|2022-09-21T14:02:51.1267459+02:00;True|2022-09-21T13:57:40.7156272+02:00;True|2022-09-20T15:54:24.2592382+02:00;True|2022-09-15T14:35:20.5370444+02:00;True|2022-09-15T14:11:10.2098800+02:00;True|2022-09-15T14:01:24.8776288+02:00;True|2022-09-15T13:49:29.5094332+02:00;True|2022-09-15T13:24:39.2087356+02:00;True|2022-09-15T13:17:56.2051608+02:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="SkyKotConnString">
+      <Value>Data Source=tcp:skykotappdbserver.database.windows.net,1433%3bInitial Catalog=SkyKotApp_db%3bUser Id=mbark-skykot%40skykotappdbserver%3bPassword=xipji0-qykqyd-wehjIj</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

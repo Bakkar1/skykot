@@ -227,6 +227,29 @@ namespace SkyKotApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Pay(int renterContractId)
+        {
+            if (renterContractId == 0)
+            {
+                return RedirecToNotFound();
+            }
+            RenterContract contract = await skyKotRepository.GetRenterContract(renterContractId);
+            if (contract == null)
+            {
+                return RedirecToNotFound();
+            }
+
+            double toPay = contract.RenterRoom.AmountToPay;
+
+            contract.IsPayed = true;
+
+            await skyKotRepository.UpdateRenterContract(contract);
+
+            return RedirectToAction("Details", new { id = contract.RenterRoomId });
+        }
+
         private bool RenterRoomExists(int id)
         {
             return _context.RenterRooms.Any(e => e.RenterRoomId == id);

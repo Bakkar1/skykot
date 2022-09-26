@@ -1,7 +1,7 @@
 ﻿@inject SignInManager<CustomUser> signInManager;
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
-<nav class="navbar navbar-expand-xl navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="#">Sky Kot</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -68,7 +68,7 @@
                 <partial name="_Culture" />
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" style="display: none">
           <input class="form-control mr-sm-2" type="search" disabled placeholder="@localizer["search-btn"]" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@localizer["search-lbl"]</button>
         </form>

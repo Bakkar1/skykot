@@ -21,13 +21,27 @@ namespace SkyKotApp.Services.General
                 .Where(rc => rc.RenterRoom.Id == GetCurrentUserId())
                 .FirstOrDefaultAsync(rc => rc.RenterContractId == renterContractId);
             }
-            else if (GetCurrentUserRole() == Roles.Admin)
+            else if (GetCurrentUserRole() == Roles.Owner)
+            {
+
+                RenterContract renterContract = await context.RenterContracts
+                    .Include(rc => rc.RenterRoom)
+                    .FirstOrDefaultAsync(rc => rc.RenterContractId == renterContractId);
+                if (renterContract != null)
+                {
+                    if (await IsOwnRenterRoom(renterContract.RenterRoomId))
+                    {
+                        return renterContract;
+                    }
+                }
+            }
+            else
             {
                 return await context.RenterContracts
                 .Include(rc => rc.RenterRoom)
                 .FirstOrDefaultAsync(rc => rc.RenterContractId == renterContractId);
             }
-            return null; ;
+            return null;
         }
         public async Task<RenterContract> UpdateRenterContract(RenterContract renterContract)
         {

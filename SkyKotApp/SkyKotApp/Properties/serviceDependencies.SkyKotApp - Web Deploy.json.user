@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2022-09-15T11:14:21.8743145Z"
+    },
+    "signalr1": {
+      "restored": true,
+      "restoreTime": "2022-09-15T12:34:22.411207Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "8077720f-847c-484d-b46c-09f7b75d0ae7"
+    },
+    "signalr1.resourceGroupName": {
+      "Name": "signalr1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "SkyKotApp20220915125711ResourceGroup"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "SkyKotApp20220915125711ResourceGroup"
+    },
+    "signalr1.subscriptionId": {
+      "Name": "signalr1.subscriptionId",
+      "Type": "subscription",
+      "Value": "8077720f-847c-484d-b46c-09f7b75d0ae7"
+    }
+  }
+}

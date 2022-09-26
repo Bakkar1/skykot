@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JUCiptIqiCieWWzxi4bJRoGxYhg9R+gXg9WC/ThgQIE=",
+  "Hash": "X05QYwt+hzPEfRkQbu6hm1Nz6BKiWxDJJGjh9jpIFHo=",
   "Source": "SkyKotApp",
   "BasePath": "_content/SkyKotApp",
   "Mode": "Default",
@@ -542,6 +542,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Profile\\f0719acd-a2c1-4a2f-9ee6-85587cb0e877v3_0455697.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Profile\\f2622622-a0c4-4b66-9870-c8e0ee71b5d1IMG_0694 (1).PNG",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "Images/Profile/f2622622-a0c4-4b66-9870-c8e0ee71b5d1IMG_0694 (1).PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Profile\\f2622622-a0c4-4b66-9870-c8e0ee71b5d1IMG_0694 (1).PNG"
     },
     {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\Images\\Profile\\f3eec86a-0a0f-40a3-a401-77dff402655bIMG_0938.JPG",

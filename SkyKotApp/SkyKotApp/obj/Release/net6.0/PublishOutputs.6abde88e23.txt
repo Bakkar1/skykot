@@ -14,10 +14,14 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\Pu
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Http.Connections.Client.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.Azure.SignalR.Common.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.Azure.SignalR.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.Azure.SignalR.Protocols.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.Build.Locator.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\PubTmp\Out\Microsoft.CodeAnalysis.AnalyzerUtilities.dll

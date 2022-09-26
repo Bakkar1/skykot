@@ -203,16 +203,15 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
-
-        if (user.IsInRole(Roles.Admin) || user.IsInRole(Roles.Owner))
+        string role = await GetCurrentUserRole();
+        string userName = await GetCurrentUserName();
+        if (role == Roles.Admin || role == Roles.Owner)
         {
             IsNormalUser = false;
         }
 
-        Rooms = await BlazorRepository.GetRooms();
-        Houses = await BlazorRepository.GetHouses();
+        Rooms = await BlazorRepository.GetRooms(role, userName);
+        Houses = await BlazorRepository.GetHouses(role, userName);
         ZipCodes = await BlazorRepository.GetZipCodes();
         SortedRooms = Rooms;
         isLoading = false;
@@ -230,6 +229,29 @@
         var st = Rooms.Where(r => r.RoomId == 1).ToList();
         SortedRooms = st;
         isLoading = false;
+    }
+    private async Task<string> GetCurrentUserRole()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        if (user.IsInRole(Roles.Admin))
+        {
+            return Roles.Admin;
+        }
+        else if(user.IsInRole(Roles.Owner))
+        {
+            return Roles.Owner;
+        }
+        else
+        {
+            return Roles.NormalUser;
+        }
+    }
+    private async Task<string> GetCurrentUserName()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        return user.Identity.Name;
     }
     protected  void FilterOnHouse(ChangeEventArgs e)
     {

@@ -14,23 +14,22 @@ namespace SkyKotApp.Services.Blazor
     public class BlazorRepository : IBlazorRepository
     {
         private readonly AppDbContext context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public BlazorRepository(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+        public BlazorRepository(AppDbContext context)
         {
             this.context = context;
-            this._httpContextAccessor = httpContextAccessor;
         }
-        public async Task<ICollection<Room>> GetRooms()
+        public async Task<ICollection<Room>> GetRooms(string role, string userName)
         {
-            string role = GetCurrentUserRole();
+            string id = await GetUserIdByName(userName);
+
             if (role == Roles.Owner)
             {
                 return await context.Rooms
                     .Include(r => r.House.ZipCode)
                     .Include(r => r.RoomImages)
                     .Include(r => r.House.HouseExpenses)
-                    .Where(r => r.House.UserHouses.Any(us => us.Id == GetCurrentUserId()))
+                    .Where(r => r.House.UserHouses.Any(us => us.Id == id))
                     .ToListAsync();
             }
             else if (role == Roles.Admin)
@@ -51,36 +50,34 @@ namespace SkyKotApp.Services.Blazor
                 .ToListAsync();
             }
         }
-        public string GetCurrentUserRole()
+        public async Task<ICollection<House>> GetHouses(string role, string userName)
         {
-            return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
-        }
-        public string GetCurrentUserId()
-        {
-            return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        }
-        public async Task<ICollection<House>> GetHouses()
-        {
-            string role = GetCurrentUserRole();
+            string id = await GetUserIdByName(userName);
+
             if (role == Roles.Owner)
             {
                 return await context.UserHouses
-                  .Include(uh => uh.House)
-                  .Where(uh => uh.Id == GetCurrentUserId())
+                  .Include(uh => uh.House.ZipCode)
+                  .Where(uh => uh.Id == id)
                   .Select(uh => new House
                   {
                       HouseId = uh.HouseId,
                       Name = uh.House.Name,
+                      Description = uh.House.Description,
+                      HouseNumber = uh.House.HouseNumber,
+                      StreetName = uh.House.StreetName,
+                      ZipCode = uh.House.ZipCode,
+                      ContractRules = uh.House.ContractRules
                   })
                    .ToListAsync();
             }
-            else
+            else if (role == Roles.Admin)
             {
                 return await context.Houses
                    .Include(h => h.ZipCode)
-                   .Select(h => new House() { HouseId = h.HouseId, Name = h.Name })
                  .ToListAsync();
             }
+            return null;
         }
         public async Task<ICollection<ZipCode>> GetZipCodes()
         {
@@ -90,5 +87,37 @@ namespace SkyKotApp.Services.Blazor
                 .Select(z => new ZipCode() { ZipCodeId = z.ZipCodeId, City = z.City, Country = new Country() { Name = z.Country.Name } })
                 .ToListAsync();
         }
+
+        private async Task<string> GetUserIdByName(string userName)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.UserName == userName);
+            return user == null ? "" : user.Id.ToString();
+        }
+
+        // create contract
+        public async Task<ICollection<CustomUser>> GetOwnCustomUsers(string userName)
+        {
+            string id = await GetUserIdByName(userName);
+            return await context
+                .Users
+                .Where(u => u.OwnerId == id)
+                .ToListAsync();
+        }
+
+        public async Task<bool> IsOwnRoom(string userName, int? roomId = 0)
+        {
+            string id = await GetUserIdByName(userName);
+            return await context.Rooms
+                        .AnyAsync(r => r.House.UserHouses.Where(us => us.Id == id).Any() && r.RoomId == roomId);
+        }
+        public async Task<bool> IsUserOwner(string userName,string userId)
+        {
+            string id = await GetUserIdByName(userName);
+            return await context.Users
+                .AnyAsync(u =>
+                u.Id == userId &&
+                u.OwnerId == id);
+        }
+
     }
 }
