@@ -54,7 +54,7 @@
                          <tr class="bg-primary">
                             <th scope="col">Description</th>
                             <th scope="col">Is Available</th>
-                            <th scope="col">Value</th>
+                            <th scope="col">Where Is AvailAble</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,8 +72,12 @@
                                            asp-for="@Model.HouseSpecificationsList[i].IsAvailAble" />
                                 </td>
                                 <td>
-                                    <input class="form-control" value="@Model.HouseSpecificationsList[i].WhereAvailAble"
-                                           asp-for="@Model.HouseSpecificationsList[i].WhereAvailAble" />
+                                    <select class="form-control" value="@Model.HouseSpecificationsList[i].WhereAvailAble"
+                                           asp-for="@Model.HouseSpecificationsList[i].WhereAvailAble" >
+                                        <option value="Anders">Anders</option>   
+                                        <option value="Buiten">Buiten</option>   
+                                        <option value="Binnen">Binnen</option>   
+                                    </select>
                                 </td>
                             </tr>
                         }

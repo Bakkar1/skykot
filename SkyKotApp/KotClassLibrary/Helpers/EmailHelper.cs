@@ -11,7 +11,7 @@ namespace KotClassLibrary.Helpers
     public class EmailHelper
     {
         private const string SendToEmail = "mbarkbakkar1@gmail.com";
-        private const string Password = "rrmlavevvjkscoxb";
+        private const string Password = "pkcfdjsqxpvhozwd";
         public static void SendConfirmationEmail(string email, string confirmLink)
         {
             using (MailMessage mail = new MailMessage())

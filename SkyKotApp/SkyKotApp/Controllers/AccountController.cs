@@ -224,6 +224,23 @@ namespace SkyKotApp.Controllers
 
                     if (true /*await loginRepository.IsAdmin(identityUser) || await loginRepository.IsEmailConfirmed(identityUser)*/)
                     {
+                        if(!await loginRepository.IsAdmin(identityUser))
+                        {
+                            // user not allowd
+                            if(!identityUser.IsAllowToUseTheApp)
+                            {
+                                AfterRegisterViewModel afterRegister = new AfterRegisterViewModel()
+                                {
+                                    Title = "Login Faild",
+                                    Email = "",
+                                    Message = $"You are not allowed to use the app, maybe because your subscription has ended, but your data is still available. Please contact your Admin or contact person!"
+                                };
+                                return RedirectToAction("EmailConfirmation", afterRegister);
+
+                            }
+
+                        }
+
                         var userName = identityUser.UserName;
                         var result = await loginRepository.SignInWithPassword(
                              userName, model.Password, model.RememberMe);

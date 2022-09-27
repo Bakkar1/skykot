@@ -446,30 +446,30 @@ namespace SkyKotApp.Services.General
                 DateTime endDate;
                 foreach (var r in renterRooms)
                 {
-                    startDate = r.StopDate;
+                    startDate = r.StartDate;
                     endDate = r.IsStoped ? r.StopDate : r.EndDate;
                     DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
 
                     if (model.StartDate.ToShortDateString() == startDate.ToShortDateString())
                     {
-                        lst.Add("StartDate", "StartDate cannot be Start at the same date of an other contract");
+                        lst.Add("StartDate", "StartDate cannot be Start at the same date of an other contract Please check the time line");
                         return lst;
                     }
                     else if (model.EndDate.ToShortDateString() == endDate.ToShortDateString())
                     {
-                        lst.Add("EndDate", "EndDate cannot be End at the same date of an other contract");
+                        lst.Add("EndDate", "EndDate cannot be End at the same date of an other contract Please check the time line");
                         return lst;
                     }
                     else if (model.StartDate > startDate && model.EndDate < endDate)
                     {
-                        lst.Add("EndDate", "Dates Overlaping with Athor contract");
+                        lst.Add("EndDate", "Dates Overlaping with Athor contract  Please check the time line");
                         return lst;
                     }
                     else if (model.StartDate < startDate)
                     {
                         if (model.EndDate >= startDate)
                         {
-                            lst.Add("EndDate", "Dates Overlaping with an athor contract");
+                            lst.Add("EndDate", "Dates Overlaping with an athor contract Please check the time line");
                             return lst;
                         }
                     }
@@ -479,7 +479,7 @@ namespace SkyKotApp.Services.General
                         {
                             if (model.EndDate > nextStartDate && nextStartDate > model.StartDate)
                             {
-                                lst.Add("EndDate", "Dates Overlaping with an athor contract");
+                                lst.Add("EndDate", "Dates Overlaping with an athor contract Please check the time line");
                                 return lst;
                             }
                         }
@@ -488,7 +488,7 @@ namespace SkyKotApp.Services.General
                     {
                         if (model.EndDate <= endDate || model.StartDate <= model.EndDate)
                         {
-                            lst.Add("EndDate", "Dates Overlaping with an athor contract");
+                            lst.Add("EndDate", "Dates Overlaping with an athor contract Please check the time line");
                             return lst;
                         }
                     }
@@ -532,7 +532,7 @@ namespace SkyKotApp.Services.General
                 DateTime endDate;
                 foreach (var r in renterRooms)
                 {
-                    startDate = r.StopDate;
+                    startDate = r.StartDate;
                     endDate = r.IsStoped ? r.StopDate : r.EndDate;
                     DateTime nextStartDate = i < renterRooms.Count ? renterRooms[i].StartDate : new DateTime();
 

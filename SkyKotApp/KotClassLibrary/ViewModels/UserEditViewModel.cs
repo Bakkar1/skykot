@@ -22,6 +22,7 @@ namespace KotClassLibrary.ViewModels
             LastName = user.LastName;
             Email = user.Email;
             ExistingPhotoPath = user.ProfileImage;
+            IsAllowToUseTheApp = user.IsAllowToUseTheApp;
         }
         public IFormFile Photo { get; set; }
         public string RoleId { get; set; }

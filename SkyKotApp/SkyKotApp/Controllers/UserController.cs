@@ -208,6 +208,10 @@ namespace SkyKotApp.Controllers
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
                     user.Email = model.Email;
+                    if(skyKotRepository.GetCurrentUserRole() == Roles.Admin)
+                    {
+                        user.IsAllowToUseTheApp = model.IsAllowToUseTheApp;
+                    }
 
                     if(model.Photo == null)
                     {

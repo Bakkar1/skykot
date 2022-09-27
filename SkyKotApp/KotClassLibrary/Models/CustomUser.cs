@@ -18,6 +18,7 @@ namespace KotClassLibrary.Models
         public string ProfileImage { get; set; }
         [ForeignKey("IdentityUser")]
         public string OwnerId { get; set; }
+        public bool IsAllowToUseTheApp { get; set; } = false;
 
         public ICollection<UserHouse> UserHouses { get; set; }
         public ICollection<RenterRoom> RenterRooms { get; set; }

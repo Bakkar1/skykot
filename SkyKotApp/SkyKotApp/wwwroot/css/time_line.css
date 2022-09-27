@@ -81,25 +81,30 @@
     box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
 }
 
-    .direction-l .flag:before,
-    .direction-r .flag:before {
-        position: absolute;
-        top: 50%;
-        right: -40px;
-        content: ' ';
-        display: block;
-        width: 12px;
-        height: 12px;
-        margin-top: -10px;
-        background: #fff;
-        border-radius: 10px;
-        border: 4px solid rgb(255,80,80);
-        z-index: 10;
-    }
+.direction-l .flag:before,
+.direction-r .flag:before {
+position: absolute;
+top: 50%;
+right: -40px;
+content: ' ';
+display: block;
+width: 12px;
+height: 12px;
+margin-top: -10px;
+background: #fff;
+border-radius: 10px;
+z-index: 10;
+}
+.direction-l .flag:before {
+    border: 4px solid rgb(255,80,80);
+}
+.direction-r .flag:before {
+    border: 4px solid blue;
+}
 
-    .direction-r .flag:before {
-        left: -40px;
-    }
+.direction-r .flag:before {
+    left: -40px;
+}
 
 .direction-l .flag:after {
     content: "";
@@ -203,7 +208,6 @@
         margin-left: -9px;
         background: #fff;
         border-radius: 10px;
-        border: 4px solid rgb(255,80,80);
         z-index: 10;
     }
 

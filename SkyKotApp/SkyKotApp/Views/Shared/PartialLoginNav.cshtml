@@ -20,7 +20,7 @@
             </li>
             @if (signInManager.IsSignedIn(User))
             {
-                    @if (User.IsInRole(Roles.Renter))
+                @if (User.IsInRole(Roles.Renter))
                 {  
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Renter" asp-action="Index"><i class="fa-solid fa-building-circle-arrow-right"></i>@localizer["renter-link"]</a>

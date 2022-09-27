@@ -45,6 +45,7 @@ namespace SkyKotApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> Pay(int renterContractId)
         {
             if(renterContractId == 0)

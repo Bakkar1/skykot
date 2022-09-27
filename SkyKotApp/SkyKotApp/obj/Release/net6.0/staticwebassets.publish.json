@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+vaOqXDQ2xsNTADVwJH6LQwF0Tc6Pb2v/42Lxc1q/5o=",
+  "Hash": "EaHG8zaBmTmQVftNYU8thTg4X9CE1Bv2fHzrsjvaloE=",
   "Source": "SkyKotApp",
   "BasePath": "_content/SkyKotApp",
   "Mode": "Default",
@@ -185,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\css\\time_line.css",
+      "SourceId": "SkyKotApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\",
+      "BasePath": "_content/SkyKotApp",
+      "RelativePath": "css/time_line.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\time_line.css"
     },
     {
       "Identity": "C:\\Users\\mbark\\Documents\\Github\\skykot\\SkyKotApp\\SkyKotApp\\wwwroot\\css\\User.css",

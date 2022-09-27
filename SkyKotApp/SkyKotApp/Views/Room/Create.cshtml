@@ -55,10 +55,13 @@
                 <input asp-for="AvailableFrom" class="form-control" />
                 <span asp-validation-for="AvailableFrom" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsAvailable" /> @Html.DisplayNameFor(model => model.IsAvailable)
-                </label>
+            <div class="form-group">
+                <label asp-for="IsAvailable" class="control-label"></label>
+                <select asp-for="IsAvailable" class="form-control">
+                    <option value="False">No</option>
+                    <option value="True">Yes</option>
+                </select>
+                <span asp-validation-for="IsAvailable" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label>Room Images</label>

@@ -11,8 +11,6 @@
 @inherits OwningComponentBase
 @inject IJSRuntime JSRuntime
 
-<h3>CreateRenterRoom</h3>
-
 <div class="row justify-content-center">
     <div>
         <EditForm Model="Model" OnValidSubmit="HandleValidSubmit" @onchange="ClearValidationError" enctype="multipart/form-data" method="post">
@@ -102,7 +100,11 @@
 </div>
  <div>
     <!-- The Timeline -->
-
+    <h3 class="text-center">Room Contracts Time Line</h3>
+    <div class="d-flex" style="justify-content: space-evenly;">
+        <p style="color:rgb(255,80,80)">End Contract</p>
+        <p style="color:blue">Start Contract </p>
+    </div>
     <ul class="timeline">
         @if(RenterRooms.Any()){
             foreach(RenterRoom renterRoom in RenterRooms)
