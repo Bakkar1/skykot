@@ -294,3 +294,5 @@ C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Release\net6.0\Mi
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Release\net6.0\Microsoft.Azure.SignalR.Common.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Release\net6.0\Microsoft.Azure.SignalR.dll
 C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\bin\Release\net6.0\Microsoft.Azure.SignalR.Protocols.dll
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\SkyKotApp.Resources.Views.Shared.PartialLoginNav.fr.resources
+C:\Users\mbark\Documents\Github\skykot\SkyKotApp\SkyKotApp\obj\Release\net6.0\SkyKotApp.Resources.Views.Shared.PartialLoginNav.nl.resources

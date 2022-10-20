@@ -26,6 +26,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Contracts\" />
+    <Folder Include="wwwroot\Images\Profile\" />
+    <Folder Include="wwwroot\Images\Room\" />
   </ItemGroup>
 
 </Project>

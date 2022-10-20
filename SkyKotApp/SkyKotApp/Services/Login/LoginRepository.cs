@@ -88,6 +88,10 @@ namespace SkyKotApp.Services.Login
         {
             return await userManager.IsInRoleAsync(user, Roles.Admin);
         }
+        public async Task<bool> IsOwner(CustomUser user)
+        {
+            return await userManager.IsInRoleAsync(user, Roles.Owner);
+        }
         #endregion
 
         #region External

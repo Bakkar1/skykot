@@ -16,7 +16,7 @@
     <label>Fitler </label>
     <select @onchange="FilterOnHouse" >
         <option value="0">House</option>
-        @if(Houses.Any())
+        @if(Houses != null)
         {
             @foreach (var house in Houses)
             {
@@ -27,7 +27,7 @@
 
      <select @onchange="FilterOnZipCode" >
         <option value="0">City</option>
-        @if(Houses.Any())
+        @if(Houses != null)
         {
             @foreach (var zipCode in ZipCodes)
             {
@@ -211,8 +211,17 @@
         }
 
         Rooms = await BlazorRepository.GetRooms(role, userName);
-        Houses = await BlazorRepository.GetHouses(role, userName);
-        ZipCodes = await BlazorRepository.GetZipCodes();
+        if(userName == null)
+        {
+            var result = from room in Rooms
+                         select new House() { HouseId = room.HouseId, Name = room.House.Name };
+            Houses = result.ToList();
+            ZipCodes = await BlazorRepository.GetZipCodes();
+        }
+        else{
+            Houses = await BlazorRepository.GetHouses(role, userName);
+            ZipCodes = await BlazorRepository.GetZipCodes();
+        }
         SortedRooms = Rooms;
         isLoading = false;
     }

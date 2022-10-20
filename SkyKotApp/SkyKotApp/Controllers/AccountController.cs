@@ -222,9 +222,9 @@ namespace SkyKotApp.Controllers
                 if (identityUser != null)
                 {
 
-                    if (true /*await loginRepository.IsAdmin(identityUser) || await loginRepository.IsEmailConfirmed(identityUser)*/)
+                    if (true)//wait loginRepository.IsAdmin(identityUser) || await loginRepository.IsEmailConfirmed(identityUser))
                     {
-                        if(!await loginRepository.IsAdmin(identityUser))
+                        if(await loginRepository.IsOwner(identityUser))
                         {
                             // user not allowd
                             if(!identityUser.IsAllowToUseTheApp)
